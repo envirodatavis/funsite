@@ -1,5 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <v-container fluid class="ma-0 pa-0">
+      <v-row justify="center">
+        <v-col align="center">
+          <v-card tile flat max-width="400px">
+            <v-card-text>I don't quite know what to say here yet.</v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
