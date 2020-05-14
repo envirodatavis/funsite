@@ -9,6 +9,13 @@
             <router-link to="/about">About</router-link>
             <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/hydrogeology">Hydrogeology</router-link>-->
+            <!-- 
+              Future Sections: 
+              - art section (with cards that expand)
+              - hydro section
+              - live map thing (demo some mapbox embed capability)
+              - animal tracing
+            -->
           </v-row>
         </div>
         <router-view />
