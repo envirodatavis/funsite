@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-container fluid class="ma-0 pa-0">
-      <v-row justify="center">
+      <!-- <v-row justify="center">
         <v-col justify="center" cols="3">
           <v-card tile outlined height="100">
             <v-card-text>I will start making content here. I don't really have much to say yet.</v-card-text>
@@ -12,7 +12,11 @@
             <v-card-text>Currently, I'm futzing with the framework for this webpage and the technology stack</v-card-text>
           </v-card>
         </v-col>
-      </v-row>
+      </v-row>-->
+
+      <!-- make regular flex size. bind in the image source. bind in other stuff? image size, desizred popup open card thing.  -->
+      <figure-display />
+
       <v-row>
         <v-col align="center">
           <v-card flat max-width="450">
@@ -34,11 +38,13 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
+import FigureDisplay from "../components/FigureDisplay.vue";
 
 export default {
   name: "Home",
   components: {
     // HelloWorld
+    FigureDisplay
   }
 };
 </script>
