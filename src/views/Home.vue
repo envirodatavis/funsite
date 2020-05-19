@@ -16,7 +16,7 @@
 
       <!-- make regular flex size. bind in the image source. bind in other stuff? image size, desizred popup open card thing.  -->
       <figure-display />
-
+      <example-modal />
       <v-row>
         <v-col align="center">
           <v-card flat max-width="450">
@@ -39,12 +39,14 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 import FigureDisplay from "../components/FigureDisplay.vue";
+import ExampleModal from "../components/ExampleModal.vue";
 
 export default {
   name: "Home",
   components: {
     // HelloWorld
-    FigureDisplay
+    FigureDisplay,
+    ExampleModal
   }
 };
 </script>
