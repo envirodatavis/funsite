@@ -1,13 +1,15 @@
 <template>
-  <v-card dark tile outlined max-width="300">
-    Here be my D3 BS:
-    <h1>SAMPLE THING</h1>
-    <p></p>
-    <v-btn dark @click="d3Trigger">Click me</v-btn>
-    <v-slider v-model="sliderValue" min="0" max="255" />
-    <v-divider />
-    <div>Here's a div</div>
-  </v-card>
+  <v-row justify="center">
+    <v-card dark tile outlined max-width="300">
+      Here be my D3 BS:
+      <h1>SAMPLE THING</h1>
+      <p></p>
+      <v-btn dark @click="d3Trigger">Click me</v-btn>
+      <v-slider v-model="sliderValue" min="0" max="255" />
+      <v-divider />
+      <div>Here's a div</div>
+    </v-card>
+  </v-row>
 </template>
 
 <script>

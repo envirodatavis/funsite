@@ -18,6 +18,7 @@
             -->
           </v-row>
         </div>
+        <v-divider />
         <router-view />
       </div>
       <!-- <v-row justify="center">

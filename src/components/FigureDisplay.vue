@@ -2,16 +2,22 @@
   <div>
     <v-row justify="center" align="center">
       <v-col v-for="n in imageGallery" :key="n.title" :cols="n.flex">
-        <v-card tile outlined @click="galleryOpen=!galleryOpen; cardToOpen=n">
-          <v-img :src="n.source" max-height="200" max-width="200">{{n.title}}</v-img>
+        <v-card
+          tile
+          outlined
+          @click="galleryOpen=!galleryOpen; cardToOpen=n"
+          height="200"
+          width="300"
+        >
+          <v-img :src="n.source" height="200" width="300"></v-img>
         </v-card>
       </v-col>
     </v-row>
-    <v-dialog v-model="galleryOpen" persistent max-width="600">
+    <v-dialog v-model="galleryOpen" persistent max-width="700">
       <v-card>
         {{cardToOpen.title}}
         <br />
-        <v-img :src="cardToOpen.source" max-width="600"></v-img>
+        <v-img :src="cardToOpen.source" max-width="700" max-height="700"></v-img>
         {{cardToOpen.description}}
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -31,46 +37,46 @@ export default {
   data: () => ({
     imageGallery: [
       {
-        title: "title-1",
+        title: "New Jersey",
         source: require("../assets/NjMapArt.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-2",
         source: require("../assets/LondonMapArt_1.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-21",
         source: require("../assets/LondonMapArt_2.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-23",
         source: require("../assets/LondonMapArt_3.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-3",
         source: require("../assets/OxbowLidar.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-4",
         source: require("../assets/Quabin_1.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       },
       {
         title: "title-5",
         source: require("../assets/BostonMapArt_1.jpg"),
         description: "Stuff!",
-        flex: 2
+        flex: 3
       }
       // {
       //   title: "title-6",
