@@ -36,6 +36,7 @@ export default {
   watch: {
     multiplierSlider: function() {
       this.calculatePath();
+      this.addDots();
     }
   },
   computed: {
@@ -74,6 +75,18 @@ export default {
         .attr("r", 2)
         .style("fill", "blue")
         .attr("transform", "translate(25,25)");
+
+      svg
+        .append("g")
+        .append("circle")
+        .attr("cx", function(d) {
+          return this.scales.x(d.x_field);
+        })
+        .attr("cy", function(d) {
+          return this.scales.y(d.y_field);
+        })
+        .attr("r", 1.5)
+        .style("fill", "#69b3a2");
     },
     calculatePath() {
       // function that calculates the path
@@ -84,6 +97,19 @@ export default {
         .x(arr => scale.x(arr.x_field))
         .y(arr => scale.y(arr.y_field));
       this.line = path(dataPlot);
+    },
+    addDots() {
+      d3.selectAll("circle").remove();
+      this.dataPlot.map(arr =>
+        d3
+          .select("#dataviz_area")
+          .append("circle")
+          .attr("cx", this.scales.x(arr.x_field))
+          .attr("cy", this.scales.y(arr.y_field))
+          .attr("r", 3)
+          .style("fill", "blue")
+          .attr("transform", "translate(25,25)")
+      );
     }
 
     // randn_bm: function(min, max, skew) {
