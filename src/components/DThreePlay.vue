@@ -1,6 +1,7 @@
 <template>
   <v-row justify="center">
     <v-card tile outlined>
+      HI!
       <svg id="dataviz_area" height="200" width="450" />
       <v-slider v-model="sliderValue" min="0" max="100" />
       <div class="row align-items-center">
@@ -10,14 +11,15 @@
         <!-- <div class="col-sm">
           <div id="slider-simple"></div>
         </div>-->
-      </div>
+      </div>slidertown
+      <p id="value"></p>
+      <div id="slider"></div>
     </v-card>
   </v-row>
 </template>
 
 <script>
 import * as d3 from "d3";
-// import { sliderBottom } from "d3-simple-slider";
 // // Simple
 // var data = [0, 0.005, 0.01, 0.015, 0.02, 0.025];
 

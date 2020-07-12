@@ -11,6 +11,7 @@
               <!-- <br /> -->
               <!-- <br /> -->
               <!-- Special thanks to Steven Kalt for teaching me all sorts of badass web tech stuff during my time at REsurety.   -->
+              <!-- Add stuff that's been pretty insperational -->
             </v-card-text>
           </v-card>
         </v-col>

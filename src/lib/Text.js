@@ -1,0 +1,1 @@
+export const thresholdCalcDescirption = "What that says is: theoretical concentraiotn in water multiplied by each possible component"
