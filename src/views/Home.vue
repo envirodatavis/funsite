@@ -8,7 +8,7 @@
       <!-- <v-divider /> -->
       <!-- <d-three-sketching /> -->
       <threshold-calc />
-      <d-three-example />
+      <!-- <d-three-example /> -->
       <!-- <d-three-play /> -->
       <v-row>
         <v-col align="center">
@@ -34,7 +34,7 @@
 // import FigureDisplay from "../components/FigureDisplay.vue";
 // import ExampleModal from "../components/ExampleModal.vue";
 // import DThreeSketching from "../components/DThreeSketching.vue";
-import DThreeExample from "../components/DThreeExample.vue";
+// import DThreeExample from "../components/DThreeExample.vue"; // THIs IS GOOD
 // import DThreePlay from "../components/DThreePlay.vue";
 import ThresholdCalc from "../components/HydroToolThresholdCalc.vue";
 
@@ -45,7 +45,7 @@ export default {
     // FigureDisplay,
     // ExampleModal
     // DThreeSketching,
-    DThreeExample,
+    // DThreeExample, //THIS IS GOOD
     ThresholdCalc
     // DThreePlay,
   }
