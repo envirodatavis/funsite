@@ -11,8 +11,7 @@
         tell if any amount of the NAPL phase remains years after a spill
         happens, and that can have a big effect on cleaning up the pollution.
         <br />
-        <br />
-        Soil samples are collected to determine how contaminated a site is. But
+        <br />Soil samples are collected to determine how contaminated a site is. But
         because soil is actually air, water, soil grains, and organics, a sample
         tells us how much chemical is in all the phases. It is surprisingly hard
         to see the NAPL of an old spill, because the NAPL spreads out and
@@ -25,8 +24,7 @@
         <v-card tile outlined>
           <v-card-text>
             (This is what soil looks like)
-            <br />
-            options with toggle buttons: a really wet, organicy soil
+            <br />options with toggle buttons: a really wet, organicy soil
             <br />
             {slider for soil - water - air poportions}
             <br />
@@ -41,9 +39,11 @@
         <br />
       </v-card-text>
 
-      <v-card-title>
-        Concentration Threshold
-      </v-card-title>
+      <br />
+      <basic-chart />
+      <br />
+
+      <v-card-title>Concentration Threshold</v-card-title>
       <v-card-text>
         <br />Ct = effectiveSolubility/bulk density x ( KdPb + Water Filled
         Porosity + Henry's constantxAir Porosity )
@@ -53,27 +53,13 @@
           <v-row no-gutters>
             <v-col>
               <v-card-title>Henry's Constant</v-card-title>
-              <v-subheader
-                >Is the amount that a compnound is going to be in the air phase
-                over the water phase</v-subheader
-              >
+              <v-subheader>
+                Is the amount that a compnound is going to be in the air phase
+                over the water phase
+              </v-subheader>
             </v-col>
             <v-col>
-              THIS WILL BE A COMPONENT
-              <svg
-                id="dataviz_area1"
-                width="300"
-                height="100"
-                style="margin: 15px"
-              >
-                <g>
-                  <rect
-                    width="300"
-                    height="100"
-                    style="fill:rgba(100,100,100,0.1); stroke-width:1; stroke:rgba(100, 100, 100,0.5);"
-                  />
-                </g>
-              </svg>
+              <div id="henrysChart"></div>
             </v-col>
           </v-row>
           <v-row no-gutters>
@@ -111,13 +97,13 @@
 </template>
 
 <script>
-// IDEA:
-//  presets, like " a wet organic soil" "short explanaiton on what that means, how common that would be"
-//  ""
 import * as d3 from "d3";
-// import {thing} from "../lib/utils/hydroCalculations.js"
+import BasicChart from "./D3VueBasic.vue";
 
 export default {
+  components: {
+    BasicChart
+  },
   data() {
     return {
       desctiptionText: "here",
@@ -130,12 +116,27 @@ export default {
       KocOrganicCarbon: 126,
       fOc: 0.03,
       soilType: "cleanSand",
+      henrysOptions: [
+        {
+          chemical: "TCE",
+          h: 0.31
+        },
+        {
+          chemical: "PCE",
+          h: 0.41
+        },
+        {
+          chemical: "DCE",
+          h: 0.31
+        }
+      ]
       // initial Ct should be 515
       // write a jest test for that, cool.
     };
   },
   mounted() {
     this.makeATreeMap();
+    this.makeHenrysChart();
   },
   watch: {
     soilType(next) {
@@ -154,7 +155,7 @@ export default {
       }
       this.makeATreeMap();
       // this.updateATreeMap();
-    },
+    }
   },
   computed: {
     soilCompositionTree: function() {
@@ -165,20 +166,20 @@ export default {
           {
             name: "Organic",
             value: this.fOc,
-            colname: "level3",
+            colname: "level3"
           },
           {
             name: "Air",
             value: this.airFilledPorosity,
-            colname: "level3",
+            colname: "level3"
           },
           {
             name: "Water",
             value: this.waterFilledPorosity,
-            colname: "level3",
+            colname: "level3"
           },
-          { name: "Mineral", value: soil, colname: "level3" },
-        ],
+          { name: "Mineral", value: soil, colname: "level3" }
+        ]
       };
       return tree;
     },
@@ -199,9 +200,23 @@ export default {
       x.domain([0, 30]); // domain is value
       y.domain([0, 30]);
       return { x, y };
-    },
+    }
   },
   methods: {
+    makeHenrysChart: function() {
+      console.log(this.henrysOptions);
+      // play with selection.join. THIS MAY ONLY BE USEFUL for new data? data that change and update with adding/removing items
+      // as I understand it:
+      // previously, .enter is used to identify which elements need to be added.
+      // check out docs for enter/exit
+      // enter.append common form means select all, findout what's not added yet, then add whats missing.
+      // exit.remove is common form means look for whats leaving, remove just that.
+      // Selection.join is dope because it can allow me to animate the change. fun.
+      // SO if my data numbers aren't changing, this is all moot?
+      //...
+      // ...  if my dots are just moving horizontally/vertically and/or the scale is adjusting. does this matter?
+      //
+    },
     sliderMethod: function(e, divisor) {
       this.unitlessHenrysConstant = e / divisor;
     },
@@ -229,7 +244,7 @@ export default {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
       // Give the data to this cluster layout:
-      let root = d3.hierarchy(data).sum((d) => d.value); // Here the size of each leave is given in the 'value' field in input data
+      let root = d3.hierarchy(data).sum(d => d.value); // Here the size of each leave is given in the 'value' field in input data
 
       // Then d3.treemap computes the position of each element of the hierarchy
       d3
@@ -258,12 +273,12 @@ export default {
         .append("rect")
         .transition()
         .duration(2000)
-        .attr("x", (d) => d.x0)
-        .attr("y", (d) => d.y0)
-        .attr("width", (d) => d.x1 - d.x0)
-        .attr("height", (d) => d.y1 - d.y0)
+        .attr("x", d => d.x0)
+        .attr("y", d => d.y0)
+        .attr("width", d => d.x1 - d.x0)
+        .attr("height", d => d.y1 - d.y0)
         .style("stroke", "black")
-        .style("fill", (d) => color(d.data.name));
+        .style("fill", d => color(d.data.name));
       // .style("opacity", (d) => opacity(d.data.value));
 
       // and to add the text labels
@@ -272,9 +287,9 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", (d) => d.y0 + 20) // +20 to adjust position (lower)
-        .text((d) => d.data.name)
+        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", d => d.y0 + 20) // +20 to adjust position (lower)
+        .text(d => d.data.name)
         .attr("font-size", "13px")
         .attr("fill", "white");
 
@@ -284,16 +299,16 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
-        .text((d) => d.data.value)
+        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", d => d.y0 + 35) // +20 to adjust position (lower)
+        .text(d => d.data.value)
         .attr("font-size", "11px")
         .attr("fill", "white");
     },
     updateATreeMap: function() {
       //TODO make this work with an animation somehow
-    },
-  },
+    }
+  }
 };
 </script>
 
