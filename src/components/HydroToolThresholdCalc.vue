@@ -33,15 +33,11 @@
               <v-radio color="black" label="sand" value="sand" />
               <v-radio color="black" label="peat" value="peat" />
             </v-radio-group>
-            <div id="my_dataviz"></div>
+            <div id="soilTreeMap"></div>
           </v-card-text>
         </v-card>
         <br />
       </v-card-text>
-
-      <br />
-      <basic-chart />
-      <br />
 
       <v-card-title>Concentration Threshold</v-card-title>
       <v-card-text>
@@ -98,12 +94,9 @@
 
 <script>
 import * as d3 from "d3";
-import BasicChart from "./D3VueBasic.vue";
 
 export default {
-  components: {
-    BasicChart
-  },
+  components: {},
   data() {
     return {
       desctiptionText: "here",
@@ -204,7 +197,7 @@ export default {
   },
   methods: {
     makeHenrysChart: function() {
-      console.log(this.henrysOptions);
+      // console.log(this.henrysOptions);
       // play with selection.join. THIS MAY ONLY BE USEFUL for new data? data that change and update with adding/removing items
       // as I understand it:
       // previously, .enter is used to identify which elements need to be added.
@@ -230,25 +223,26 @@ export default {
         height = 400 - margin.top - margin.bottom;
 
       // remove the old schniz
-      d3.select("#my_dataviz")
+      d3.select("#soilTreeMap")
         .selectAll("*")
         .remove();
 
       // append the svg object to the body of the page
-
       let svg = d3
-        .select("#my_dataviz")
+        .select("#soilTreeMap")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
       // Give the data to this cluster layout:
-      let root = d3.hierarchy(data).sum(d => d.value); // Here the size of each leave is given in the 'value' field in input data
+      let root = d3.hierarchy(data).sum(d => d.value);
+      // Here the size of each leave is given in the 'value' field in input data
 
       // Then d3.treemap computes the position of each element of the hierarchy
       d3
-        .treemap()
+        .treemap() // this can happen to the root on update?
         .size([width, height])
         .paddingTop(28)
         .paddingRight(7)
@@ -306,7 +300,20 @@ export default {
         .attr("fill", "white");
     },
     updateATreeMap: function() {
-      //TODO make this work with an animation somehow
+      // https://bl.ocks.org/ganezasan/52fced34d2182483995f0ca3960fe228
+      // basic life cycle, the thing is made above ^
+      // select
+      // for reference:
+      // const newRoot = d3.hierarchy(data, (d) => d.children)
+      //   .sum(value);
+      // where Node is the intial tihng.
+      // node.data(treemap(newRoot).leaves())
+      //   .transition()
+      //     .duration(1500)
+      //     .style("left", (d) => d.x0 + "px")
+      //     .style("top", (d) => d.y0 + "px")
+      //     .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
+      //     .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
     }
   }
 };
