@@ -1,32 +1,43 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <template>
+      <div id="app">
+        <div id="nav">
+          <v-row justify="center">
+            <router-link to="/">Home</router-link>
+            <span style="padding-left: 5px;padding-right: 5px;">|</span>
+            <router-link to="/about">About</router-link>
+            <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span>
+            <router-link to="/hydrogeology">Hydrogeology</router-link>-->
+            <!-- 
+              Future Sections: 
+              - art section (with cards that expand)
+              - hydro section
+              - live map thing (demo some mapbox embed capability)
+              - animal tracing
+            -->
+          </v-row>
+        </div>
+        <v-divider />
+        <router-view />
+      </div>
+      <!-- <v-row justify="center">
+        <v-col align="center">
+          <v-card tile>
+            <v-card-text> Here's a bottom bit if I want it.</v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>-->
+    </template>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
-}
+  components: {},
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({})
+};
+</script>
