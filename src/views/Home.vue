@@ -5,27 +5,34 @@
       <!-- figure gallery: -->
       <!-- <figure-display /> -->
       <!-- <basic-chart /> -->
-      <v-divider />
+<br />
+<br />
+<br />
+
       <random-sin-wave-fun />
-      <v-divider />
+      <br />
+<br />
+<br />
+<br />
+
       <!-- <d-three-sketching /> -->
-      <threshold-calc />
+      <!-- <threshold-calc /> -->
       <!-- <d-three-example /> -->
       <!-- <d-three-play /> -->
-      <v-row>
+      <!-- <v-row>
         <v-col align="center">
-          <v-card flat max-width="450">
+          <v-card flat max-width="500">
             <v-card-text>
               Please go to
               <a href="https://www.torymiles.com">torymiles.com</a>
               or
               <a href="https://www.lesliemiles.ca">lesliemiles.ca</a>
               for
-              really great content. They're both excellent artists.
+              more great content.
             </v-card-text>
           </v-card>
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-container>
   </div>
 </template>
@@ -38,7 +45,7 @@
 // import DThreeSketching from "../components/DThreeSketching.vue";
 // import DThreeExample from "../components/DThreeExample.vue"; // THIs IS GOOD
 // import DThreePlay from "../components/DThreePlay.vue";
-import ThresholdCalc from "../components/HydroToolThresholdCalc.vue";
+// import ThresholdCalc from "../components/HydroToolThresholdCalc.vue";
 // import BasicChart from "../components/D3VueBasic.vue";
 import RandomSinWaveFun from "../components/RandomSinWaveFun.vue";
 
@@ -50,7 +57,7 @@ export default {
     // ExampleModal
     // DThreeSketching,
     // DThreeExample, //THIS IS GOOD
-    ThresholdCalc,
+    // ThresholdCalc,
     // BasicChart,
     RandomSinWaveFun
     // DThreePlay,

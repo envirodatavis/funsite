@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify="center">
-      <v-card :width="width" :height="height" tile outlined dark>
+      <v-card :width="width" :height="height" tile color="rgba(255, 0, 0, 0.0)" >
         <div id="simpleViz"></div>
       </v-card>
     </v-row>
@@ -72,8 +72,6 @@ export default {
         .append("svg")
         .attr("width", this.width)
         .attr("height", this.height);
-
-      // X and Y ax
 
       // ----- Bars ----
       // bars are like points, because they use
