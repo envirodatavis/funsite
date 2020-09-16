@@ -4,8 +4,9 @@
       <!-- make regular flex size. bind in the image source. bind in other stuff? image size, desizred popup open card thing.  -->
       <!-- figure gallery: -->
       <!-- <figure-display /> -->
-      <basic-chart />
-
+      <!-- <basic-chart /> -->
+      <v-divider />
+      <random-sin-wave-fun />
       <v-divider />
       <!-- <d-three-sketching /> -->
       <threshold-calc />
@@ -38,7 +39,8 @@
 // import DThreeExample from "../components/DThreeExample.vue"; // THIs IS GOOD
 // import DThreePlay from "../components/DThreePlay.vue";
 import ThresholdCalc from "../components/HydroToolThresholdCalc.vue";
-import BasicChart from "../components/D3VueBasic.vue";
+// import BasicChart from "../components/D3VueBasic.vue";
+import RandomSinWaveFun from "../components/RandomSinWaveFun.vue";
 
 export default {
   name: "Home",
@@ -49,7 +51,8 @@ export default {
     // DThreeSketching,
     // DThreeExample, //THIS IS GOOD
     ThresholdCalc,
-    BasicChart
+    // BasicChart,
+    RandomSinWaveFun
     // DThreePlay,
   }
 };

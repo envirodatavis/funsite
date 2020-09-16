@@ -1,5 +1,6 @@
 <template>
   <div>
+    A basic vue component to test out good ways of integrating D3 and Vue.
     <v-row justify="center">
       <v-radio-group v-model="radioMultiplier">
         <v-radio color="black" label="One"></v-radio>
@@ -21,49 +22,20 @@ import * as d3 from "d3";
 
 export default {
   components: {},
-  data() {
-    return {
-      margin: { top: 30, right: 20, bottom: 30, left: 40 },
-      width: 400,
-      height: 400,
-      //
-      // x data range:
-      data: { min: 1, max: 20 },
-      discretization: 100,
-      //
-      // axese:
-      domain: { x: [0, 20], y: [10, -10] },
-      //
-      radioMultiplier: 1,
-      //
-      desctiptionText: "here",
-      unitlessHenrysConstant: 0.31,
-      unitlessHenrysConstantSlider: 31,
-      effectiveSolublity: 1100,
-      dryBulkDensity: 2.0,
-      waterFilledPorosity: 0.15,
-      airFilledPorosity: 0.1,
-      KocOrganicCarbon: 126,
-      fOc: 0.03,
-      soilType: "cleanSand",
-      henrysOptions: [
-        {
-          chemical: "TCE",
-          h: 0.31
-        },
-        {
-          chemical: "PCE",
-          h: 0.41
-        },
-        {
-          chemical: "DCE",
-          h: 0.31
-        }
-      ]
-      // initial Ct should be 515
-      // write a jest test for that, cool.
-    };
-  },
+  data: () => ({
+    margin: { top: 30, right: 20, bottom: 30, left: 40 },
+    width: 400,
+    height: 400,
+    // x data range:
+    data: { min: 1, max: 20 },
+    discretization: 100,
+    // axis:
+    domain: { x: [0, 20], y: [10, -10] },
+    //
+    radioMultiplier: 1,
+    //
+    transitionDuration: 1300
+  }),
   mounted() {
     this.instantiateViz();
   },
@@ -74,9 +46,10 @@ export default {
   },
   computed: {
     plotData: function() {
-      let x = [this.data.min];
+      let x = [this.data.min]; // instantiate X
       let i = this.data.min;
-      let delta = (this.data.max - this.data.min) / this.discretization;
+      let delta = (this.data.max - this.data.min) / this.discretization; // how I like to think about the x-delta
+      // generate the X data
       while (i < this.data.max) {
         x.push(i + delta);
         i += delta;
@@ -91,7 +64,7 @@ export default {
       const x = d3
         .scaleLinear()
         .range([0, this.width - this.margin.right - this.margin.left]) //pixles
-        .domain(this.domain.x);
+        .domain(this.domain.x); // domains are hardcoded
       const y = d3
         .scaleLinear()
         .range([0, this.height - this.margin.bottom - this.margin.top]) //pixles
@@ -100,52 +73,6 @@ export default {
     }
   },
   methods: {
-    updateViz: function() {
-      // ---- Dots ----
-      d3.selectAll("#bunchaDots")
-        .data(this.plotData)
-        .transition()
-        .duration(300)
-        .attr("cx", e => this.scales.x(e.x))
-        .attr("cy", e => this.scales.y(e.y));
-      // general update pattern: don't need enter/exit because I'm just selecting and updating the dot's location
-      // same number of dots
-
-      // ----- LINE ------
-      let lineFunction = d3
-        .line()
-        .x(e => this.scales.x(e.x))
-        .y(e => this.scales.y(e.y));
-
-      d3.select("#theLine")
-        .transition()
-        .duration(300)
-        .attr("d", lineFunction(this.plotData));
-
-      // ---- Bars ----
-      d3.selectAll("#theBars")
-        .data(this.plotData)
-        .transition()
-        .duration(300)
-        .attr("x", e => this.scales.x(e.x))
-        .attr("y", e => (e.y > 0 ? this.scales.y(e.y) : this.scales.y(0)))
-        .attr("height", e =>
-          e.y > 0
-            ? (this.height - this.margin.top - this.margin.bottom) / 2 -
-              this.scales.y(e.y)
-            : this.scales.y(e.y) - this.scales.y(0)
-        )
-        .attr(
-          "fill",
-          "rgb(" +
-            Math.random() * 255 +
-            "," +
-            Math.random() * 255 +
-            "," +
-            Math.random() * 255 +
-            ")"
-        );
-    },
     instantiateViz: function() {
       // make the svg:
       let svg = d3
@@ -154,12 +81,13 @@ export default {
         .attr("width", this.width)
         .attr("height", this.height);
 
-      // give it a backgound for layout( not the data area)
+      // give it a backgound for layout (not the data area)
       svg
         .append("rect")
         .attr("width", "100%")
         .attr("height", "100%")
         .attr("fill", "white");
+
       // give it a background for just the viz area
       svg
         .append("rect")
@@ -170,6 +98,8 @@ export default {
           "transform",
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         );
+
+      // X and Y axis:
       svg
         .append("g")
         .call(d3.axisBottom(this.scales.x))
@@ -189,11 +119,11 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         );
 
-      // Add dots with the "enter" convention:
+      // ----- Dots/Points --------
       svg
         .selectAll("dot")
         .data(this.plotData)
-        .enter()
+        .enter() // because we're adding a bunch of individual dots, we need the enter convetion
         .append("circle")
         .attr("cx", e => this.scales.x(e.x))
         .attr("cy", e => this.scales.y(e.y))
@@ -205,12 +135,12 @@ export default {
         .style("fill", "black")
         .attr("id", "bunchaDots");
 
-      // ----- LINE ------
+      // ----- Line ------
+      // line first needs a line function that gets applied over the whole dataset.
       let lineFunction = d3
         .line()
         .x(e => this.scales.x(e.x))
         .y(e => this.scales.y(e.y));
-
       svg
         .append("path")
         // don't need the "enter" convention, because it's one element, calulated with the line function
@@ -224,7 +154,8 @@ export default {
         )
         .attr("id", "theLine");
 
-      // ----- bars ----
+      // ----- Bars ----
+      // bars are like points, because they use
       svg
         .selectAll("myBar")
         .data(this.plotData)
@@ -232,7 +163,7 @@ export default {
         .append("rect")
         .attr("x", e => this.scales.x(e.x))
         .attr("y", e => (e.y > 0 ? this.scales.y(e.y) : this.scales.y(0)))
-        // ^ OHHHHH everything starts at the top, it's the delta in pixels between the top
+        // ^ THis is wack, and takes some getting used to; everything starts at the top, it's the delta in pixels between the top
         //    and the 0 minus the bar
         .attr("width", 3)
         .attr("height", e =>
@@ -247,6 +178,54 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "theBars");
+    },
+
+    updateViz: function() {
+      // ---- update the Dots ----
+      d3.selectAll("#bunchaDots")
+        .data(this.plotData)
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("cx", e => this.scales.x(e.x))
+        .attr("cy", e => this.scales.y(e.y));
+      // general update pattern: don't need enter/exit because I'm just selecting and updating the dot's location
+      // same number of dots
+
+      // ----- update the line ------
+      let lineFunction = d3
+        .line()
+        .x(e => this.scales.x(e.x))
+        .y(e => this.scales.y(e.y));
+
+      d3.select("#theLine")
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("d", lineFunction(this.plotData));
+
+      // ---- update the bars ----
+      d3.selectAll("#theBars")
+        .data(this.plotData)
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("x", e => this.scales.x(e.x))
+        .attr("y", e => (e.y > 0 ? this.scales.y(e.y) : this.scales.y(0)))
+        .attr("height", e =>
+          e.y > 0
+            ? (this.height - this.margin.top - this.margin.bottom) / 2 -
+              this.scales.y(e.y)
+            : this.scales.y(e.y) - this.scales.y(0)
+        )
+        // putting in a random color in the bars for fun.
+        .attr(
+          "fill",
+          "rgb(" +
+            Math.random() * 255 +
+            "," +
+            Math.random() * 255 +
+            "," +
+            Math.random() * 255 +
+            ")"
+        );
     }
   }
 };

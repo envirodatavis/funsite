@@ -84,7 +84,6 @@
         <br />
         Fraction organic carbon: {{ fOc }}
         <br />
-
         <br />
         the answer is: {{ cThreshold }}
       </v-card-text>
