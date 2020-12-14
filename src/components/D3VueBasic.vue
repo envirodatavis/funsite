@@ -7,7 +7,6 @@
         <v-radio color="black" label="Two"></v-radio>
         <v-radio color="black" label="Three"></v-radio>
       </v-radio-group>
-      {{radioMultiplier}}
     </v-row>
     <v-row justify="center">
       <v-card :width="width" :height="height" tile outlined>
