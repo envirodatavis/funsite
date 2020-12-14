@@ -102,7 +102,7 @@ export default {
       {
         viewer: "Owen",
         couple: "Danielle & Cody",
-        prediction: "Divorced",
+        prediction: "Married",
       },
       {
         viewer: "Owen",
