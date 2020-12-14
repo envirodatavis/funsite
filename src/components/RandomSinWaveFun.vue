@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <v-container>
+    <br />
     <v-row justify="center">
-      <v-card :width="width" :height="height" tile color="rgba(255, 0, 0, 0.0)" >
-        <div id="simpleViz"></div>
-      </v-card>
+      <v-col align="center">
+        <svg style="display:block" id="simpleViz" />
+      </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -15,7 +16,7 @@ export default {
   components: {},
   data: () => ({
     margin: { top: 30, right: 20, bottom: 30, left: 20 },
-    width: 800,
+    // width: 350,
     height: 400,
     // x data range:
     data: { min: 0, max: 30 },
@@ -25,18 +26,38 @@ export default {
     //
     radioMultiplier: 1,
     //
-    transitionDuration: 1300
+    transitionDuration: 1300,
   }),
   mounted() {
     this.instantiateViz();
     this.scheduler();
+    window.addEventListener("resize", () => {
+      this.windowWidth = window.innerWidth;
+    });
   },
   watch: {
     plotData() {
       this.updateViz();
-    }
+    },
+    width() {
+      this.updateViz();
+    },
   },
   computed: {
+    width() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return 300;
+        case "sm":
+          return 500;
+        case "md":
+        case "lg":
+        case "xl":
+          return 700;
+        default:
+          return 500;
+      }
+    },
     plotData: function() {
       let x = [this.data.min]; // instantiate X
       let i = this.data.min;
@@ -47,9 +68,9 @@ export default {
         i += delta;
       }
       // here make y a function of x
-      return x.map(e => ({
+      return x.map((e) => ({
         x: e,
-        y: Math.sin(e * this.radioMultiplier) * (this.radioMultiplier + 1)
+        y: Math.sin(e * this.radioMultiplier) * (this.radioMultiplier + 1),
       }));
     },
     scales: function() {
@@ -62,14 +83,13 @@ export default {
         .range([0, this.height - this.margin.bottom - this.margin.top]) //pixles
         .domain(this.domain.y);
       return { x, y };
-    }
+    },
   },
   methods: {
     instantiateViz: function() {
       // make the svg:
       let svg = d3
         .select("#simpleViz")
-        .append("svg")
         .attr("width", this.width)
         .attr("height", this.height);
 
@@ -80,8 +100,8 @@ export default {
         .data(this.plotData)
         .enter()
         .append("rect")
-        .attr("x", e => this.scales.x(e.x))
-        .attr("y", e => this.scales.y(e.y))
+        .attr("x", (e) => this.scales.x(e.x))
+        .attr("y", (e) => this.scales.y(e.y))
         // ^ THis is wack, and takes some getting used to; everything starts at the top, it's the delta in pixels between the top
         //    and the 0 minus the bar
         .attr("width", 3)
@@ -116,8 +136,8 @@ export default {
         .data(this.plotData)
         .transition()
         .duration(this.transitionDuration)
-        .attr("x", e => this.scales.x(e.x))
-        .attr("y", e => this.scales.y(e.y))
+        .attr("x", (e) => this.scales.x(e.x))
+        .attr("y", (e) => this.scales.y(e.y))
         .attr("height", Math.random() * 200 + 20)
         // putting in a random color in the bars for fun.
         .attr(
@@ -130,8 +150,8 @@ export default {
             Math.random() * 255 +
             ")"
         );
-    }
-  }
+    },
+  },
 };
 </script>
 
