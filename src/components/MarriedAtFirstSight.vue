@@ -19,7 +19,7 @@
             v-model="sliderNumber"
             step="1"
             min="1"
-            max="2"
+            max="3"
             ticks="always"
             tick-size="5"
             :tick-labels="ticksLabels"
@@ -53,7 +53,7 @@ export default {
     surveyResults: MAFS_results,
     transitionDuration: 600,
     sliderNumber: 1,
-    ticksLabels: ["Episode 2", "Episode 4"],
+    ticksLabels: ["Epsd 2", "Epsd 4", "Epsd 7"],
     autoScroll: true,
     // smybols:
     brokenHeartD:
@@ -87,6 +87,7 @@ export default {
     episodeAsOf: function() {
       if (this.sliderNumber === 1) return "Episode 2";
       if (this.sliderNumber === 2) return "Episode 4";
+      if (this.sliderNumber === 3) return "Episode 7";
       return "Episode 2";
     },
     currentData: function() {
@@ -100,13 +101,15 @@ export default {
   },
   methods: {
     scheduler: function() {
-      setInterval(this.movePrediction, 6000);
+      setInterval(this.movePrediction, 3000);
     },
     movePrediction: function() {
       if (this.autoScroll) {
         if (this.sliderNumber === 1) {
           this.sliderNumber = 2;
         } else if (this.sliderNumber === 2) {
+          this.sliderNumber = 3;
+        } else if (this.sliderNumber === 3) {
           this.sliderNumber = 1;
         }
       }

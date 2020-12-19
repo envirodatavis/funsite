@@ -213,5 +213,113 @@
         "couple": "Ashley & Anthony",
         "AsOf": "Episode 4",
         "prediction": "Married"
+    },
+    {
+        "viewer": "Charlo",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Charlo",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Charlo",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Dinny",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Dinny",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Dinny",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Katy",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Katy",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Katy",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Laura",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Laura",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Laura",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Owen",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Owen",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Owen",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Paul",
+        "couple": "Shelia & Nate",
+        "AsOf": "Episode 7",
+        "prediction": "Married"
+    },
+    {
+        "viewer": "Paul",
+        "couple": "Danielle & Cody",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
+    },
+    {
+        "viewer": "Paul",
+        "couple": "Ashley & Anthony",
+        "AsOf": "Episode 7",
+        "prediction": "Divorced"
     }
 ]
