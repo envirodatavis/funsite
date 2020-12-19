@@ -32,7 +32,7 @@
       <v-col align="center" cols="6">
         <v-checkbox
           v-model="autoScroll"
-          label="Auto scroll every 4 seconds"
+          label="Auto scroll every 2 seconds"
           style="transform: scale(0.85)"
         ></v-checkbox>
       </v-col>
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     scheduler: function() {
-      setInterval(this.movePrediction, 3000);
+      setInterval(this.movePrediction, 2000);
     },
     movePrediction: function() {
       if (this.autoScroll) {
