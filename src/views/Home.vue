@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <v-container fluid class="ma-0 pa-0">
-      <married-at-first-sight />
+      <first-mafs-plot />
+      <!-- <second-mafs-plot /> -->
     </v-container>
   </div>
 </template>
@@ -12,7 +13,8 @@
 export default {
   name: "Home",
   components: {
-    MarriedAtFirstSight: () => import("../components/MarriedAtFirstSight.vue"),
+    FirstMafsPlot: () => import("../components/MarriedAtFirstSightDynamic.vue"),
+    // SecondMafsPlot: () => import("../components/MarriedAtFirstSightStatic.vue"),
   },
 };
 </script>

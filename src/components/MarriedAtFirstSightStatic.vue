@@ -1,40 +1,16 @@
 <template>
   <v-container>
     <v-row justify="center" no-gutters>
-      <v-col align="center">
-        <svg style="" id="simpleViz" />
-      </v-col>
-    </v-row>
-    <v-row justify="center" no-gutters style="margin-top: -30px">
-      <v-col align="center">
-        <h4>
-          Predictions as of: <u>{{ episodeAsOf }}</u>
-        </h4>
+      <v-col align="center" cols="6">
+        <svg id="staticViz" />
       </v-col>
     </v-row>
     <v-row justify="center" no-gutters>
-      <v-col align="center" cols="10">
-        <v-card-text>
-          <v-slider
-            v-model="sliderNumber"
-            step="1"
-            min="1"
-            max="3"
-            ticks="always"
-            tick-size="5"
-            :tick-labels="ticksLabels"
-            @click="autoScroll = false"
-          ></v-slider>
-        </v-card-text>
-      </v-col>
-    </v-row>
-    <v-row justify="center" no-gutters style="margin-top: -30px">
       <v-col align="center" cols="6">
-        <v-checkbox
-          v-model="autoScroll"
-          label="Auto scroll every 2 seconds"
-          style="transform: scale(0.85)"
-        ></v-checkbox>
+        <v-btn-toggle v-model="groupBy" rounded dense>
+          <v-btn value="viewer" small>Group by Viewer</v-btn>
+          <v-btn value="couple" small>Group by Couple</v-btn>
+        </v-btn-toggle>
       </v-col>
     </v-row>
   </v-container>
@@ -44,6 +20,17 @@
 import * as d3 from "d3";
 import MAFS_results from "./MAFS.json";
 
+export function colorSquare(marriedString) {
+  switch (marriedString) {
+    case "Married":
+      return "red";
+    case "Divorced":
+      return "grey";
+    default:
+      "green";
+  }
+}
+
 export default {
   components: {},
   data: () => ({
@@ -52,9 +39,7 @@ export default {
     height: 400,
     surveyResults: MAFS_results,
     transitionDuration: 600,
-    sliderNumber: 1,
-    ticksLabels: ["Epsd 2", "Epsd 4", "Epsd 7"],
-    autoScroll: true,
+    groupBy: "viewer",
     // smybols:
     brokenHeartD:
       '<path d="m11.959 0.328c-1.147-0.531-2.518-0.393-3.573 0.242l-1.148 2.508 2.274 1.98-2.38 3.216 0.871-2.995-2.914-1.967 0.858-2.525c-1.085-0.812-2.617-1.045-3.884-0.459-1.901 0.882-2.81 3.135-1.308 5.794 1.067 1.891 2.958 3.317 6.256 5.872 3.299-2.555 5.189-3.98 6.257-5.872 1.502-2.659 0.592-4.912-1.309-5.794z"/>',
@@ -63,98 +48,65 @@ export default {
   }),
   mounted() {
     this.instantiateViz();
-    this.scheduler();
-    this.updateViz();
   },
   computed: {
-    xGroups: function() {
-      return d3.map(this.currentData, (e) => e.couple).keys();
-    },
-    yGroups: function() {
-      return d3.map(this.currentData, (e) => e.viewer).keys();
+    dataFormatted: function() {
+      return this.surveyResults.map((e) => ({
+        ...e,
+        AsOf: e.AsOf.replace("Episode ", "Ep."),
+        couple: e.couple
+          .replace("Danielle & Cody", "D&C")
+          .replace("Shelia & Nate", "S&N")
+          .replace("Ashley & Anthony", "A&A"),
+      }));
     },
     scales: function() {
+      const xGroups = d3.map(this.dataFormatted, (e) => e.AsOf).keys();
+      const yLeftGroups = d3.map(this.dataFormatted, (e) => e.viewer).keys();
+      const yRightGroups = d3.map(this.dataFormatted, (e) => e.couple).keys();
       const x = d3
         .scaleBand()
         .range([0, this.width - this.margin.right - this.margin.left]) //pixles
-        .domain(this.xGroups); // domains are hardcoded
-      const y = d3
+        .domain(xGroups);
+
+      const yLeft1 = d3
         .scaleBand()
-        .range([0, this.height - this.margin.bottom - this.margin.top]) //pixles
-        .domain(this.yGroups);
-      return { x, y };
-    },
-    episodeAsOf: function() {
-      if (this.sliderNumber === 1) return "Episode 2";
-      if (this.sliderNumber === 2) return "Episode 4";
-      if (this.sliderNumber === 3) return "Episode 7";
-      return "Episode 2";
-    },
-    currentData: function() {
-      return this.surveyResults.filter((e) => e.AsOf === this.episodeAsOf);
+        .range([0, this.height]) //- this.margin.bottom - this.margin.top]) //pixles
+        .domain(yLeftGroups)
+        .padding([0.1]);
+      const yRight1 = d3
+        .scaleBand()
+        .range([0, yLeft1.bandwidth()])
+        .domain(yRightGroups)
+        .padding([0.05]);
+
+      const yRight2 = d3
+        .scaleBand()
+        .range([0, this.height])
+        .domain(yRightGroups)
+        .padding([0.1]);
+      const yLeft2 = d3
+        .scaleBand()
+        .range([0, yRight2.bandwidth()]) //- this.margin.bottom - this.margin.top]) //pixles
+        .domain(yLeftGroups)
+        .padding([0.05]);
+
+      if (this.groupBy === "viewer")
+        return { x: x, yLeft: yLeft1, yRight: yRight1 };
+      // if (this.groupBy === "couple")
+      else return { x: x, yLeft: yLeft2, yRight: yRight2 };
     },
   },
   watch: {
-    currentData() {
+    groupBy() {
       this.updateViz();
     },
   },
   methods: {
-    scheduler: function() {
-      setInterval(this.movePrediction, 2000);
-    },
-    movePrediction: function() {
-      if (this.autoScroll) {
-        if (this.sliderNumber === 1) {
-          this.sliderNumber = 2;
-        } else if (this.sliderNumber === 2) {
-          this.sliderNumber = 3;
-        } else if (this.sliderNumber === 3) {
-          this.sliderNumber = 1;
-        }
-      }
-    },
     instantiateViz: function() {
-      // silly wrap funciton:
-      function wrap(text, width) {
-        text.each(function() {
-          var text = d3.select(this),
-            words = text
-              .text()
-              .split(/\s+/)
-              .reverse(),
-            word,
-            line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
-            y = text.attr("y"),
-            dy = parseFloat(text.attr("dy")),
-            tspan = text
-              .text(null)
-              .append("tspan")
-              .attr("x", 0)
-              .attr("y", y)
-              .attr("dy", dy + "em");
-          while ((word = words.pop())) {
-            line.push(word);
-            tspan.text(line.join(" "));
-            if (tspan.node().getComputedTextLength() > width) {
-              line.pop();
-              tspan.text(line.join(" "));
-              line = [word];
-              tspan = text
-                .append("tspan")
-                .attr("x", 0)
-                .attr("y", y)
-                .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                .text(word);
-            }
-          }
-        });
-      }
       // make the svg:
-      let svg = d3
-        .select("#simpleViz")
+      const svg = d3
+        .select("#staticViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
 
@@ -163,84 +115,71 @@ export default {
         .append("g")
         .call(d3.axisTop(this.scales.x).tickSize(0))
         .selectAll(".tick text")
-        .call(wrap, this.scales.x.bandwidth() - 30)
         .attr(
           "transform",
           "translate(" + this.margin.left + "," + (this.margin.top - 15) + ")"
         )
         .style("font-size", 14);
-
       svg
         .append("g")
-        .call(d3.axisLeft(this.scales.y).tickSize(0))
+        .call(d3.axisLeft(this.scales.yLeft).tickSize(0))
         .attr(
           "transform",
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .style("font-size", 15);
 
-      // squares
+      // add a right axis
+      svg
+        .append("g")
+        .call(d3.axisRight(this.scales.yRight).tickSize(0))
+        .attr(
+          "transform",
+          "translate(" + this.width + "," + (this.margin.top + 13) + ")"
+        )
+        .style("font-size", 15);
+
+      svg.selectAll(".domain").remove();
+
+      // // squares
       svg
         .selectAll("mySquares")
-        .data(this.currentData)
+        .data(this.dataFormatted)
         .enter()
+
         .append("rect")
-        .attr("x", (e) => this.scales.x(e.couple))
-        .attr("y", (e) => this.scales.y(e.viewer))
+        .attr("x", (d) => this.scales.x(d.AsOf))
+        .attr(
+          "y",
+          (d) => this.scales.yLeft(d.viewer) + this.scales.yRight(d.couple)
+        )
+        .attr("height", this.scales.yRight.bandwidth())
         .attr("width", this.scales.x.bandwidth())
-        .attr("height", this.scales.y.bandwidth())
-        .style("stroke-width", 4)
+        .style("stroke-width", 1)
         .style("stroke", "white")
-        .attr("fill", (e) => (e.prediction === "Married" ? "red" : "grey"))
+        .attr("fill", (e) => colorSquare(e.prediction))
         .style("opacity", 0.8)
-        .attr("rx", 10)
-        .attr("ry", 10)
+        .attr("rx", 5)
+        .attr("ry", 5)
         .attr(
           "transform",
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "mySquares");
-
-      svg.selectAll(".domain").remove();
     },
     updateViz: async function() {
-      await d3.selectAll("#divorcedIcons").remove();
-      await d3.selectAll("#marriedIcons").remove();
-      // // same number of dots
       await d3
         .selectAll("#mySquares")
-        .data(this.currentData)
+        .data(this.dataFormatted)
         .transition()
         .duration(this.transitionDuration)
-        .attr("fill", (e) => (e.prediction === "Married" ? "red" : "grey"));
-
-      let svg = d3.select("#simpleViz");
-
-      await svg
-        .selectAll("mySymbols")
-        .data(this.currentData)
-        .enter()
-        .append("svg")
-        .attr("x", (e) => this.scales.x(e.couple) + this.margin.left + 20)
-        .attr("y", (e) => this.scales.y(e.viewer) + this.margin.top + 8)
-        .attr("height", "72")
-        .attr("width", "72")
-        .attr("viewBox", "0 0 800 800")
-        .html((e) => (e.prediction === "Married" ? this.married : ""))
-        .attr("id", "marriedIcons");
-
-      await svg
-        .selectAll("mySymbols")
-        .data(this.currentData)
-        .enter()
-        .append("svg")
-        .attr("x", (e) => this.scales.x(e.couple) + this.margin.left + 24)
-        .attr("y", (e) => this.scales.y(e.viewer) + this.margin.top + 16)
-        .attr("height", "72")
-        .attr("width", "72")
-        .attr("viewBox", "0 0 30 30")
-        .html((e) => (e.prediction === "Married" ? "" : this.brokenHeartD))
-        .attr("id", "divorcedIcons");
+        .attr(
+          "y",
+          (d) => this.scales.yLeft(d.viewer) + this.scales.yRight(d.couple)
+        );
+      // if (this.groupBy === "viewer") {
+      // } else {
+      // }
     },
   },
 };
