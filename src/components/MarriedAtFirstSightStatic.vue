@@ -38,7 +38,7 @@ export default {
     width: 300,
     height: 400,
     surveyResults: MAFS_results,
-    transitionDuration: 600,
+    transitionDuration: 1000,
     groupBy: "viewer",
     // smybols:
     brokenHeartD:
@@ -68,7 +68,6 @@ export default {
         .scaleBand()
         .range([0, this.width - this.margin.right - this.margin.left]) //pixles
         .domain(xGroups);
-
       const yLeft1 = d3
         .scaleBand()
         .range([0, this.height]) //- this.margin.bottom - this.margin.top]) //pixles
@@ -79,7 +78,6 @@ export default {
         .range([0, yLeft1.bandwidth()])
         .domain(yRightGroups)
         .padding([0.05]);
-
       const yRight2 = d3
         .scaleBand()
         .range([0, this.height])
@@ -90,10 +88,8 @@ export default {
         .range([0, yRight2.bandwidth()]) //- this.margin.bottom - this.margin.top]) //pixles
         .domain(yLeftGroups)
         .padding([0.05]);
-
       if (this.groupBy === "viewer")
         return { x: x, yLeft: yLeft1, yRight: yRight1 };
-      // if (this.groupBy === "couple")
       else return { x: x, yLeft: yLeft2, yRight: yRight2 };
     },
   },
@@ -127,18 +123,18 @@ export default {
           "transform",
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
-        .style("font-size", 15);
-
+        .style("font-size", 15)
+        .attr("class", "leftaxis");
       // add a right axis
       svg
         .append("g")
         .call(d3.axisRight(this.scales.yRight).tickSize(0))
         .attr(
           "transform",
-          "translate(" + this.width + "," + (this.margin.top + 13) + ")"
+          "translate(" + this.width + "," + (this.margin.top + 8) + ")"
         )
-        .style("font-size", 15);
-
+        .style("font-size", 15)
+        .attr("class", "rightaxis");
       svg.selectAll(".domain").remove();
 
       // // squares
@@ -177,9 +173,37 @@ export default {
           "y",
           (d) => this.scales.yLeft(d.viewer) + this.scales.yRight(d.couple)
         );
-      // if (this.groupBy === "viewer") {
-      // } else {
-      // }
+
+      const svg = d3.select("#staticViz");
+      svg
+        .select(".leftaxis")
+        .transition()
+        .duration(1500)
+        .call(d3.axisLeft(this.scales.yLeft).tickSize(0))
+        .attr(
+          "transform",
+          "translate(" +
+            this.margin.left +
+            "," +
+            (this.margin.top + (this.groupBy === "viewer" ? 0 : 12)) +
+            ")"
+        );
+
+      svg
+        .select(".rightaxis")
+        .transition()
+        .duration(1500)
+        .call(d3.axisRight(this.scales.yRight).tickSize(0))
+        .attr(
+          "transform",
+          "translate(" +
+            this.width +
+            "," +
+            (this.margin.top + (this.groupBy === "viewer" ? 8 : 0)) +
+            ")"
+        );
+
+      svg.selectAll(".domain").remove();
     },
   },
 };
