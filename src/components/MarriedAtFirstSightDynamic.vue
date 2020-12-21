@@ -5,7 +5,7 @@
         <svg id="movingViz" />
       </v-col>
     </v-row>
-    <v-row justify="center" no-gutters style="margin-top: -30px">
+    <v-row justify="center" no-gutters style="margin-top: 8px">
       <v-col align="center">
         <v-card flat max-width="350">
           <h4>
@@ -93,9 +93,9 @@ export function wrap(text, width) {
 export default {
   components: {},
   data: () => ({
-    margin: { top: 50, right: 0, bottom: 0, left: 50 },
-    width: 300,
-    height: 400,
+    margin: { top: 35, right: 35, bottom: 0, left: 50 },
+    width: 250,
+    height: 365,
     surveyResults: MAFS_results,
     transitionDuration: 600,
     sliderNumber: 1,
@@ -118,11 +118,11 @@ export default {
       const yGroups = d3.map(this.currentData, (e) => e.viewer).keys();
       const x = d3
         .scaleBand()
-        .range([0, this.width - this.margin.right - this.margin.left]) //pixles
+        .range([0, this.width]) //pixles
         .domain(xGroups); // domains are hardcoded
       const y = d3
         .scaleBand()
-        .range([0, this.height - this.margin.bottom - this.margin.top]) //pixles
+        .range([0, this.height]) //pixles
         .domain(yGroups);
       return { x, y };
     },
@@ -158,16 +158,6 @@ export default {
         if (this.sliderNumber < 4) this.sliderNumber++;
         else this.sliderNumber = 1;
       }
-
-      // if (this.autoScroll) {
-      //   if (this.sliderNumber === 1) {
-      //     this.sliderNumber = 2;
-      //   } else if (this.sliderNumber === 2) {
-      //     this.sliderNumber = 3;
-      //   } else if (this.sliderNumber === 3) {
-      //     this.sliderNumber = 1;
-      //   }
-      // }
     },
     instantiateViz: function() {
       // make the svg:
@@ -175,6 +165,15 @@ export default {
         .select("#movingViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
+      // svg
+      //   .append("rect")
+      //   .attr("x", 0)
+      //   .attr("y", 0)
+      //   .attr("width", this.width + this.margin.left + this.margin.right)
+      //   .attr("height", this.height + this.margin.top + this.margin.bottom)
+      //   .style("stroke", "black")
+      //   .style("fill", "none")
+      //   .style("stroke-width", 3);
 
       // ----- axes ----
       svg
