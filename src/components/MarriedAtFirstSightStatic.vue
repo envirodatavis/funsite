@@ -179,6 +179,11 @@ export default {
         .attr("id", "mySquares");
     },
     updateViz: async function() {
+      d3.selectAll(".extraaxis")
+        .transition()
+        .duration(500)
+        .style("opacity", 0)
+        .remove();
       await d3
         .selectAll("#mySquares")
         .data(this.dataFormatted)
@@ -216,20 +221,66 @@ export default {
             (this.margin.top + (this.groupBy === "viewer" ? 8 : 0)) +
             ")"
         );
+      switch (this.groupBy) {
+        case "couple":
+          svg
+            .append("g")
+            .call(d3.axisLeft(this.scales.yLeft).tickSize(0))
+            .attr(
+              "transform",
+              "translate(" +
+                this.margin.left +
+                "," +
+                (this.margin.top + this.scales.yRight.bandwidth() + 26) +
+                ")"
+            )
+            .style("font-size", 15)
+            .style("opacity", 0)
+            .transition()
+            .duration(1000)
+            .style("opacity", 1)
+            .attr("class", "extraaxis");
 
-      // svg
-      //   .append("g")
-      //   .call(d3.axisRight(this.scales.yRight).tickSize(0))
-      //   .attr(
-      //     "transform",
-      //     "translate(" +
-      //       (this.width + this.margin.right) +
-      //       "," +
-      //       (this.margin.top + 8) +
-      //       ")"
-      //   )
-      //   .style("font-size", 15)
-      //   .attr("class", "rightaxis");
+          svg
+            .append("g")
+            .call(d3.axisLeft(this.scales.yLeft).tickSize(0))
+            .attr(
+              "transform",
+              "translate(" +
+                this.margin.left +
+                "," +
+                (this.margin.top + this.scales.yRight.bandwidth() * 2 + 38) +
+                ")"
+            )
+            .style("font-size", 15)
+            .style("opacity", 0)
+            .transition()
+            .duration(1000)
+            .style("opacity", 1)
+            .attr("class", "extraaxis");
+          break;
+        case "viewer":
+          svg
+            .append("g")
+            .call(d3.axisRight(this.scales.yRight).tickSize(0))
+            .attr(
+              "transform",
+              "translate(" +
+                (this.width + this.margin.right) +
+                "," +
+                (this.margin.top +
+                  (this.scales.yLeft.bandwidth() + 8) * 3 +
+                  2) +
+                ")"
+            )
+            .style("font-size", 15)
+            .style("opacity", 0)
+            .transition()
+            .duration(1000)
+            .style("opacity", 1)
+            .attr("class", "extraaxis");
+          break;
+      }
       svg.selectAll(".domain").remove();
     },
   },
