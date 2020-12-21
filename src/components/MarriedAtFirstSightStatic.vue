@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-row justify="center" no-gutters>
-      <v-col align="center" cols="6">
+      <v-col align="center">
         <svg id="staticViz" />
       </v-col>
     </v-row>
     <v-row justify="center" no-gutters>
-      <v-col align="center" cols="6">
+      <v-col align="center">
         <v-btn-toggle v-model="groupBy" rounded dense>
           <v-btn value="viewer" small>Group by Viewer</v-btn>
           <v-btn value="couple" small>Group by Couple</v-btn>
@@ -34,8 +34,8 @@ export function colorSquare(marriedString) {
 export default {
   components: {},
   data: () => ({
-    margin: { top: 50, right: 0, bottom: 0, left: 50 },
-    width: 300,
+    margin: { top: 30, right: 50, bottom: 0, left: 50 },
+    width: 180,
     height: 400,
     surveyResults: MAFS_results,
     transitionDuration: 1000,
@@ -66,11 +66,11 @@ export default {
       const yRightGroups = d3.map(this.dataFormatted, (e) => e.couple).keys();
       const x = d3
         .scaleBand()
-        .range([0, this.width - this.margin.right - this.margin.left]) //pixles
+        .range([0, this.width]) //pixles
         .domain(xGroups);
       const yLeft1 = d3
         .scaleBand()
-        .range([0, this.height]) //- this.margin.bottom - this.margin.top]) //pixles
+        .range([0, this.height])
         .domain(yLeftGroups)
         .padding([0.1]);
       const yRight1 = d3
@@ -85,7 +85,7 @@ export default {
         .padding([0.1]);
       const yLeft2 = d3
         .scaleBand()
-        .range([0, yRight2.bandwidth()]) //- this.margin.bottom - this.margin.top]) //pixles
+        .range([0, yRight2.bandwidth()])
         .domain(yLeftGroups)
         .padding([0.05]);
       if (this.groupBy === "viewer")
@@ -105,6 +105,17 @@ export default {
         .select("#staticViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
+      console.log("h1i");
+
+      // svg
+      //   .append("rect")
+      //   .attr("x", 0)
+      //   .attr("y", 0)
+      //   .attr("width", this.width + this.margin.left + this.margin.right)
+      //   .attr("height", this.height + this.margin.top + this.margin.bottom)
+      //   .style("stroke", "black")
+      //   .style("fill", "none")
+      //   .style("stroke-width", 3);
 
       // ----- axes ----
       svg
@@ -113,7 +124,7 @@ export default {
         .selectAll(".tick text")
         .attr(
           "transform",
-          "translate(" + this.margin.left + "," + (this.margin.top - 15) + ")"
+          "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .style("font-size", 14);
       svg
@@ -131,7 +142,11 @@ export default {
         .call(d3.axisRight(this.scales.yRight).tickSize(0))
         .attr(
           "transform",
-          "translate(" + this.width + "," + (this.margin.top + 8) + ")"
+          "translate(" +
+            (this.width + this.margin.right) +
+            "," +
+            (this.margin.top + 8) +
+            ")"
         )
         .style("font-size", 15)
         .attr("class", "rightaxis");
@@ -188,7 +203,6 @@ export default {
             (this.margin.top + (this.groupBy === "viewer" ? 0 : 12)) +
             ")"
         );
-
       svg
         .select(".rightaxis")
         .transition()
@@ -197,12 +211,25 @@ export default {
         .attr(
           "transform",
           "translate(" +
-            this.width +
+            (this.width + this.margin.right) +
             "," +
             (this.margin.top + (this.groupBy === "viewer" ? 8 : 0)) +
             ")"
         );
 
+      // svg
+      //   .append("g")
+      //   .call(d3.axisRight(this.scales.yRight).tickSize(0))
+      //   .attr(
+      //     "transform",
+      //     "translate(" +
+      //       (this.width + this.margin.right) +
+      //       "," +
+      //       (this.margin.top + 8) +
+      //       ")"
+      //   )
+      //   .style("font-size", 15)
+      //   .attr("class", "rightaxis");
       svg.selectAll(".domain").remove();
     },
   },
