@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-// import HydrogeologyTools from "../views/HydrogeologyTools.vue"
+
 
 Vue.use(VueRouter);
 
@@ -20,12 +20,12 @@ const routes = [{
             import ( /* webpackChunkName: "about" */ "../views/About.vue"),
     },
     {
-        path: "/hydrogeology",
-        name: "HydrogeologyTools",
+        path: "/mafs2",
+        name: "MafsTwo",
         component: () =>
             import (
-                /* webpackChunkName: "hydrogeology" */
-                "../views/HydrogeologyTools.vue"
+                /* webpackChunkName: "MafsTwo" */
+                "../views/MafsTwo.vue"
             ),
     },
 ];
