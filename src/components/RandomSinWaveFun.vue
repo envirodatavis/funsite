@@ -1,8 +1,7 @@
 <template>
-  <v-container>
-    <br />
-    <v-row justify="center">
-      <v-col align="center">
+  <v-container class="ma-0 pa-0">
+    <v-row justify="center" no-gutters>
+      <v-col align="center" cols="12">
         <svg style="display:block" id="simpleViz" />
       </v-col>
     </v-row>
@@ -15,18 +14,19 @@ import * as d3 from "d3";
 export default {
   components: {},
   data: () => ({
-    margin: { top: 30, right: 20, bottom: 30, left: 20 },
-    // width: 350,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 },
+    // width: computed prop!
     height: 400,
     // x data range:
     data: { min: 0, max: 30 },
     discretization: 300,
     // axis:
-    domain: { x: [0, 30], y: [4, -30] },
+    domain: { x: [0, 30], y: [16, -30] },
     //
     radioMultiplier: 1,
     //
     transitionDuration: 1300,
+    windowWidth: window.innerWidth,
   }),
   mounted() {
     this.instantiateViz();
@@ -45,18 +45,19 @@ export default {
   },
   computed: {
     width() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return 300;
-        case "sm":
-          return 500;
-        case "md":
-        case "lg":
-        case "xl":
-          return 700;
-        default:
-          return 500;
-      }
+      return this.windowWidth;
+      // switch (this.$vuetify.breakpoint.name) {
+      //   case "xs":
+      //     return 300;
+      //   case "sm":
+      //     return 500;
+      //   case "md":
+      //   case "lg":
+      //   case "xl":
+      //     return 700;
+      //   default:
+      //     return 500;
+      // }
     },
     plotData: function() {
       let x = [this.data.min]; // instantiate X
@@ -90,8 +91,15 @@ export default {
       // make the svg:
       let svg = d3
         .select("#simpleViz")
-        .attr("width", this.width)
-        .attr("height", this.height);
+        .attr("width", this.width + this.margin.left + this.margin.right)
+        .attr("height", this.height + this.margin.top + this.margin.bottom);
+      svg
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", this.width + this.margin.left + this.margin.right)
+        .attr("height", this.height + this.margin.top + this.margin.bottom)
+        .style("fill", "none");
 
       // ----- Bars ----
       // bars are like points, because they use
@@ -116,10 +124,6 @@ export default {
             "," +
             Math.random() * 255 +
             ")"
-        )
-        .attr(
-          "transform",
-          "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "theBars");
     },
