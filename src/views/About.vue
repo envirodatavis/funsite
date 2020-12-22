@@ -1,11 +1,11 @@
 <template>
   <div class="about">
     <v-container fluid class="ma-0 pa-0">
-      <v-row justify="center">
-        <v-col align="center">
-          <random-sin-wave-fun />
-        </v-col>
-      </v-row>
+      <!-- <v-row justify="center">
+        <v-col align="center"> -->
+      <random-sin-wave-fun />
+      <!-- </v-col> -->
+      <!-- </v-row> -->
       <v-row>
         <v-col align="center">
           <v-card flat max-width="400">

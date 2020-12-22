@@ -105,7 +105,6 @@ export default {
         .select("#staticViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
-      console.log("h1i");
 
       // svg
       //   .append("rect")
