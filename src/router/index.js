@@ -1,10 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
-
 Vue.use(VueRouter);
-
 const routes = [{
         path: "/",
         name: "Home",
@@ -28,6 +25,15 @@ const routes = [{
                 "../views/MafsTwo.vue"
             ),
     },
+    {
+        path: "/willow",
+        name: "ForWillow",
+        component: () =>
+            import (
+                /* webpackChunkName: "ForWillow" */
+                "../views/ForWillow.vue"
+            )
+    }
 ];
 
 const router = new VueRouter({
