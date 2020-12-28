@@ -1,11 +1,7 @@
 <template>
   <div class="about">
     <v-container fluid class="ma-0 pa-0">
-      <!-- <v-row justify="center">
-        <v-col align="center"> -->
       <random-sin-wave-fun />
-      <!-- </v-col> -->
-      <!-- </v-row> -->
       <v-row>
         <v-col align="center">
           <v-card flat max-width="400">
@@ -26,7 +22,7 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home",
+  name: "About",
   components: {
     RandomSinWaveFun: () => import("../components/RandomSinWaveFun.vue"),
   },

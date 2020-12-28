@@ -17,7 +17,7 @@
                 v-model="sliderNumber"
                 step="1"
                 min="1"
-                max="4"
+                :max="sliderMax"
                 ticks="always"
                 tick-size="5"
                 :tick-labels="ticksLabels"
@@ -34,6 +34,19 @@
           </v-row>
         </v-card>
       </v-col>
+    </v-row>
+    <v-row justify="center" no-gutters style="margin-top: 8px">
+      <a href="https://www.owenmiles.com/#/willow">
+        <svg width="30" height="30" viewBox="0 0 48 48">
+          <!-- <title>Cat</title> -->
+          <path
+            d="M25.75,20a9.72,9.72,0,0,0-8.23,4.35V20a4.87,4.87,0,0,0-4.86-4.86,1.62,1.62,0,1,0,0,3.24A1.63,1.63,0,0,1,14.28,20v13a3.24,3.24,0,0,0,3.24,3.24h8.91a.81.81,0,0,0,.81-.81v-.81a1.63,1.63,0,0,0-1.62-1.62H24l6.48-4.86v7.29a.81.81,0,0,0,.81.81h1.62a.81.81,0,0,0,.81-.81V24.9a6.21,6.21,0,0,1-1.62.23A6.49,6.49,0,0,1,25.75,20Z"
+          />
+          <path
+            d="M33.72,15.09H30.48l-3.24-3.24v6.8a4.86,4.86,0,1,0,9.72,0v-6.8Zm-3.64,4.05a.81.81,0,1,1,.81-.81A.81.81,0,0,1,30.08,19.14Zm4,0a.81.81,0,1,1,.81-.81A.8.8,0,0,1,34.12,19.14Z"
+          />
+        </svg>
+      </a>
     </v-row>
   </v-container>
 </template>
@@ -99,7 +112,7 @@ export default {
     surveyResults: MAFS_results,
     transitionDuration: 600,
     sliderNumber: 1,
-    ticksLabels: ["Ep 2", "Ep 4", "Ep 7", "Ep 9"], // make computed property
+    ticksLabels: ["Ep 2", "Ep 4", "Ep 7", "Ep 9", "Ep 11"], // make computed property
     autoScroll: true,
     // smybols:
     brokenHeartD:
@@ -113,6 +126,9 @@ export default {
     this.scheduler();
   },
   computed: {
+    sliderMax: function() {
+      return this.ticksLabels.length;
+    },
     scales: function() {
       const xGroups = d3.map(this.currentData, (e) => e.couple).keys();
       const yGroups = d3.map(this.currentData, (e) => e.viewer).keys();
@@ -136,6 +152,8 @@ export default {
           return "Episode 7";
         case 4:
           return "Episode 9";
+        case 5:
+          return "Episode 11";
         default:
           return "Episode 2";
       }
@@ -155,7 +173,7 @@ export default {
     },
     movePrediction: function() {
       if (this.autoScroll) {
-        if (this.sliderNumber < 4) this.sliderNumber++;
+        if (this.sliderNumber < this.sliderMax) this.sliderNumber++;
         else this.sliderNumber = 1;
       }
     },
