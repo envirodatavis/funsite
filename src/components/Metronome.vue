@@ -84,10 +84,10 @@ export default {
   },
   methods: {
     scheduler: function() {
-      var interval;
-      console.log(this.isPlaying);
-      if (this.isPlaying) interval = setInterval(this.play, 1000);
-      if (!this.isPlaying) clearInterval(interval);
+      // var interval;
+      console.log("scheduler launched");
+      // if (this.isPlaying) interval = setInterval(this.play, 1000);
+      // if (!this.isPlaying) clearInterval(interval);
     },
     decrement() {
       this.bpm--;
