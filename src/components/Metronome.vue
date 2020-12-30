@@ -85,9 +85,12 @@ export default {
   methods: {
     scheduler: function() {
       // var interval;
-      console.log("scheduler launched");
       // if (this.isPlaying) interval = setInterval(this.play, 1000);
       // if (!this.isPlaying) clearInterval(interval);
+
+      if (window.Worker) {
+        console.log("window worker");
+      }
     },
     decrement() {
       this.bpm--;
