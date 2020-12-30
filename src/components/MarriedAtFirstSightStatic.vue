@@ -66,7 +66,7 @@ export default {
     dataFormatted: function() {
       return this.surveyResults.map((e) => ({
         ...e,
-        AsOf: e.AsOf.replace("Episode ", "Ep."),
+        AsOf: e.AsOf.replace("Episode ", "E"),
         couple: e.couple
           .replace("Danielle & Cody", "D&C")
           .replace("Shelia & Nate", "S&N")
