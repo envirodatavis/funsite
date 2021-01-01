@@ -33,7 +33,16 @@ const routes = [{
                 /* webpackChunkName: "ForWillow" */
                 "../views/ForWillow.vue"
             )
-    }
+    },
+    {
+        path: "/degree",
+        name: "degreeHeatCool",
+        component: () =>
+            import (
+                /* webpackChunkName: "DegreeHeat" */
+                "../views/DegreeHeatCool.vue"
+            )
+    },
 ];
 
 const router = new VueRouter({
