@@ -2,6 +2,11 @@
   <v-container>
     <v-row justify="center" no-gutters>
       <v-col align="center">
+        As of episode:
+      </v-col>
+    </v-row>
+    <v-row justify="center" no-gutters>
+      <v-col align="center">
         <svg id="staticViz" />
       </v-col>
     </v-row>
@@ -13,6 +18,50 @@
         </v-btn-toggle>
       </v-col>
     </v-row>
+    <br />
+    <v-row> <v-divider /> </v-row>
+    <v-row justify="center">
+      <v-col align="center"> Select winners: </v-col>
+    </v-row>
+
+    <v-row justify="center" no-gutters>
+      <v-col align="center">
+        <v-btn
+          elevation="0"
+          small
+          :color="predictBtnColor.sn"
+          @click="snButton = !snButton"
+          >S&#38;N</v-btn
+        >
+        <v-btn
+          small
+          elevation="0"
+          :color="predictBtnColor.cd"
+          @click="cdButton = !cdButton"
+          style="margin-left: 10px; margin-right: 10px"
+        >
+          C&#38;D
+        </v-btn>
+        <v-btn
+          small
+          elevation="0"
+          :color="predictBtnColor.aa"
+          @click="aaButton = !aaButton"
+          >A&#38;A</v-btn
+        >
+      </v-col>
+    </v-row>
+    <v-row justify="center" no-gutters>
+      <v-col align="center">
+        <svg id="winnerViz" />
+      </v-col>
+    </v-row>
+    <v-row justify="center" no-gutters>
+      <v-col align="center">
+        (difference between number of right and number of wrong predictions)
+      </v-col>
+    </v-row>
+    <!-- Cat thing: -->
     <v-row justify="center" no-gutters style="margin-top: 8px">
       <a href="https://www.owenmiles.com/#/willow">
         <svg width="30" height="30" viewBox="0 0 48 48">
@@ -43,7 +92,6 @@ export function colorSquare(marriedString) {
       "green";
   }
 }
-
 export default {
   components: {},
   data: () => ({
@@ -51,6 +99,9 @@ export default {
     width: 180,
     height: 400,
     surveyResults: MAFS_results,
+    snButton: true,
+    cdButton: false,
+    aaButton: true,
     transitionDuration: 1000,
     groupBy: "viewer",
     // smybols:
@@ -61,17 +112,108 @@ export default {
   }),
   mounted() {
     this.instantiateViz();
+    this.instantiateWinViz();
   },
   computed: {
+    predictBtnColor: function() {
+      return {
+        sn: this.snButton ? "red" : "grey",
+        cd: this.cdButton ? "red" : "grey",
+        aa: this.aaButton ? "red" : "grey",
+      };
+    },
+    finalDecisions: function() {
+      return [
+        {
+          couple: "Danielle & Cody",
+          decision: this.cdButton ? "Married" : "Divorced",
+        },
+        {
+          couple: "Shelia & Nate",
+          decision: this.snButton ? "Married" : "Divorced",
+        },
+        {
+          couple: "Ashley & Anthony",
+          decision: this.aaButton ? "Married" : "Divorced",
+        },
+      ];
+    },
     dataFormatted: function() {
       return this.surveyResults.map((e) => ({
         ...e,
-        AsOf: e.AsOf.replace("Episode ", "E"),
+        AsOf: e.AsOf.replace("Episode ", ""),
         couple: e.couple
           .replace("Danielle & Cody", "D&C")
           .replace("Shelia & Nate", "S&N")
           .replace("Ashley & Anthony", "A&A"),
+        decision: this.finalDecisions.find((f) => f.couple === e.couple)
+          .decision,
       }));
+    },
+    finalResults: function() {
+      let results = {
+        Charlo: 0,
+        Dinny: 0,
+        Katy: 0,
+        Laura: 0,
+        Owen: 0,
+        Paul: 0,
+      };
+      this.dataFormatted.forEach((e) => {
+        switch (e.viewer) {
+          case "Charlo":
+            if (e.decision === e.prediction) {
+              results.Charlo++;
+            } else {
+              results.Charlo--;
+            }
+
+            break;
+          case "Dinny":
+            if (e.decision === e.prediction) {
+              results.Dinny++;
+            } else {
+              results.Dinny--;
+            }
+            break;
+          case "Katy":
+            if (e.decision === e.prediction) {
+              results.Katy++;
+            } else {
+              results.Katy--;
+            }
+            break;
+          case "Laura":
+            if (e.decision === e.prediction) {
+              results.Laura++;
+            } else {
+              results.Laura--;
+            }
+            break;
+          case "Owen":
+            if (e.decision === e.prediction) {
+              results.Owen++;
+            } else {
+              results.Owen--;
+            }
+            break;
+          case "Paul":
+            if (e.decision === e.prediction) {
+              results.Paul++;
+            } else {
+              results.Paul--;
+            }
+            break;
+        }
+      });
+      return [
+        { viewer: "Charlo", value: results.Charlo },
+        { viewer: "Dinny", value: results.Dinny },
+        { viewer: "Katy", value: results.Katy },
+        { viewer: "Laura", value: results.Laura },
+        { viewer: "Owen", value: results.Owen },
+        { viewer: "Paul", value: results.Paul },
+      ];
     },
     scales: function() {
       const xGroups = d3.map(this.dataFormatted, (e) => e.AsOf).keys();
@@ -105,13 +247,120 @@ export default {
         return { x: x, yLeft: yLeft1, yRight: yRight1 };
       else return { x: x, yLeft: yLeft2, yRight: yRight2 };
     },
+    winScales: function() {
+      const yGroups = d3.map(this.dataFormatted, (e) => e.viewer).keys();
+      const y = d3
+        .scaleBand()
+        .range([0, 200]) //pixles
+        .domain(yGroups);
+      const x = d3
+        .scaleLinear()
+        .range([0, this.width])
+        .domain([-21, 21]);
+      return { x, y };
+    },
   },
   watch: {
-    groupBy() {
-      this.updateViz();
+    groupBy(next, prev) {
+      if (next && prev) this.updateViz();
+    },
+    finalResults(next, prev) {
+      console.log("update!");
+      if (next && prev) this.updateWinViz();
     },
   },
   methods: {
+    instantiateWinViz: function() {
+      const svg = d3
+        .select("#winnerViz")
+        .attr("width", this.width + this.margin.left + this.margin.right)
+        .attr("height", 200 + this.margin.top + this.margin.bottom);
+      svg
+        .append("g")
+        .call(
+          d3
+            .axisTop(this.winScales.x)
+            .tickSize(2)
+            .ticks(5)
+        )
+        .attr(
+          "transform",
+          "translate(" + this.margin.left + "," + this.margin.top + ")"
+        )
+        .selectAll(".tick text")
+        .style("font-size", 14);
+      svg
+        .append("g")
+        .call(d3.axisLeft(this.winScales.y).tickSize(0))
+        .attr(
+          "transform",
+          "translate(" + this.margin.left + "," + this.margin.top + ")"
+        )
+        .selectAll(".tick text")
+        .style("font-size", 14);
+      svg.selectAll(".domain").remove();
+      svg
+        .selectAll("winBars")
+        .data(this.finalResults)
+        .enter()
+        .append("rect")
+        .attr("x", (e) =>
+          e.value < 0 ? this.winScales.x(e.value) : this.winScales.x(0)
+        )
+        .attr("y", (d) => this.winScales.y(d.viewer))
+        .attr("height", this.winScales.y.bandwidth())
+        .attr("width", (e) =>
+          e.value < 0
+            ? this.winScales.x(0) - this.winScales.x(e.value)
+            : this.winScales.x(e.value) - this.winScales.x(0)
+        )
+        .style("stroke-width", 1)
+        .style("stroke", "white")
+        .attr("fill", "red")
+        .style("opacity", 0.8)
+        .attr("rx", 3)
+        .attr("ry", 3)
+        .attr(
+          "transform",
+          "translate(" + this.margin.left + "," + this.margin.top + ")"
+        )
+        .attr("id", "winBars");
+      // svg
+      //   .selectAll("#winText")
+      //   .data(this.finalResults)
+      //   .enter()
+      //   .append("text")
+      //   // .attr("class", "label")
+      //   //y position of the label is halfway down the bar
+      //   .attr("y", 90)
+      //   // (d) => {
+      //   //   this.winScales.y(d.viewer) + 5; //this.winScales.y.bandwidth() / 2 + 4;
+      //   // })
+      //   //x position is 3 pixels to the right of the bar
+      //   .attr("x", 80)
+      //   // (d) => {
+      //   //   this.winScales.x(d.value) + 3;
+      //   // })
+      //   .text("Hi");
+    },
+    updateWinViz: async function() {
+      await d3
+        .selectAll("#winBars")
+        .data(this.finalResults)
+        // .enter()
+        .transition()
+        .duration(500)
+        .attr("x", (e) =>
+          e.value < 0 ? this.winScales.x(e.value) : this.winScales.x(0)
+        )
+        .attr("y", (d) => this.winScales.y(d.viewer))
+        .attr("height", this.winScales.y.bandwidth())
+        .attr("width", (e) =>
+          e.value < 0
+            ? this.winScales.x(0) - this.winScales.x(e.value)
+            : this.winScales.x(e.value) - this.winScales.x(0)
+        );
+    },
     instantiateViz: function() {
       // make the svg:
       const svg = d3
@@ -169,7 +418,6 @@ export default {
         .selectAll("mySquares")
         .data(this.dataFormatted)
         .enter()
-
         .append("rect")
         .attr("x", (d) => this.scales.x(d.AsOf))
         .attr(

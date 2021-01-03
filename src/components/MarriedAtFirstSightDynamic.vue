@@ -112,7 +112,7 @@ export default {
     surveyResults: MAFS_results,
     transitionDuration: 600,
     sliderNumber: 1,
-    ticksLabels: ["Ep 2", "Ep 4", "Ep 7", "Ep 9", "Ep 11", "Ep 13"], // make computed property
+    ticksLabels: ["Ep 2", "4", "7", "9", "11", "13", "15"], // make computed property
     autoScroll: true,
     // smybols:
     brokenHeartD:
@@ -156,6 +156,8 @@ export default {
           return "Episode 11";
         case 6:
           return "Episode 13";
+        case 7:
+          return "Episode 15";
         default:
           return "Episode 2";
       }
