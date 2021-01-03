@@ -265,7 +265,6 @@ export default {
       if (next && prev) this.updateViz();
     },
     finalResults(next, prev) {
-      console.log("update!");
       if (next && prev) this.updateWinViz();
     },
   },
