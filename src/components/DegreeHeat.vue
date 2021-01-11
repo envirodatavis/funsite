@@ -29,7 +29,7 @@ export default {
     height: 400,
     transitionDuration: 1300,
     temperatureData: temperatureData,
-    livingTemps: { low: 70, high: 70 },
+    livingTemps: { low: 60, high: 72 },
     rankToggle: false,
   }),
   mounted() {
@@ -60,8 +60,8 @@ export default {
     },
     plotData: function() {
       let data = this.orderData;
-      data.sort((a, b) => a.Date - b.Date);
-      return data.slice(100, 300);
+      return data.sort((a, b) => a.Date - b.Date);
+      // return data.slice(100, 300);
     },
     domain: function() {
       return {
@@ -181,44 +181,89 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "myPoints");
-      // red bars
-      // TODO:! combine these that's the problem.
       svg
-        .selectAll("myRedBars")
-        .data(this.plotData.filter((d) => d.AvgTemp < this.livingTemps.low))
+        .selectAll("myBars")
+        .data(this.plotData)
         .enter()
         .append("rect")
         .attr("x", (e) => this.scales.xDate(e.Date))
-        .attr("y", this.scales.y(this.livingTemps.low))
+        .attr("y", (e) => {
+          if (e.AvgTemp < this.livingTemps.low) {
+            return this.scales.y(this.livingTemps.low);
+          } else if (e.AvgTemp > this.livingTemps.high) {
+            return this.scales.y(e.AvgTemp);
+          } else {
+            return this.scales.y(this.livingTemps.high);
+          }
+        })
         .attr("width", 2)
-        .attr(
-          "height",
-          (e) => this.scales.y(e.AvgTemp) - this.scales.y(this.livingTemps.low)
-        )
-        .attr("fill", "rgba(255,0,0,0.2)")
+        .attr("height", (e) => {
+          if (e.AvgTemp < this.livingTemps.low) {
+            return (
+              this.scales.y(e.AvgTemp) - this.scales.y(this.livingTemps.low)
+            );
+          } else if (e.AvgTemp > this.livingTemps.high) {
+            return (
+              this.scales.y(this.livingTemps.high) - this.scales.y(e.AvgTemp)
+            );
+          } else {
+            return (
+              this.scales.y(this.livingTemps.low) -
+              this.scales.y(this.livingTemps.high)
+            );
+          }
+        })
+        .attr("fill", (e) => {
+          if (e.AvgTemp < this.livingTemps.low) {
+            return "rgba(255,0,0,0.4)";
+          } else if (e.AvgTemp > this.livingTemps.high) {
+            return "rgba(0,0,255,0.4)";
+          } else {
+            return "rgba(0,0,0,0.1)";
+          }
+        })
         .attr(
           "transform",
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "myBars");
-      svg
-        .selectAll("myBlueBars")
-        .data(this.plotData.filter((d) => d.AvgTemp > this.livingTemps.high))
-        .enter()
-        .append("rect")
-        .attr("x", (e) => this.scales.xDate(e.Date))
-        .attr("y", (e) => this.scales.y(e.AvgTemp))
-        .attr("width", 2)
-        .attr(
-          "height",
-          (e) => this.scales.y(this.livingTemps.high) - this.scales.y(e.AvgTemp)
-        )
-        .attr("fill", "rgba(0,0,255,0.1)")
-        .attr(
-          "transform",
-          "translate(" + this.margin.left + "," + this.margin.top + ")"
-        )
-        .attr("id", "myBars");
+      // ////////////////
+      // svg
+      //   .selectAll("myRedBars")
+      //   .data(this.plotData.filter((d) => d.AvgTemp < this.livingTemps.low))
+      //   .enter()
+      //   .append("rect")
+      //   .attr("x", (e) => this.scales.xDate(e.Date))
+      //   .attr("y", this.scales.y(this.livingTemps.low))
+      //   .attr("width", 2)
+      //   .attr(
+      //     "height",
+      //     (e) => this.scales.y(e.AvgTemp) - this.scales.y(this.livingTemps.low)
+      //   )
+      //   .attr("fill", "rgba(255,0,0,0.2)")
+      //   .attr(
+      //     "transform",
+      //     "translate(" + this.margin.left + "," + this.margin.top + ")"
+      //   )
+      //   .attr("id", "myBars");
+      // svg
+      //   .selectAll("myBlueBars")
+      //   .data(this.plotData.filter((d) => d.AvgTemp > this.livingTemps.high))
+      //   .enter()
+      //   .append("rect")
+      //   .attr("x", (e) => this.scales.xDate(e.Date))
+      //   .attr("y", (e) => this.scales.y(e.AvgTemp))
+      //   .attr("width", 2)
+      //   .attr(
+      //     "height",
+      //     (e) => this.scales.y(this.livingTemps.high) - this.scales.y(e.AvgTemp)
+      //   )
+      //   .attr("fill", "rgba(0,0,255,0.1)")
+      //   .attr(
+      //     "transform",
+      //     "translate(" + this.margin.left + "," + this.margin.top + ")"
+      //   )
+      //   .attr("id", "myBars");
     },
   },
 };
