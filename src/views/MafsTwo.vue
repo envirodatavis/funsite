@@ -12,7 +12,8 @@
 export default {
   name: "MafsTwo",
   components: {
-    SecondMafsPlot: () => import("../components/MarriedAtFirstSightStatic.vue"),
+    SecondMafsPlot: () =>
+      import("../components/MarriedAtFirstSightDynamic.vue"),
   },
 };
 </script>

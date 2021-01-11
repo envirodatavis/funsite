@@ -12,7 +12,7 @@
 export default {
   name: "Home",
   components: {
-    FirstMafsPlot: () => import("../components/MarriedAtFirstSightDynamic.vue"),
+    FirstMafsPlot: () => import("../components/MarriedAtFirstSightStatic.vue"),
   },
 };
 </script>
