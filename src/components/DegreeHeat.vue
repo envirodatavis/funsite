@@ -51,6 +51,7 @@ export default {
         Date: e.Date,
         AvgTemp: e.AvgTemp,
       }));
+      orderArr = orderArr.slice(0, 500);
       orderArr.sort((a, b) => parseFloat(b.AvgTemp) - parseFloat(a.AvgTemp));
       return orderArr.map((e, index) => ({
         Date: new Date(e.Date),
@@ -61,7 +62,7 @@ export default {
     plotData: function() {
       let data = this.orderData;
       return data.sort((a, b) => a.Date - b.Date);
-      // return data.slice(100, 300);
+      // return data.slice(0, 500);
     },
     domain: function() {
       return {
@@ -100,35 +101,36 @@ export default {
     // perfect for webWorker!
     // why doent myBars update fully? am I reaching a limit?
     updateViz: function() {
+      let duration = 4000;
       if (this.rankToggle) {
         d3.selectAll("#myBars")
           .data(this.plotData)
           .transition()
-          .duration(2000)
+          .duration(duration)
           .attr("x", (e) => this.scales.xRank(e.rank));
         d3.selectAll("#myPoints")
           .data(this.plotData)
           .transition()
-          .duration(2000)
+          .duration(duration)
           .attr("cx", (e) => this.scales.xRank(e.rank));
         d3.select(".xaxis")
           .transition()
-          .duration(1500)
+          .duration(duration)
           .call(d3.axisBottom(this.scales.xRank));
       } else {
         d3.selectAll("#myBars")
           .data(this.plotData)
           .transition()
-          .duration(2000)
+          .duration(duration)
           .attr("x", (e) => this.scales.xDate(e.Date));
         d3.selectAll("#myPoints")
           .data(this.plotData)
           .transition()
-          .duration(2000)
+          .duration(duration)
           .attr("cx", (e) => this.scales.xDate(e.Date));
         d3.select(".xaxis")
           .transition()
-          .duration(1500)
+          .duration(duration)
           .call(d3.axisBottom(this.scales.Date));
       }
     },
