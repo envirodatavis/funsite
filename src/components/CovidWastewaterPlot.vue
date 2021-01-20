@@ -1,43 +1,43 @@
 <template>
   <v-container fluid>
-    <v-card width="500">
-      <v-row justify="center" no-gutters>
-        <v-col align="center">
-          Plot here:
-        </v-col>
-      </v-row>
-      <v-row no-gutters class="pa-0">
-        <v-col align="left">
-          <v-btn-toggle v-model="leftScale" rounded dense>
-            <v-btn value="PosNumber" x-small>Positive #</v-btn>
-            <v-btn value="PosRatio" x-small>Positive Ratio</v-btn>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
-      <v-row no-gutters class="pa-2">
-        <v-col align="right">
-          <v-btn-toggle v-model="rightScale" rounded dense>
-            <v-btn value="WW" x-small>Wastewater</v-btn>
-            <v-btn value="InHospital" x-small>In Hospital</v-btn>
-          </v-btn-toggle>
-        </v-col>
-      </v-row>
-      <!-- <v-row justify="center">
-      <v-col align="center">
-        <v-btn-toggle v-model="timeToggle" rounded dense>
-          <v-btn value="time" x-small>Time plot</v-btn>
-          <v-btn value="InHospital" x-small>Compare Metrics</v-btn>
-        </v-btn-toggle>
-      </v-col>
-    </v-row> -->
-      <v-row justify="center" no-gutters>
-        <v-col align="center">
-          <svg id="covidViz" />
-        </v-col>
-      </v-row>
-      {{ scales }}
-      <!-- {{ rawData[1] }} -->
-    </v-card>
+    <v-row justify="center" no-gutters>
+      <v-card tile outlined width="600">
+        <v-row justify="center" no-gutters>
+          <v-col align="center">
+            <svg id="covidViz" />
+          </v-col>
+        </v-row>
+        <v-row justify="center" no-gutters>
+          <v-card tile outlined width="400">
+            <v-row no-gutters class="pa-0">
+              <v-col align="left">
+                <v-btn-toggle v-model="leftScale" rounded dense>
+                  <v-btn value="PosNumber" x-small>Positive #</v-btn>
+                  <v-btn value="PosRatio" x-small>Positive Ratio</v-btn>
+                </v-btn-toggle>
+              </v-col>
+            </v-row>
+            <v-row no-gutters class="pa-2">
+              <v-col align="right">
+                <v-btn-toggle v-model="rightScale" rounded dense>
+                  <v-btn value="WW" x-small>Wastewater</v-btn>
+                  <v-btn value="InHospital" x-small>In Hospital</v-btn>
+                </v-btn-toggle>
+              </v-col>
+            </v-row>
+            <v-row justify="center">
+              <v-col align="center">
+                <v-btn-toggle v-model="timeToggle" rounded dense>
+                  <v-btn value="time" x-small>Time plots</v-btn>
+                  <v-btn value="time" x-small>Single plot</v-btn>
+                  <v-btn value="InHospital" x-small>Compare Metrics</v-btn>
+                </v-btn-toggle>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-card>
+    </v-row>
   </v-container>
 </template>
 
@@ -48,9 +48,9 @@ import rawData from "../lib/data/covidData.json";
 export default {
   components: {},
   data: () => ({
-    margin: { top: 20, left: 30, right: 30, bottom: 20 },
-    width: 250,
-    height: 250,
+    margin: { top: 50, left: 60, right: 60, bottom: 20, plotPadding: 10 },
+    width: 400,
+    height: 400,
     rawData: rawData,
     leftScale: "",
     rightScale: "",
@@ -72,7 +72,7 @@ export default {
 
       const xTimeScale = d3
         .scaleTime()
-        .domain([new Date(2020, 2, 28), new Date(2021, 1, 3)])
+        .domain([new Date(2020, 1, 1), new Date(2021, 1, 3)])
         .range([0, this.width]);
 
       const yLeft = d3
@@ -99,14 +99,26 @@ export default {
       const svg = d3
         .select("#covidViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr("height", this.height + this.margin.top + this.margin.bottom);
+        .attr(
+          "height",
+          this.height +
+            this.margin.top +
+            this.margin.bottom +
+            this.margin.plotPadding * 2
+        );
 
       svg
         .append("rect")
         .attr("x", 0)
         .attr("y", 0)
         .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr("height", this.height + this.margin.top + this.margin.bottom)
+        .attr(
+          "height",
+          this.height +
+            this.margin.top +
+            this.margin.bottom +
+            this.margin.plotPadding * 2
+        )
         .style("stroke", "black")
         .style("fill", "none")
         .style("stroke-width", 3);
@@ -132,10 +144,15 @@ export default {
         .call(d3.axisLeft(this.scales.yLeft).tickSize(2))
         .attr(
           "transform",
-          "translate(" + this.margin.left + "," + this.margin.top + ")"
+          "translate(" +
+            this.margin.left +
+            "," +
+            (this.margin.top + this.margin.plotPadding) +
+            ")"
         )
         .selectAll(".tick text")
-        .style("font-size", 8);
+        .style("font-size", 8)
+        .style("color", "red");
 
       svg
         .append("g")
@@ -145,13 +162,50 @@ export default {
           "translate(" +
             (this.margin.left + this.width) +
             "," +
-            (this.margin.top + this.height / 2) +
+            (this.margin.top + this.margin.plotPadding * 2 + this.height / 2) +
             ")"
         )
         .selectAll(".tick text")
-        .style("font-size", 8);
+        .style("font-size", 8)
+        .style("color", "blue");
 
-      // svg.selectAll(".domain").remove();
+      svg
+        .selectAll("dot")
+        .data(this.rawData)
+        .enter()
+        .append("circle")
+        .attr("cx", (e) => this.scales.x(new Date(e.Date)))
+        .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
+        .attr("r", 1)
+        .style("fill", "red")
+        .attr(
+          "transform",
+          "translate(" +
+            this.margin.left +
+            "," +
+            (this.margin.top + this.margin.plotPadding) +
+            ")"
+        )
+        .attr("id", "redDots");
+
+      svg
+        .selectAll("dot")
+        .data(this.rawData)
+        .enter()
+        .append("circle")
+        .attr("cx", (e) => this.scales.x(new Date(e.Date)))
+        .attr("cy", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
+        .attr("r", 1)
+        .style("fill", "blue")
+        .attr(
+          "transform",
+          "translate(" +
+            this.margin.left +
+            "," +
+            (this.margin.top + this.margin.plotPadding * 2 + this.height / 2) +
+            ")"
+        )
+        .attr("id", "blueDots");
     },
     updateViz: async function() {},
   },

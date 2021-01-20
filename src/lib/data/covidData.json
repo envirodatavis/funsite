@@ -5,11 +5,11 @@
         "PositiveResults": 1,
         "_7DayWeightedPositivityRate": 0.3,
         "_7DayAllTests": 1.4,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/2/2020",
@@ -18,11 +18,11 @@
         "PositiveResults": 1,
         "_7DayWeightedPositivityRate": 0.214,
         "_7DayAllTests": 2,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/3/2020",
@@ -31,11 +31,11 @@
         "PositiveResults": 1,
         "_7DayWeightedPositivityRate": 0.138,
         "_7DayAllTests": 4.1,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/4/2020",
@@ -44,11 +44,11 @@
         "PositiveResults": 2,
         "_7DayWeightedPositivityRate": 0.118,
         "_7DayAllTests": 7.3,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/5/2020",
@@ -57,11 +57,11 @@
         "PositiveResults": 8,
         "_7DayWeightedPositivityRate": 0.163,
         "_7DayAllTests": 12.3,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/6/2020",
@@ -70,11 +70,11 @@
         "PositiveResults": 14,
         "_7DayWeightedPositivityRate": 0.203,
         "_7DayAllTests": 19,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/7/2020",
@@ -83,11 +83,11 @@
         "PositiveResults": 44,
         "_7DayWeightedPositivityRate": 0.306,
         "_7DayAllTests": 33.1,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/8/2020",
@@ -96,11 +96,11 @@
         "PositiveResults": 20,
         "_7DayWeightedPositivityRate": 0.311,
         "_7DayAllTests": 41.3,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/9/2020",
@@ -110,10 +110,10 @@
         "_7DayWeightedPositivityRate": 0.264,
         "_7DayAllTests": 52,
         "WW_Daily_copiesPml": 29,
-        "WW_7-dayAvg_copiesPml": "",
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "WW_7-dayAvg_copiesPml": null,
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/10/2020",
@@ -124,9 +124,9 @@
         "_7DayAllTests": 65.4,
         "WW_Daily_copiesPml": 26.5,
         "WW_7-dayAvg_copiesPml": 21,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/11/2020",
@@ -137,9 +137,9 @@
         "_7DayAllTests": 88.3,
         "WW_Daily_copiesPml": 48,
         "WW_7-dayAvg_copiesPml": 32.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/12/2020",
@@ -150,9 +150,9 @@
         "_7DayAllTests": 144.9,
         "WW_Daily_copiesPml": 30.5,
         "WW_7-dayAvg_copiesPml": 31.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/13/2020",
@@ -161,11 +161,11 @@
         "PositiveResults": 64,
         "_7DayWeightedPositivityRate": 0.103,
         "_7DayAllTests": 278.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 31.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/14/2020",
@@ -176,9 +176,9 @@
         "_7DayAllTests": 397.9,
         "WW_Daily_copiesPml": 21.5,
         "WW_7-dayAvg_copiesPml": 28.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/15/2020",
@@ -189,9 +189,9 @@
         "_7DayAllTests": 544.1,
         "WW_Daily_copiesPml": 46,
         "WW_7-dayAvg_copiesPml": 31,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/16/2020",
@@ -202,9 +202,9 @@
         "_7DayAllTests": 851.9,
         "WW_Daily_copiesPml": 28,
         "WW_7-dayAvg_copiesPml": 30.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/17/2020",
@@ -215,9 +215,9 @@
         "_7DayAllTests": 1234.1,
         "WW_Daily_copiesPml": 92,
         "WW_7-dayAvg_copiesPml": 39,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/18/2020",
@@ -228,9 +228,9 @@
         "_7DayAllTests": 1669,
         "WW_Daily_copiesPml": 55,
         "WW_7-dayAvg_copiesPml": 39.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/19/2020",
@@ -241,9 +241,9 @@
         "_7DayAllTests": 2054.9,
         "WW_Daily_copiesPml": 34,
         "WW_7-dayAvg_copiesPml": 39.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/20/2020",
@@ -252,11 +252,11 @@
         "PositiveResults": 394,
         "_7DayWeightedPositivityRate": 0.087,
         "_7DayAllTests": 2468,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 39.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/21/2020",
@@ -265,11 +265,11 @@
         "PositiveResults": 340,
         "_7DayWeightedPositivityRate": 0.092,
         "_7DayAllTests": 2730,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 45,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/22/2020",
@@ -278,11 +278,11 @@
         "PositiveResults": 298,
         "_7DayWeightedPositivityRate": 0.099,
         "_7DayAllTests": 2874.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 45,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/23/2020",
@@ -293,9 +293,9 @@
         "_7DayAllTests": 3140.6,
         "WW_Daily_copiesPml": 263,
         "WW_7-dayAvg_copiesPml": 78,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/24/2020",
@@ -306,9 +306,9 @@
         "_7DayAllTests": 3359.6,
         "WW_Daily_copiesPml": 321,
         "WW_7-dayAvg_copiesPml": 92.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/25/2020",
@@ -319,9 +319,9 @@
         "_7DayAllTests": 3538.7,
         "WW_Daily_copiesPml": 129,
         "WW_7-dayAvg_copiesPml": 117.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/26/2020",
@@ -332,9 +332,9 @@
         "_7DayAllTests": 3781.7,
         "WW_Daily_copiesPml": 204.5,
         "WW_7-dayAvg_copiesPml": 149.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/27/2020",
@@ -345,9 +345,9 @@
         "_7DayAllTests": 3915.3,
         "WW_Daily_copiesPml": 166.5,
         "WW_7-dayAvg_copiesPml": 143.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/28/2020",
@@ -356,11 +356,11 @@
         "PositiveResults": 704,
         "_7DayWeightedPositivityRate": 0.185,
         "_7DayAllTests": 3976.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 143.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/29/2020",
@@ -369,11 +369,11 @@
         "PositiveResults": 576,
         "_7DayWeightedPositivityRate": 0.193,
         "_7DayAllTests": 4030.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 143.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/30/2020",
@@ -384,9 +384,9 @@
         "_7DayAllTests": 4241.6,
         "WW_Daily_copiesPml": 132.5,
         "WW_7-dayAvg_copiesPml": 122,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "3/31/2020",
@@ -395,11 +395,11 @@
         "PositiveResults": 1403,
         "_7DayWeightedPositivityRate": 0.217,
         "_7DayAllTests": 4471.7,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 109.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "4/1/2020",
@@ -410,9 +410,9 @@
         "_7DayAllTests": 4628.4,
         "WW_Daily_copiesPml": 309,
         "WW_7-dayAvg_copiesPml": 141,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "4/2/2020",
@@ -421,11 +421,11 @@
         "PositiveResults": 1401,
         "_7DayWeightedPositivityRate": 0.233,
         "_7DayAllTests": 4795.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 188,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "4/3/2020",
@@ -436,9 +436,9 @@
         "_7DayAllTests": 5045.6,
         "WW_Daily_copiesPml": 335.5,
         "WW_7-dayAvg_copiesPml": 236.5,
-        "InHospital": "",
-        "InICU": "",
-        "Intubated": ""
+        "InHospital": null,
+        "InICU": null,
+        "Intubated": null
     },
     {
         "Date": "4/4/2020",
@@ -447,11 +447,11 @@
         "PositiveResults": 1322,
         "_7DayWeightedPositivityRate": 0.246,
         "_7DayAllTests": 5266.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 236.5,
         "InHospital": 1370,
         "InICU": 438,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/5/2020",
@@ -460,11 +460,11 @@
         "PositiveResults": 1078,
         "_7DayWeightedPositivityRate": 0.249,
         "_7DayAllTests": 5499.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 236.5,
         "InHospital": 1632,
         "InICU": 526,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/6/2020",
@@ -473,11 +473,11 @@
         "PositiveResults": 2101,
         "_7DayWeightedPositivityRate": 0.256,
         "_7DayAllTests": 5785.7,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 319,
         "InHospital": 1677,
         "InICU": 542,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/7/2020",
@@ -490,7 +490,7 @@
         "WW_7-dayAvg_copiesPml": 353.5,
         "InHospital": 1831,
         "InICU": 575,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/8/2020",
@@ -499,11 +499,11 @@
         "PositiveResults": 2107,
         "_7DayWeightedPositivityRate": 0.266,
         "_7DayAllTests": 6365.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 382.5,
         "InHospital": 2119,
         "InICU": 659,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/9/2020",
@@ -516,7 +516,7 @@
         "WW_7-dayAvg_copiesPml": 454.5,
         "InHospital": 2302,
         "InICU": 685,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/10/2020",
@@ -525,11 +525,11 @@
         "PositiveResults": 2315,
         "_7DayWeightedPositivityRate": 0.276,
         "_7DayAllTests": 6944.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 529,
         "InHospital": 2435,
         "InICU": 701,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/11/2020",
@@ -538,11 +538,11 @@
         "PositiveResults": 1506,
         "_7DayWeightedPositivityRate": 0.277,
         "_7DayAllTests": 7039,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 529,
         "InHospital": 2507,
         "InICU": 745,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/12/2020",
@@ -551,11 +551,11 @@
         "PositiveResults": 1073,
         "_7DayWeightedPositivityRate": 0.278,
         "_7DayAllTests": 6991.7,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 529,
         "InHospital": 2554,
         "InICU": 765,
-        "Intubated": ""
+        "Intubated": null
     },
     {
         "Date": "4/13/2020",
@@ -564,7 +564,7 @@
         "PositiveResults": 2231,
         "_7DayWeightedPositivityRate": 0.282,
         "_7DayAllTests": 6960.4,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 529,
         "InHospital": 3485,
         "InICU": 942,
@@ -590,7 +590,7 @@
         "PositiveResults": 2854,
         "_7DayWeightedPositivityRate": 0.277,
         "_7DayAllTests": 8019.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 591.5,
         "InHospital": 3637,
         "InICU": 987,
@@ -629,7 +629,7 @@
         "PositiveResults": 1708,
         "_7DayWeightedPositivityRate": 0.264,
         "_7DayAllTests": 9344.4,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 319.5,
         "InHospital": 3728,
         "InICU": 1000,
@@ -642,7 +642,7 @@
         "PositiveResults": 1267,
         "_7DayWeightedPositivityRate": 0.26,
         "_7DayAllTests": 9605.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 319.5,
         "InHospital": 3789,
         "InICU": 1020,
@@ -655,7 +655,7 @@
         "PositiveResults": 3108,
         "_7DayWeightedPositivityRate": 0.252,
         "_7DayAllTests": 10405.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 319.5,
         "InHospital": 3867,
         "InICU": 1040,
@@ -668,7 +668,7 @@
         "PositiveResults": 2712,
         "_7DayWeightedPositivityRate": 0.243,
         "_7DayAllTests": 10447.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 245,
         "InHospital": 3965,
         "InICU": 1050,
@@ -707,7 +707,7 @@
         "PositiveResults": 2815,
         "_7DayWeightedPositivityRate": 0.218,
         "_7DayAllTests": 11654.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 295,
         "InHospital": 3830,
         "InICU": 1058,
@@ -720,7 +720,7 @@
         "PositiveResults": 1830,
         "_7DayWeightedPositivityRate": 0.212,
         "_7DayAllTests": 12052,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 295,
         "InHospital": 3854,
         "InICU": 1077,
@@ -733,7 +733,7 @@
         "PositiveResults": 1166,
         "_7DayWeightedPositivityRate": 0.209,
         "_7DayAllTests": 12138.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 295,
         "InHospital": 3892,
         "InICU": 1089,
@@ -772,7 +772,7 @@
         "PositiveResults": 2825,
         "_7DayWeightedPositivityRate": 0.191,
         "_7DayAllTests": 12768.7,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 209.5,
         "InHospital": 3803,
         "InICU": 1001,
@@ -785,7 +785,7 @@
         "PositiveResults": 2705,
         "_7DayWeightedPositivityRate": 0.182,
         "_7DayAllTests": 13263.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 202.5,
         "InHospital": 3716,
         "InICU": 952,
@@ -798,7 +798,7 @@
         "PositiveResults": 2731,
         "_7DayWeightedPositivityRate": 0.176,
         "_7DayAllTests": 13606,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 202.5,
         "InHospital": 3601,
         "InICU": 925,
@@ -811,7 +811,7 @@
         "PositiveResults": 1412,
         "_7DayWeightedPositivityRate": 0.174,
         "_7DayAllTests": 13456.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 202.5,
         "InHospital": 3617,
         "InICU": 907,
@@ -837,7 +837,7 @@
         "PositiveResults": 2710,
         "_7DayWeightedPositivityRate": 0.168,
         "_7DayAllTests": 13734,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 153.5,
         "InHospital": 3542,
         "InICU": 914,
@@ -876,7 +876,7 @@
         "PositiveResults": 2469,
         "_7DayWeightedPositivityRate": 0.156,
         "_7DayAllTests": 14041.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 52.5,
         "InHospital": 3349,
         "InICU": 832,
@@ -889,7 +889,7 @@
         "PositiveResults": 2224,
         "_7DayWeightedPositivityRate": 0.151,
         "_7DayAllTests": 13993.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 52.5,
         "InHospital": 3229,
         "InICU": 814,
@@ -902,7 +902,7 @@
         "PositiveResults": 1025,
         "_7DayWeightedPositivityRate": 0.149,
         "_7DayAllTests": 13778.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 52.5,
         "InHospital": 3128,
         "InICU": 810,
@@ -915,7 +915,7 @@
         "PositiveResults": 674,
         "_7DayWeightedPositivityRate": 0.149,
         "_7DayAllTests": 13505.4,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 34,
         "InHospital": 3102,
         "InICU": 813,
@@ -941,7 +941,7 @@
         "PositiveResults": 2271,
         "_7DayWeightedPositivityRate": 0.138,
         "_7DayAllTests": 13723,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 25.5,
         "InHospital": 3101,
         "InICU": 794,
@@ -954,8 +954,8 @@
         "PositiveResults": 2113,
         "_7DayWeightedPositivityRate": 0.133,
         "_7DayAllTests": 13900.1,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2859,
         "InICU": 781,
         "Intubated": 601
@@ -967,8 +967,8 @@
         "PositiveResults": 2085,
         "_7DayWeightedPositivityRate": 0.128,
         "_7DayAllTests": 13937.7,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2767,
         "InICU": 749,
         "Intubated": 584
@@ -980,8 +980,8 @@
         "PositiveResults": 1854,
         "_7DayWeightedPositivityRate": 0.123,
         "_7DayAllTests": 14062.6,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2692,
         "InICU": 747,
         "Intubated": 576
@@ -993,8 +993,8 @@
         "PositiveResults": 1033,
         "_7DayWeightedPositivityRate": 0.121,
         "_7DayAllTests": 14296,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2597,
         "InICU": 702,
         "Intubated": 558
@@ -1006,8 +1006,8 @@
         "PositiveResults": 598,
         "_7DayWeightedPositivityRate": 0.119,
         "_7DayAllTests": 14481.9,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2533,
         "InICU": 674,
         "Intubated": 533
@@ -1019,8 +1019,8 @@
         "PositiveResults": 2143,
         "_7DayWeightedPositivityRate": 0.117,
         "_7DayAllTests": 14763.4,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2472,
         "InICU": 672,
         "Intubated": 534
@@ -1032,8 +1032,8 @@
         "PositiveResults": 1860,
         "_7DayWeightedPositivityRate": 0.114,
         "_7DayAllTests": 14666.4,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2518,
         "InICU": 675,
         "Intubated": 513
@@ -1045,8 +1045,8 @@
         "PositiveResults": 1678,
         "_7DayWeightedPositivityRate": 0.111,
         "_7DayAllTests": 14520.6,
-        "WW_Daily_copiesPml": "",
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_Daily_copiesPml": null,
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2396,
         "InICU": 647,
         "Intubated": 493
@@ -1059,7 +1059,7 @@
         "_7DayWeightedPositivityRate": 0.108,
         "_7DayAllTests": 14320.4,
         "WW_Daily_copiesPml": 62,
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2323,
         "InICU": 628,
         "Intubated": 454
@@ -1072,7 +1072,7 @@
         "_7DayWeightedPositivityRate": 0.108,
         "_7DayAllTests": 13891.6,
         "WW_Daily_copiesPml": 335,
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2237,
         "InICU": 610,
         "Intubated": 452
@@ -1085,7 +1085,7 @@
         "_7DayWeightedPositivityRate": 0.107,
         "_7DayAllTests": 13515.1,
         "WW_Daily_copiesPml": 73,
-        "WW_7-dayAvg_copiesPml": "",
+        "WW_7-dayAvg_copiesPml": null,
         "InHospital": 2169,
         "InICU": 558,
         "Intubated": 433
@@ -1942,7 +1942,7 @@
         "PositiveResults": 398,
         "_7DayWeightedPositivityRate": 0.017,
         "_7DayAllTests": 18168,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 28,
         "InHospital": 164,
         "InICU": 31,
@@ -1968,7 +1968,7 @@
         "PositiveResults": 421,
         "_7DayWeightedPositivityRate": 0.017,
         "_7DayAllTests": 19252.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 29.5,
         "InHospital": 175,
         "InICU": 37,
@@ -1994,7 +1994,7 @@
         "PositiveResults": 190,
         "_7DayWeightedPositivityRate": 0.017,
         "_7DayAllTests": 19727.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 30.5,
         "InHospital": 174,
         "InICU": 33,
@@ -2007,7 +2007,7 @@
         "PositiveResults": 135,
         "_7DayWeightedPositivityRate": 0.017,
         "_7DayAllTests": 19836.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 34,
         "InHospital": 171,
         "InICU": 31,
@@ -2085,7 +2085,7 @@
         "PositiveResults": 220,
         "_7DayWeightedPositivityRate": 0.016,
         "_7DayAllTests": 21364.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 52.5,
         "InHospital": 195,
         "InICU": 39,
@@ -2098,7 +2098,7 @@
         "PositiveResults": 106,
         "_7DayWeightedPositivityRate": 0.016,
         "_7DayAllTests": 21515.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 52.5,
         "InHospital": 190,
         "InICU": 35,
@@ -2124,7 +2124,7 @@
         "PositiveResults": 356,
         "_7DayWeightedPositivityRate": 0.015,
         "_7DayAllTests": 22473.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 43,
         "InHospital": 190,
         "InICU": 37,
@@ -2150,7 +2150,7 @@
         "PositiveResults": 444,
         "_7DayWeightedPositivityRate": 0.014,
         "_7DayAllTests": 23423.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 40,
         "InHospital": 189,
         "InICU": 39,
@@ -2176,7 +2176,7 @@
         "PositiveResults": 186,
         "_7DayWeightedPositivityRate": 0.014,
         "_7DayAllTests": 24183,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 41,
         "InHospital": 181,
         "InICU": 41,
@@ -2189,7 +2189,7 @@
         "PositiveResults": 143,
         "_7DayWeightedPositivityRate": 0.014,
         "_7DayAllTests": 24486.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 41,
         "InHospital": 180,
         "InICU": 37,
@@ -2215,7 +2215,7 @@
         "PositiveResults": 455,
         "_7DayWeightedPositivityRate": 0.013,
         "_7DayAllTests": 27381.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 35.5,
         "InHospital": 174,
         "InICU": 36,
@@ -2241,7 +2241,7 @@
         "PositiveResults": 430,
         "_7DayWeightedPositivityRate": 0.012,
         "_7DayAllTests": 30250.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 42,
         "InHospital": 162,
         "InICU": 38,
@@ -2267,7 +2267,7 @@
         "PositiveResults": 193,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 32165,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 48,
         "InHospital": 142,
         "InICU": 33,
@@ -2280,7 +2280,7 @@
         "PositiveResults": 116,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 33029,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 48,
         "InHospital": 140,
         "InICU": 35,
@@ -2306,7 +2306,7 @@
         "PositiveResults": 473,
         "_7DayWeightedPositivityRate": 0.01,
         "_7DayAllTests": 36652.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 45.5,
         "InHospital": 160,
         "InICU": 42,
@@ -2332,7 +2332,7 @@
         "PositiveResults": 420,
         "_7DayWeightedPositivityRate": 0.009,
         "_7DayAllTests": 39462.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 38,
         "InHospital": 166,
         "InICU": 43,
@@ -2358,7 +2358,7 @@
         "PositiveResults": 225,
         "_7DayWeightedPositivityRate": 0.009,
         "_7DayAllTests": 42359.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 38.5,
         "InHospital": 160,
         "InICU": 40,
@@ -2371,7 +2371,7 @@
         "PositiveResults": 168,
         "_7DayWeightedPositivityRate": 0.009,
         "_7DayAllTests": 43372,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 38.5,
         "InHospital": 157,
         "InICU": 38,
@@ -2397,7 +2397,7 @@
         "PositiveResults": 473,
         "_7DayWeightedPositivityRate": 0.009,
         "_7DayAllTests": 46406.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 47,
         "InHospital": 169,
         "InICU": 35,
@@ -2423,7 +2423,7 @@
         "PositiveResults": 554,
         "_7DayWeightedPositivityRate": 0.008,
         "_7DayAllTests": 49589.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 63.5,
         "InHospital": 173,
         "InICU": 36,
@@ -2449,7 +2449,7 @@
         "PositiveResults": 253,
         "_7DayWeightedPositivityRate": 0.008,
         "_7DayAllTests": 49528,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 79,
         "InHospital": 163,
         "InICU": 33,
@@ -2462,7 +2462,7 @@
         "PositiveResults": 138,
         "_7DayWeightedPositivityRate": 0.008,
         "_7DayAllTests": 49259.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 79,
         "InHospital": 169,
         "InICU": 31,
@@ -2488,7 +2488,7 @@
         "PositiveResults": 660,
         "_7DayWeightedPositivityRate": 0.008,
         "_7DayAllTests": 47375.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 81,
         "InHospital": 179,
         "InICU": 31,
@@ -2722,7 +2722,7 @@
         "PositiveResults": 419,
         "_7DayWeightedPositivityRate": 0.009,
         "_7DayAllTests": 57902.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 44.5,
         "InHospital": 222,
         "InICU": 49,
@@ -2735,7 +2735,7 @@
         "PositiveResults": 272,
         "_7DayWeightedPositivityRate": 0.01,
         "_7DayAllTests": 57937.3,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 42,
         "InHospital": 236,
         "InICU": 57,
@@ -2761,7 +2761,7 @@
         "PositiveResults": 836,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 59083.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 43,
         "InHospital": 266,
         "InICU": 63,
@@ -2787,7 +2787,7 @@
         "PositiveResults": 816,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 59385,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 42.5,
         "InHospital": 250,
         "InICU": 53,
@@ -2813,7 +2813,7 @@
         "PositiveResults": 484,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 60220,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 44,
         "InHospital": 264,
         "InICU": 55,
@@ -2826,7 +2826,7 @@
         "PositiveResults": 359,
         "_7DayWeightedPositivityRate": 0.012,
         "_7DayAllTests": 60673.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 44,
         "InHospital": 263,
         "InICU": 50,
@@ -2852,7 +2852,7 @@
         "PositiveResults": 882,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 63270.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 46.5,
         "InHospital": 299,
         "InICU": 55,
@@ -2878,7 +2878,7 @@
         "PositiveResults": 996,
         "_7DayWeightedPositivityRate": 0.011,
         "_7DayAllTests": 66514.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 54,
         "InHospital": 309,
         "InICU": 63,
@@ -2904,7 +2904,7 @@
         "PositiveResults": 515,
         "_7DayWeightedPositivityRate": 0.012,
         "_7DayAllTests": 65043,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 58,
         "InHospital": 324,
         "InICU": 65,
@@ -2917,7 +2917,7 @@
         "PositiveResults": 328,
         "_7DayWeightedPositivityRate": 0.012,
         "_7DayAllTests": 64552.1,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 58,
         "InHospital": 322,
         "InICU": 58,
@@ -2943,7 +2943,7 @@
         "PositiveResults": 943,
         "_7DayWeightedPositivityRate": 0.013,
         "_7DayAllTests": 59964.9,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 61,
         "InHospital": 325,
         "InICU": 60,
@@ -2969,7 +2969,7 @@
         "PositiveResults": 1171,
         "_7DayWeightedPositivityRate": 0.013,
         "_7DayAllTests": 60972,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 67.5,
         "InHospital": 316,
         "InICU": 53,
@@ -2995,7 +2995,7 @@
         "PositiveResults": 662,
         "_7DayWeightedPositivityRate": 0.014,
         "_7DayAllTests": 63908.6,
-        "WW_Daily_copiesPml": "",
+        "WW_Daily_copiesPml": null,
         "WW_7-dayAvg_copiesPml": 80,
         "InHospital": 311,
         "InICU": 60,
