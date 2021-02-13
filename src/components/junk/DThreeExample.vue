@@ -17,7 +17,6 @@
   </v-row>
 </template>
 
-
 <script>
 // TODO: re-write this from scratch in new component.
 import * as d3 from "d3";
@@ -26,7 +25,7 @@ export default {
   data() {
     return {
       line: "", //svg pathis initially blank
-      multiplierSlider: 50
+      multiplierSlider: 50,
     };
   },
   mounted() {
@@ -37,14 +36,14 @@ export default {
     multiplierSlider: function() {
       this.calculatePath();
       this.addDots();
-    }
+    },
   },
   computed: {
     dataPlot: function() {
       let xArray = [...Array(100).keys()]; // make an array of 1 to 100
-      return xArray.map(arr => ({
+      return xArray.map((arr) => ({
         x_field: arr / 2.5,
-        y_field: (arr * arr) / this.multiplierSlider / 4
+        y_field: (arr * arr) / this.multiplierSlider / 4,
       }));
     },
     scales: function() {
@@ -53,7 +52,7 @@ export default {
       x.domain([0, 30]); // domain is value
       y.domain([0, 30]);
       return { x, y };
-    }
+    },
   },
   methods: {
     initializeSvg() {
@@ -94,13 +93,13 @@ export default {
       const scale = this.scales;
       const path = d3 //converts the data into the path code
         .line()
-        .x(arr => scale.x(arr.x_field))
-        .y(arr => scale.y(arr.y_field));
+        .x((arr) => scale.x(arr.x_field))
+        .y((arr) => scale.y(arr.y_field));
       this.line = path(dataPlot);
     },
     addDots() {
       d3.selectAll("circle").remove();
-      this.dataPlot.map(arr =>
+      this.dataPlot.map((arr) =>
         d3
           .select("#dataviz_area")
           .append("circle")
@@ -110,16 +109,18 @@ export default {
           .style("fill", "blue")
           .attr("transform", "translate(25,25)")
       );
-    }
-  }
+    },
+  },
 };
-</script>
 
-<style lang="sass" scoped>
-svg
-  margin: 25px
-path
-  fill: none
-  stroke: #76BF8A
-  stroke-width: 3px
-</style>
+// //
+// <style lang="scss" scoped>
+// // svg
+// //   margin: 25px
+// // path
+// //   fill: none
+// //   stroke: #76BF8A
+// //   stroke-width: 3px
+// //
+// </style>
+</script>

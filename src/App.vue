@@ -3,7 +3,7 @@
     <template>
       <div id="app">
         <div id="nav">
-          <v-row justify="center">
+          <v-row justify="center" style="padding: 12px">
             <router-link to="/">MAFS 1</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/mafs2">MAFS 2</router-link>

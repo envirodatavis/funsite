@@ -11,14 +11,14 @@
         tell if any amount of the NAPL phase remains years after a spill
         happens, and that can have a big effect on cleaning up the pollution.
         <br />
-        <br />Soil samples are collected to determine how contaminated a site is. But
-        because soil is actually air, water, soil grains, and organics, a sample
-        tells us how much chemical is in all the phases. It is surprisingly hard
-        to see the NAPL of an old spill, because the NAPL spreads out and
-        becomes a very thin film or small blobs. but these can have a big effect
-        on the evnironment. Once we have samples, we can tell if any NAPL
-        remains by caluclating the maximum concentration that can exist in the
-        three phases.
+        <br />Soil samples are collected to determine how contaminated a site
+        is. But because soil is actually air, water, soil grains, and organics,
+        a sample tells us how much chemical is in all the phases. It is
+        surprisingly hard to see the NAPL of an old spill, because the NAPL
+        spreads out and becomes a very thin film or small blobs. but these can
+        have a big effect on the evnironment. Once we have samples, we can tell
+        if any NAPL remains by caluclating the maximum concentration that can
+        exist in the three phases.
       </v-card-text>
       <v-card-text>
         <v-card tile outlined>
@@ -111,17 +111,17 @@ export default {
       henrysOptions: [
         {
           chemical: "TCE",
-          h: 0.31
+          h: 0.31,
         },
         {
           chemical: "PCE",
-          h: 0.41
+          h: 0.41,
         },
         {
           chemical: "DCE",
-          h: 0.31
-        }
-      ]
+          h: 0.31,
+        },
+      ],
       // initial Ct should be 515
       // write a jest test for that, cool.
     };
@@ -147,7 +147,7 @@ export default {
       }
       this.makeATreeMap();
       // this.updateATreeMap();
-    }
+    },
   },
   computed: {
     soilCompositionTree: function() {
@@ -158,20 +158,20 @@ export default {
           {
             name: "Organic",
             value: this.fOc,
-            colname: "level3"
+            colname: "level3",
           },
           {
             name: "Air",
             value: this.airFilledPorosity,
-            colname: "level3"
+            colname: "level3",
           },
           {
             name: "Water",
             value: this.waterFilledPorosity,
-            colname: "level3"
+            colname: "level3",
           },
-          { name: "Mineral", value: soil, colname: "level3" }
-        ]
+          { name: "Mineral", value: soil, colname: "level3" },
+        ],
       };
       return tree;
     },
@@ -192,7 +192,7 @@ export default {
       x.domain([0, 30]); // domain is value
       y.domain([0, 30]);
       return { x, y };
-    }
+    },
   },
   methods: {
     makeHenrysChart: function() {
@@ -236,7 +236,7 @@ export default {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       // Give the data to this cluster layout:
-      let root = d3.hierarchy(data).sum(d => d.value);
+      let root = d3.hierarchy(data).sum((d) => d.value);
       // Here the size of each leave is given in the 'value' field in input data
 
       // Then d3.treemap computes the position of each element of the hierarchy
@@ -266,12 +266,12 @@ export default {
         .append("rect")
         .transition()
         .duration(2000)
-        .attr("x", d => d.x0)
-        .attr("y", d => d.y0)
-        .attr("width", d => d.x1 - d.x0)
-        .attr("height", d => d.y1 - d.y0)
+        .attr("x", (d) => d.x0)
+        .attr("y", (d) => d.y0)
+        .attr("width", (d) => d.x1 - d.x0)
+        .attr("height", (d) => d.y1 - d.y0)
         .style("stroke", "black")
-        .style("fill", d => color(d.data.name));
+        .style("fill", (d) => color(d.data.name));
       // .style("opacity", (d) => opacity(d.data.value));
 
       // and to add the text labels
@@ -280,9 +280,9 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", d => d.y0 + 20) // +20 to adjust position (lower)
-        .text(d => d.data.name)
+        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", (d) => d.y0 + 20) // +20 to adjust position (lower)
+        .text((d) => d.data.name)
         .attr("font-size", "13px")
         .attr("fill", "white");
 
@@ -292,9 +292,9 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", d => d.y0 + 35) // +20 to adjust position (lower)
-        .text(d => d.data.value)
+        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
+        .text((d) => d.data.value)
         .attr("font-size", "11px")
         .attr("fill", "white");
     },
@@ -313,9 +313,7 @@ export default {
       //     .style("top", (d) => d.y0 + "px")
       //     .style("width", (d) => Math.max(0, d.x1 - d.x0 - 1) + "px")
       //     .style("height", (d) => Math.max(0, d.y1 - d.y0  - 1) + "px")
-    }
-  }
+    },
+  },
 };
 </script>
-
-<style lang="sass" scoped></style>
