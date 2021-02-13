@@ -16,7 +16,7 @@
           </v-row>
         </div>
         <v-divider />
-        <router-view />
+        <!-- <router-view /> -->
       </div>
       <!-- <v-row justify="center">
         <v-col align="center">
