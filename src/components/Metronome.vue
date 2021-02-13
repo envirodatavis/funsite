@@ -53,8 +53,8 @@
           <v-card-text>
             This metronome is like practicing with a bass player in the Cantab
             basement jam who's a little tipsy and maybe trying to text and play
-            at the same time. It is possible I have been this person at once.
-            I'm sorry.
+            at the same time. It is possible I have been this person once. I'm
+            sorry.
             <br />
             <br />
             It's bad because running a metronome on Javascript's main thread
@@ -132,4 +132,3 @@ export default {
   },
 };
 </script>
-
