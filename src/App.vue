@@ -8,6 +8,8 @@
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/mafs2">MAFS 2</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
+            <router-link to="/bad-metronome">Bad Metronome</router-link>
+            <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/about">About</router-link>
             <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/willow">Willow</router-link> -->

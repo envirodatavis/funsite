@@ -1,18 +1,13 @@
 <template>
-  <v-container class="ma-0 pa-0">
-    <v-row justify="center" no-gutters>
+  <v-container fill-height fluid>
+    <v-row justify="center" align="center" no-gutters>
       <v-col align="center" cols="12">
         <v-card class="mx-auto" max-width="600" flat outlined>
           <v-toolbar flat dense>
             <v-toolbar-title>
-              <span class="subheading">METRONOME</span>
+              <span class="subheading">A BAD METRONOME</span>
             </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-share-variant</v-icon>
-            </v-btn>
           </v-toolbar>
-
           <v-card-text>
             <v-row class="mb-4" justify="space-between">
               <v-col class="text-left">
@@ -52,6 +47,28 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row justify="center" align="center" no-gutters>
+      <v-col align="center">
+        <v-card elevation="0" max-width="500">
+          <v-card-text>
+            This metronome is like practicing with a drunk bass player in the
+            Cantab basement jam who's trying to text and play at the same time.
+            It is possible I have been this person at once. I'm sorry.
+            <br />
+            <br />
+            It's bad because running a metronome on Javascript's main thread
+            (the "UI" thread) results in inconsistent timeouts in the browser.
+            Don't do this. Use a webworker instead.
+            <br />
+            <br />
+            This person knows what's up:
+            <a href="https://meowni.ca/posts/metronomes/">
+              https://meowni.ca/posts/metronomes/ </a
+            >. Her post is great. read it if you're trying to make a metronome.
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -62,14 +79,17 @@ import tickSound from "../assets/click.mp3"; // Tell webpack this JS file uses t
 export default {
   components: {},
   data: () => ({
-    bpm: 40,
+    bpm: 69,
     interval: null,
     isPlaying: false,
+    myInterval: null,
   }),
-  mounted() {
-    // this.scheduler();
+  watch: {
+    bpm() {
+      this.stopMetronome();
+      this.scheduler();
+    },
   },
-  watch: {},
   computed: {
     color() {
       if (this.bpm < 100) return "indigo";
@@ -78,19 +98,21 @@ export default {
       if (this.bpm < 175) return "orange";
       return "red";
     },
-    animationDuration() {
-      return `${60 / this.bpm}s`;
+    timeoutDuration() {
+      return (60 / this.bpm) * 1000;
     },
   },
   methods: {
     scheduler: function() {
-      // var interval;
-      // if (this.isPlaying) interval = setInterval(this.play, 1000);
-      // if (!this.isPlaying) clearInterval(interval);
-
-      if (window.Worker) {
-        console.log("window worker");
-      }
+      if (this.isPlaying) {
+        this.startMetronome();
+      } else this.stopMetronome();
+    },
+    startMetronome() {
+      this.myInterval = setInterval(this.play, this.timeoutDuration);
+    },
+    stopMetronome() {
+      clearInterval(this.myInterval);
     },
     decrement() {
       this.bpm--;
@@ -103,10 +125,7 @@ export default {
       this.scheduler();
     },
     play() {
-      // this works! so set a duration on mount, if click,
       var audio = new Audio(tickSound);
-      //   setInterval(audio.play(), 1000);
-
       audio.play();
     },
   },

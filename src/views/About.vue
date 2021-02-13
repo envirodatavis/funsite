@@ -1,8 +1,7 @@
 <template>
   <div class="about">
     <v-container fluid class="ma-0 pa-0">
-      <!-- <random-sin-wave-fun /> -->
-      <metronome />
+      <random-sin-wave-fun />
       <v-row>
         <v-col align="center">
           <v-card flat max-width="400">
@@ -25,9 +24,7 @@
 export default {
   name: "About",
   components: {
-    // RandomSinWaveFun: () => import("../components/RandomSinWaveFun.vue"),
-    // MusicNotes: () => import("../components/MusicNotes.vue"),
-    Metronome: () => import("../components/Metronome.vue"),
+    RandomSinWaveFun: () => import("../components/RandomSinWaveFun.vue"),
   },
 };
 </script>

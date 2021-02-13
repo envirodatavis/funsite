@@ -2,6 +2,18 @@
   <v-container>
     <v-row justify="center" no-gutters>
       <v-col align="center">
+        <v-card elevation="0" max-width="500">
+          <v-card-text>
+            In December 2020, five friends watched Married at First Sight season
+            five. Here are their predictions about the couples.
+            <br />
+            (Red: remains together at the end of the season. Grey: divorce)
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row justify="center" no-gutters>
+      <v-col align="center">
         As of episode:
       </v-col>
     </v-row>
