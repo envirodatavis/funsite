@@ -2,7 +2,7 @@
   <v-app>
     <template>
       <div id="app">
-        <div id="nav" style="height:18pt">
+        <div id="nav" style="height:30pt">
           <v-row justify="center">
             <router-link to="/">MAFS 1</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
