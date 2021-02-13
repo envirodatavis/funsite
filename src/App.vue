@@ -2,13 +2,13 @@
   <v-app>
     <template>
       <div id="app">
-        <div id="nav" style="height:30pt">
+        <div id="nav">
           <v-row justify="center">
             <router-link to="/">MAFS 1</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/mafs2">MAFS 2</router-link>
-            <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span>
-            <router-link to="/bad-metronome">Bad Metronome</router-link> -->
+            <span style="padding-left: 5px;padding-right: 5px;">|</span>
+            <router-link to="/bad-metronome">Bad Metronome</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/about">About</router-link>
             <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span>
@@ -16,7 +16,7 @@
           </v-row>
         </div>
         <v-divider />
-        <!-- <router-view /> -->
+        <router-view />
       </div>
       <!-- <v-row justify="center">
         <v-col align="center">
