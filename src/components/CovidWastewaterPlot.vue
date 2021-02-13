@@ -92,9 +92,10 @@ export default {
         .extent(this.plotData.map((e) => e.PositiveResults))
         .reverse();
 
-      const yRightExtents = d3
-        .extent(this.plotData.map((e) => e.WW_Daily_copiesPml))
-        .reverse();
+      let yRightExtents = d3.extent(
+        this.plotData.map((e) => e.WW_Daily_copiesPml)
+      );
+      if (this.timeToggle !== "noTime") yRightExtents = yRightExtents.reverse();
 
       const xTimeScale = d3
         .scaleTime()
@@ -116,6 +117,17 @@ export default {
     plotData: function() {
       // calculate averages here!
       // https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/
+
+      let data = this.rawData;
+
+      data.forEach((e, index) => {
+        if (index > 5 && index < 30) {
+          console.log(e);
+          // get just that property/column/field
+          // slice the data you want
+        }
+      });
+
       return this.rawData;
     },
   },
@@ -329,14 +341,31 @@ export default {
           .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
           .attr("cx", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
           .attr("transform", rightDataYTranslate);
-        // await d3
-        //   .selectAll("#redDots")
-        //   .data(this.plotData.filter((e) => e.WW_Daily_copiesPml))
-        //   .transition()
-        //   .duration(this.transitionDuration)
-        //   .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
-        //   .attr("cx", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
-        //   .attr("transform", rightDataYTranslate);
+        await d3
+          .selectAll("#redDots")
+          .data(this.plotData)
+          .transition()
+          .duration(this.transitionDuration)
+          .style("opacity", 0);
+
+        // ----- Line ------
+        // // line first needs a line function that gets applied over the whole dataset.
+        // let lineFunction = d3
+        //   .line()
+        //   .x((e) => this.scales.yRight(e.WW_Daily_copiesPml))
+        //   .y((e) => this.scales.yLeft(e.PositiveResults));
+        // svg
+        //   .append("path")
+        //   // don't need the "enter" convention, because it's one element, calulated with the line function
+        //   .attr("d", lineFunction(this.plotData))
+        //   .attr("stroke", "blue")
+        //   .attr("stroke-width", 1)
+        //   .attr("fill", "none")
+        //   .attr(
+        //     "transform",
+        //     "translate(" + this.margin.left + "," + this.margin.top + ")"
+        //   )
+        //   .attr("id", "theLine");
       }
       if (prev === "noTime") {
         await svg
@@ -370,6 +399,12 @@ export default {
           .attr("cx", (e) => this.scales.x(new Date(e.Date)))
           .attr("cy", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
           .attr("transform", rightDataYTranslate);
+        await d3
+          .selectAll("#redDots")
+          .data(this.plotData)
+          .transition()
+          .duration(this.transitionDuration)
+          .style("opacity", 1);
       }
     },
   },
