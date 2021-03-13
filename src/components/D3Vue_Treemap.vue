@@ -35,21 +35,21 @@ export default {
         {
           name: "Organic",
           value: 10,
-          colname: "level3"
+          colname: "level3",
         },
         {
           name: "Air",
           value: 20,
-          colname: "level3"
+          colname: "level3",
         },
         {
           name: "Water",
           value: 20,
-          colname: "level3"
+          colname: "level3",
         },
-        { name: "Mineral", value: 50, colname: "level3" }
-      ]
-    }
+        { name: "Mineral", value: 50, colname: "level3" },
+      ],
+    },
   }),
   mounted() {
     this.instantiateViz();
@@ -57,10 +57,10 @@ export default {
   watch: {
     plotData() {
       this.updateViz();
-    }
+    },
   },
   computed: {
-    plotData: function() {
+    plotData: function () {
       let x = [this.data.min]; // instantiate X
       let i = this.data.min;
       let delta = (this.data.max - this.data.min) / this.discretization; // how I like to think about the x-delta
@@ -70,12 +70,12 @@ export default {
         i += delta;
       }
       // here make y a function of x
-      return x.map(e => ({
+      return x.map((e) => ({
         x: e,
-        y: Math.sin(e) * (this.radioMultiplier + 1) * 2 + 3
+        y: Math.sin(e) * (this.radioMultiplier + 1) * 2 + 3,
       }));
     },
-    scales: function() {
+    scales: function () {
       const x = d3
         .scaleLinear()
         .range([0, this.width - this.margin.right - this.margin.left]) //pixles
@@ -85,10 +85,10 @@ export default {
         .range([0, this.height - this.margin.bottom - this.margin.top]) //pixles
         .domain(this.domain.y);
       return { x, y };
-    }
+    },
   },
   methods: {
-    instantiateTree: function() {
+    instantiateTree: function () {
       let data = this.soilCompositionTree;
 
       let margin = { top: 10, right: 10, bottom: 10, left: 10 },
@@ -96,9 +96,7 @@ export default {
         height = 400 - margin.top - margin.bottom;
 
       // remove the old schniz
-      d3.select("#soilTreeMap")
-        .selectAll("*")
-        .remove();
+      d3.select("#soilTreeMap").selectAll("*").remove();
 
       // append the svg object to the body of the page
       let svg = d3
@@ -110,7 +108,7 @@ export default {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       // Give the data to this cluster layout:
-      let root = d3.hierarchy(data).sum(d => d.value);
+      let root = d3.hierarchy(data).sum((d) => d.value);
       // Here the size of each leave is given in the 'value' field in input data
 
       // Then d3.treemap computes the position of each element of the hierarchy
@@ -140,12 +138,12 @@ export default {
         .append("rect")
         .transition()
         .duration(2000)
-        .attr("x", d => d.x0)
-        .attr("y", d => d.y0)
-        .attr("width", d => d.x1 - d.x0)
-        .attr("height", d => d.y1 - d.y0)
+        .attr("x", (d) => d.x0)
+        .attr("y", (d) => d.y0)
+        .attr("width", (d) => d.x1 - d.x0)
+        .attr("height", (d) => d.y1 - d.y0)
         .style("stroke", "black")
-        .style("fill", d => color(d.data.name));
+        .style("fill", (d) => color(d.data.name));
       // .style("opacity", (d) => opacity(d.data.value));
 
       // and to add the text labels
@@ -154,9 +152,9 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", d => d.y0 + 20) // +20 to adjust position (lower)
-        .text(d => d.data.name)
+        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", (d) => d.y0 + 20) // +20 to adjust position (lower)
+        .text((d) => d.data.name)
         .attr("font-size", "13px")
         .attr("fill", "white");
 
@@ -166,15 +164,13 @@ export default {
         .data(root.leaves())
         .enter()
         .append("text")
-        .attr("x", d => d.x0 + 5) // +10 to adjust position (more right)
-        .attr("y", d => d.y0 + 35) // +20 to adjust position (lower)
-        .text(d => d.data.value)
+        .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+        .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
+        .text((d) => d.data.value)
         .attr("font-size", "11px")
         .attr("fill", "white");
     },
-    updateViz: function() {}
-  }
+    updateViz: function () {},
+  },
 };
 </script>
-
-<style lang="sass" scoped></style>

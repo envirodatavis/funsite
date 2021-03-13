@@ -25,8 +25,6 @@ export default {
   name: "About",
   components: {
     RandomSinWaveFun: () => import("../components/RandomSinWaveFun.vue"),
-    // MusicNotes: () => import("../components/MusicNotes.vue"),
-    // Metronome: () => import("../components/Metronome.vue"),
   },
 };
 </script>

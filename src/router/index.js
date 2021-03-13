@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [{
         path: "/",
         name: "Home",
-        component: Home,
+        component: Home
     },
     {
         path: "/about",
@@ -24,6 +24,15 @@ const routes = [{
             import (
                 /* webpackChunkName: "MafsTwo" */
                 "../views/MafsTwo.vue"
+            ),
+    },
+    {
+        path: "/bad-metronome",
+        name: "BadMetronome",
+        component: () =>
+            import (
+                /* webpackChunkName: "BadMetronome" */
+                "../components/Metronome.vue"
             ),
     },
     {
