@@ -60,7 +60,7 @@ export default {
     },
   },
   computed: {
-    plotData: function() {
+    plotData: function () {
       let x = [this.data.min]; // instantiate X
       let i = this.data.min;
       let delta = (this.data.max - this.data.min) / this.discretization; // how I like to think about the x-delta
@@ -75,7 +75,7 @@ export default {
         y: Math.sin(e) * (this.radioMultiplier + 1) * 2 + 3,
       }));
     },
-    scales: function() {
+    scales: function () {
       const x = d3
         .scaleLinear()
         .range([0, this.width - this.margin.right - this.margin.left]) //pixles
@@ -88,7 +88,7 @@ export default {
     },
   },
   methods: {
-    instantiateTree: function() {
+    instantiateTree: function () {
       let data = this.soilCompositionTree;
 
       let margin = { top: 10, right: 10, bottom: 10, left: 10 },
@@ -96,9 +96,7 @@ export default {
         height = 400 - margin.top - margin.bottom;
 
       // remove the old schniz
-      d3.select("#soilTreeMap")
-        .selectAll("*")
-        .remove();
+      d3.select("#soilTreeMap").selectAll("*").remove();
 
       // append the svg object to the body of the page
       let svg = d3
@@ -172,7 +170,7 @@ export default {
         .attr("font-size", "11px")
         .attr("fill", "white");
     },
-    updateViz: function() {},
+    updateViz: function () {},
   },
 };
 </script>
