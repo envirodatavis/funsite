@@ -76,7 +76,7 @@ export default {
     this.instantiateViz();
   },
   computed: {
-    scales: function() {
+    scales: function () {
       const yAxisRange = () => {
         switch (this.timeToggle) {
           case "time2Plots":
@@ -86,49 +86,117 @@ export default {
             return [0, this.height + this.margin.plotPadding];
         }
       };
-
       // X and Y Depend on the data source selected:
-      const yLeftExtents = d3
-        .extent(this.plotData.map((e) => e.PositiveResults))
-        .reverse();
-
-      let yRightExtents = d3.extent(
-        this.plotData.map((e) => e.WW_Daily_copiesPml)
-      );
+      const yLeftExtents = d3.extent(this.plotData.map((e) => e.y1)).reverse();
+      let yRightExtents = d3.extent(this.plotData.map((e) => e.y2));
       if (this.timeToggle !== "noTime") yRightExtents = yRightExtents.reverse();
-
       const xTimeScale = d3
         .scaleTime()
-        .domain([new Date(2020, 1, 1), new Date(2021, 1, 3)])
+        .domain([new Date(2020, 1, 1), new Date(2021, 3, 3)])
         .range([0, this.width]);
-
-      const yLeft = d3
-        .scaleLinear()
-        .range(yAxisRange())
-        .domain(yLeftExtents);
-
-      const yRight = d3
-        .scaleLinear()
-        .range(yAxisRange())
-        .domain(yRightExtents);
-
+      const yLeft = d3.scaleLinear().range(yAxisRange()).domain(yLeftExtents);
+      const yRight = d3.scaleLinear().range(yAxisRange()).domain(yRightExtents);
       return { x: xTimeScale, yLeft: yLeft, yRight: yRight };
     },
-    plotData: function() {
-      // calculate averages here!
-      // https://jrsinclair.com/articles/2019/five-ways-to-average-with-js-reduce/
+    plotData: function () {
+      function average(nums) {
+        return nums.reduce((a, b) => a + b) / nums.length;
+      }
 
-      let data = this.rawData;
-
-      data.forEach((e, index) => {
-        if (index > 5 && index < 30) {
-          console.log(e);
-          // get just that property/column/field
-          // slice the data you want
+      // If statements to choose the X1 Y1 Y2, with Floating averages.
+      let data = [];
+      let y1Avg, y2Avg;
+      let y1AvgArray = [],
+        y2AvgArray = [];
+      this.rawData.forEach((e, index) => {
+        if (index > 6) {
+          y1AvgArray = this.rawData
+            .slice(index - 6, index + 1)
+            .map((e) => e.PositiveResults)
+            .filter(function (el) {
+              return el != "";
+            });
+          y2AvgArray = this.rawData
+            .slice(index - 6, index + 1)
+            .map((e) => e.WW_Daily_copiesPml)
+            .filter(function (el) {
+              return el != "";
+            });
+        } else {
+          (y1Avg = ""), (y2Avg = "");
         }
+
+        y1AvgArray.length > 0 ? (y1Avg = average(y1AvgArray)) : (y1Avg = "");
+        y2AvgArray.length > 0 ? (y2Avg = average(y2AvgArray)) : (y2Avg = "");
+
+        data.push({
+          Date: e.Date,
+          y1: e.PositiveResults,
+          y1Avg: y1Avg,
+          y2: e.WW_Daily_copiesPml,
+          y2Avg: y2Avg,
+          // y1: y1Avg,
+          // y2: y2Avg,
+        });
       });
 
-      return this.rawData;
+      // Plot then is limited to the X and Y
+      return data;
+    },
+    avgLines() {
+      const avgLineRed = d3
+        .line()
+        .x((e) => this.scales.x(new Date(e.Date)))
+        .y((e) => this.scales.yLeft(e.y1Avg))
+        .defined((d) => d.y1Avg !== "");
+      const avgLineBlue = d3
+        .line()
+        .x((e) => this.scales.x(new Date(e.Date)))
+        .y((e) => this.scales.yRight(e.y2Avg))
+        .defined((d) => d.y2Avg !== "");
+      const avgLineBoth = d3
+        .line()
+        .x((e) => this.scales.yRight(e.y2Avg))
+        .y((e) => this.scales.yLeft(e.y1Avg))
+        .defined((d) => d.y1Avg !== "")
+        .defined((d) => d.y2Avg !== "");
+
+      if (["time2Plots", "time1Plot"].includes(this.timeToggle))
+        return { avgLineRed: avgLineRed, avgLineBlue: avgLineBlue };
+      else return { avgLineRed: avgLineBoth, avgLineBlue: avgLineBoth };
+    },
+    translations() {
+      const leftAxis =
+        "translate(" + this.margin.left + "," + this.margin.top + ")";
+      const xAxis =
+        "translate(" +
+        this.margin.left +
+        "," +
+        (this.margin.top + this.margin.plotPadding * 2 + this.height) +
+        ")";
+      let rightYAxis =
+        "translate(" +
+        (this.margin.left + this.width) +
+        "," +
+        (this.margin.top + this.margin.plotPadding + this.height / 2) +
+        ")";
+      let rightData =
+        "translate(" +
+        this.margin.left +
+        "," +
+        (this.margin.top + this.margin.plotPadding + this.height / 2) +
+        ")";
+      if (["noTime", "time1Plot"].includes(this.timeToggle)) {
+        rightYAxis =
+          "translate(" +
+          (this.margin.left + this.width) +
+          "," +
+          this.margin.top +
+          ")";
+        rightData =
+          "translate(" + this.margin.left + "," + this.margin.top + ")";
+      }
+      return { rightYAxis, rightData, leftAxis, xAxis };
     },
   },
   watch: {
@@ -137,7 +205,7 @@ export default {
     },
   },
   methods: {
-    instantiateViz: function() {
+    instantiateViz: function () {
       // make the svg:
       const svg = d3
         .select("#covidViz")
@@ -149,7 +217,6 @@ export default {
             this.margin.bottom +
             this.margin.plotPadding * 2
         );
-
       // Bound, remove eventualyl:
       // svg
       //   .append("rect")
@@ -176,14 +243,7 @@ export default {
             .tickSize(2)
             .tickFormat(d3.timeFormat("%m")) //-%d"))
         )
-        .attr(
-          "transform",
-          "translate(" +
-            this.margin.left +
-            "," +
-            (this.margin.top + this.margin.plotPadding * 2 + this.height) +
-            ")"
-        )
+        .attr("transform", this.translations.xAxis)
         .attr("class", "xaxis")
         .selectAll(".tick text")
         .style("font-size", 8);
@@ -192,10 +252,7 @@ export default {
         .append("g")
         .call(d3.axisLeft(this.scales.yLeft).tickSize(2))
         .attr("class", "leftaxis")
-        .attr(
-          "transform",
-          "translate(" + this.margin.left + "," + this.margin.top + ")"
-        )
+        .attr("transform", this.translations.leftAxis)
         .selectAll(".tick text")
         .style("font-size", 8)
         .style("color", "red");
@@ -205,14 +262,7 @@ export default {
         .append("g")
         .call(d3.axisRight(this.scales.yRight).tickSize(2))
         .attr("class", "rightaxis")
-        .attr(
-          "transform",
-          "translate(" +
-            (this.margin.left + this.width) +
-            "," +
-            (this.margin.top + this.margin.plotPadding + this.height / 2) +
-            ")"
-        )
+        .attr("transform", this.translations.rightYAxis)
         .selectAll(".tick text")
         .style("font-size", 8)
         .style("color", "blue");
@@ -224,64 +274,67 @@ export default {
         .enter()
         .append("circle")
         .attr("cx", (e) => this.scales.x(new Date(e.Date)))
-        .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
+        .attr("cy", (e) => this.scales.yLeft(e.y1))
         .attr("r", 1)
         .style("fill", "red")
-        .attr(
-          "transform",
-          "translate(" + this.margin.left + "," + this.margin.top + ")"
-        )
+        .attr("transform", this.translations.leftAxis)
         .attr("id", "redDots");
       svg
         .selectAll("dot")
-        .data(this.plotData.filter((e) => e.WW_Daily_copiesPml))
+        .data(this.plotData.filter((e) => e.y2))
         .enter()
         .append("circle")
         .attr("cx", (e) => this.scales.x(new Date(e.Date)))
-        .attr("cy", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
+        .attr("cy", (e) => this.scales.yRight(e.y2))
         .attr("r", 1)
         .style("fill", "blue")
-        .attr(
-          "transform",
-          "translate(" +
-            this.margin.left +
-            "," +
-            (this.margin.top + this.margin.plotPadding + this.height / 2) +
-            ")"
-        )
+        .attr("transform", this.translations.rightData)
         .attr("id", "blueDots");
+      svg
+        .append("path")
+        .attr("d", this.avgLines.avgLineRed(this.plotData))
+        .attr("stroke", "red")
+        .attr("stroke-width", 2)
+        .attr("fill", "none")
+        .attr("transform", this.translations.leftAxis)
+        .attr("id", "theRedLine");
+      svg
+        .append("path")
+        .attr("d", this.avgLines.avgLineBlue(this.plotData))
+        .attr("stroke", "blue")
+        .attr("stroke-width", 2)
+        .attr("fill", "none")
+        .attr("transform", this.translations.rightData)
+        .attr("id", "theBlueLine");
     },
-    updateViz: async function(next, prev) {
-      let rightAxisYTranslate =
-        "translate(" +
-        (this.margin.left + this.width) +
-        "," +
-        (this.margin.top + this.margin.plotPadding + this.height / 2) +
-        ")";
-      let rightDataYTranslate =
-        "translate(" +
-        this.margin.left +
-        "," +
-        (this.margin.top + this.margin.plotPadding + this.height / 2) +
-        ")";
-
-      switch (next) {
-        case "time2Plots":
-          break;
-        case "noTime":
-        case "time1Plot":
-          rightAxisYTranslate =
-            "translate(" +
-            (this.margin.left + this.width) +
-            "," +
-            this.margin.top +
-            ")";
-          rightDataYTranslate =
-            "translate(" + this.margin.left + "," + this.margin.top + ")";
-          break;
-      }
-
+    updateViz: async function (next, prev) {
       const svg = d3.select("#covidViz");
+      await d3
+        .selectAll("#redDots")
+        .data(this.plotData)
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("cy", (e) => this.scales.yLeft(e.y1))
+        .attr("transform", this.translations.leftAxis);
+      await d3
+        .selectAll("#theRedLine")
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("d", this.avgLines.avgLineRed(this.plotData))
+        .attr("transform", this.translations.leftAxis);
+      await d3
+        .selectAll("#blueDots")
+        .data(this.plotData.filter((e) => e.y2))
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("cy", (e) => this.scales.yRight(e.y2))
+        .attr("transform", this.translations.rightData);
+      await d3
+        .selectAll("#theBlueLine")
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("d", this.avgLines.avgLineBlue(this.plotData))
+        .attr("transform", this.translations.rightData);
 
       if (["time2Plots", "time1Plot"].includes(next)) {
         await svg
@@ -294,24 +347,7 @@ export default {
           .transition()
           .duration(this.transitionDuration)
           .call(d3.axisRight(this.scales.yRight).tickSize(2))
-          .attr("transform", rightAxisYTranslate);
-        await d3
-          .selectAll("#redDots")
-          .data(this.plotData)
-          .transition()
-          .duration(this.transitionDuration)
-          .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
-          .attr(
-            "transform",
-            "translate(" + this.margin.left + "," + this.margin.top + ")"
-          );
-        await d3
-          .selectAll("#blueDots")
-          .data(this.plotData.filter((e) => e.WW_Daily_copiesPml))
-          .transition()
-          .duration(this.transitionDuration)
-          .attr("cy", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
-          .attr("transform", rightDataYTranslate);
+          .attr("transform", this.translations.rightYAxis);
       }
       if (next === "noTime") {
         await svg
@@ -325,47 +361,21 @@ export default {
           .transition()
           .duration(this.transitionDuration)
           .call(d3.axisBottom(this.scales.yRight).tickSize(2))
-          .attr(
-            "transform",
-            "translate(" +
-              this.margin.left +
-              "," +
-              (this.margin.top + this.margin.plotPadding * 2 + this.height) +
-              ")"
-          );
-        await d3
-          .selectAll("#blueDots")
-          .data(this.plotData.filter((e) => e.WW_Daily_copiesPml))
-          .transition()
-          .duration(this.transitionDuration)
-          .attr("cy", (e) => this.scales.yLeft(e.PositiveResults))
-          .attr("cx", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
-          .attr("transform", rightDataYTranslate);
-        await d3
-          .selectAll("#redDots")
-          .data(this.plotData)
-          .transition()
-          .duration(this.transitionDuration)
-          .style("opacity", 0);
-
-        // ----- Line ------
-        // // line first needs a line function that gets applied over the whole dataset.
-        // let lineFunction = d3
-        //   .line()
-        //   .x((e) => this.scales.yRight(e.WW_Daily_copiesPml))
-        //   .y((e) => this.scales.yLeft(e.PositiveResults));
-        // svg
-        //   .append("path")
-        //   // don't need the "enter" convention, because it's one element, calulated with the line function
-        //   .attr("d", lineFunction(this.plotData))
-        //   .attr("stroke", "blue")
-        //   .attr("stroke-width", 1)
-        //   .attr("fill", "none")
-        //   .attr(
-        //     "transform",
-        //     "translate(" + this.margin.left + "," + this.margin.top + ")"
-        //   )
-        //   .attr("id", "theLine");
+          .attr("transform", this.translations.xAxis);
+        // await d3
+        //   .selectAll("#blueDots")
+        //   .data(this.plotData.filter((e) => e.y2))
+        //   .transition()
+        //   .duration(this.transitionDuration)
+        //   .attr("cy", (e) => this.scales.yLeft(e.y1))
+        //   .attr("cx", (e) => this.scales.yRight(e.y2))
+        //   .attr("transform", this.translations.rightData);
+        // await d3
+        //   .selectAll("#redDots")
+        //   .data(this.plotData)
+        //   .transition()
+        //   .duration(this.transitionDuration)
+        //   .style("opacity", 0);
       }
       if (prev === "noTime") {
         await svg
@@ -376,35 +386,27 @@ export default {
               .tickSize(2)
               .tickFormat(d3.timeFormat("%m")) //-%d"))
           )
-          .attr(
-            "transform",
-            "translate(" +
-              this.margin.left +
-              "," +
-              (this.margin.top + this.margin.plotPadding * 2 + this.height) +
-              ")"
-          )
+          .attr("transform", this.translations.xAxis)
           .attr("class", "xaxis")
           .style("font-size", 8)
           .style("opacity", 0)
           .transition()
           .duration(this.transitionDuration)
           .style("opacity", 1);
-
-        await d3
-          .selectAll("#blueDots")
-          .data(this.plotData.filter((e) => e.WW_Daily_copiesPml))
-          .transition()
-          .duration(this.transitionDuration)
-          .attr("cx", (e) => this.scales.x(new Date(e.Date)))
-          .attr("cy", (e) => this.scales.yRight(e.WW_Daily_copiesPml))
-          .attr("transform", rightDataYTranslate);
-        await d3
-          .selectAll("#redDots")
-          .data(this.plotData)
-          .transition()
-          .duration(this.transitionDuration)
-          .style("opacity", 1);
+        // await d3
+        //   .selectAll("#blueDots")
+        //   .data(this.plotData.filter((e) => e.y2))
+        //   .transition()
+        //   .duration(this.transitionDuration)
+        //   .attr("cx", (e) => this.scales.x(new Date(e.Date)))
+        //   .attr("cy", (e) => this.scales.yRight(e.y2))
+        //   .attr("transform", this.translations.rightData);
+        // await d3
+        //   .selectAll("#redDots")
+        //   .data(this.plotData)
+        //   .transition()
+        //   .duration(this.transitionDuration)
+        //   .style("opacity", 1);
       }
     },
   },
