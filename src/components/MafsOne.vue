@@ -2,22 +2,25 @@
   <v-container>
     <v-row justify="center" no-gutters>
       <v-col align="center">
-        <v-card elevation="0" max-width="500">
+        <v-card elevation="0" max-width="500" color="rgba(0,0,0,0)">
           <v-card-text>
             In December 2020, five friends watched Married at First Sight season
             five. Here are their predictions about the couples.
             <br />
-            (Red: remains together at the end of the season. Grey: divorce)
+            <br />
+            Red: the couple remains together at the end of the season.
+            <br />
+            Grey: the couple divorces
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <v-row justify="center" no-gutters>
+    <v-row justify="center" no-gutters class="ma-0">
       <v-col align="center">
         As of episode:
       </v-col>
     </v-row>
-    <v-row justify="center" no-gutters>
+    <v-row justify="center" no-gutters class="ma-0">
       <v-col align="center">
         <svg id="staticViz" />
       </v-col>
@@ -73,26 +76,12 @@
         (difference between number of right and number of wrong predictions)
       </v-col>
     </v-row>
-    <!-- Cat thing: -->
-    <v-row justify="center" no-gutters style="margin-top: 8px">
-      <a href="https://www.owenmiles.com/#/willow">
-        <svg width="30" height="30" viewBox="0 0 48 48">
-          <!-- <title>Cat</title> -->
-          <path
-            d="M25.75,20a9.72,9.72,0,0,0-8.23,4.35V20a4.87,4.87,0,0,0-4.86-4.86,1.62,1.62,0,1,0,0,3.24A1.63,1.63,0,0,1,14.28,20v13a3.24,3.24,0,0,0,3.24,3.24h8.91a.81.81,0,0,0,.81-.81v-.81a1.63,1.63,0,0,0-1.62-1.62H24l6.48-4.86v7.29a.81.81,0,0,0,.81.81h1.62a.81.81,0,0,0,.81-.81V24.9a6.21,6.21,0,0,1-1.62.23A6.49,6.49,0,0,1,25.75,20Z"
-          />
-          <path
-            d="M33.72,15.09H30.48l-3.24-3.24v6.8a4.86,4.86,0,1,0,9.72,0v-6.8Zm-3.64,4.05a.81.81,0,1,1,.81-.81A.81.81,0,0,1,30.08,19.14Zm4,0a.81.81,0,1,1,.81-.81A.8.8,0,0,1,34.12,19.14Z"
-          />
-        </svg>
-      </a>
-    </v-row>
   </v-container>
 </template>
 
 <script>
 import * as d3 from "d3";
-import MAFS_results from "./MAFS.json";
+import MAFS_results from "../lib/data/MAFS.json";
 
 export function colorSquare(marriedString) {
   switch (marriedString) {

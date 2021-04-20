@@ -2,8 +2,14 @@
   <v-container fill-height fluid>
     <v-row justify="center" align="center" no-gutters>
       <v-col align="center" cols="12">
-        <v-card class="mx-auto" max-width="600" flat outlined>
-          <v-toolbar flat dense>
+        <v-card
+          class="mx-auto"
+          max-width="600"
+          flat
+          outlined
+          color="rgba(0,0,0,0)"
+        >
+          <v-toolbar flat dense color="rgba(0,0,0,0)">
             <v-toolbar-title>
               <span class="subheading">A BAD METRONOME</span>
             </v-toolbar-title>
@@ -49,23 +55,11 @@
     </v-row>
     <v-row justify="center" align="center" no-gutters>
       <v-col align="center">
-        <v-card elevation="0" max-width="500">
+        <v-card elevation="0" max-width="500" color="rgba(0,0,0,0)">
           <v-card-text>
-            This metronome is like practicing with a bass player in the Cantab
-            basement jam who's a little tipsy and maybe trying to text and play
-            at the same time. It is possible I have been this person once. I'm
-            sorry.
+            This is a metronome that does not keep time. It is a bad metronome.
             <br />
-            <br />
-            It's bad because running a metronome on Javascript's main thread
-            (the "UI" thread) results in inconsistent timeouts in the browser.
-            Don't do this. Use a webworker instead.
-            <br />
-            <br />
-            This person knows what's up:
-            <a href="https://meowni.ca/posts/metronomes/">
-              https://meowni.ca/posts/metronomes/ </a
-            >. Her post is great. read it if you're trying to make a metronome.
+            Sometimes, it does not turn off. You may have to close this tab to stop it.
           </v-card-text>
         </v-card>
       </v-col>
@@ -74,13 +68,12 @@
 </template>
 
 <script>
-// import * as d3 from "d3";
 import tickSound from "../assets/click.mp3"; // Tell webpack this JS file uses this image
 
 export default {
   components: {},
   data: () => ({
-    bpm: 69,
+    bpm: 63,
     interval: null,
     isPlaying: false,
     myInterval: null,
@@ -125,9 +118,9 @@ export default {
       this.isPlaying = !this.isPlaying;
       this.scheduler();
     },
-    play() {
-      var audio = new Audio(tickSound);
-      audio.play();
+    play: async function() {
+      let audio = new Audio(tickSound);
+      await setTimeout(() => audio.play(), (Math.random() + 1) * 200);
     },
   },
 };

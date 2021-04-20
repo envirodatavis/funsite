@@ -1,11 +1,16 @@
 <template>
   <div class="about">
-    <v-container fluid class="ma-0 pa-0">
-      <random-sin-wave-fun />
+    <v-container fluid>
       <v-row>
         <v-col align="center">
-          <v-card flat max-width="400">
+          <v-card flat max-width="500" color="rgba(0,0,0,0)">
             <v-card-text>
+              More coming soon
+              <!-- Owen's website written mostly using Vue and D3. -->
+              <br />
+              <!-- Big thanks to influences: Steven Kalt,
+              <br /> -->
+              <br />
               Please go to
               <a href="https://www.torymiles.com">torymiles.com</a>
               or
@@ -23,8 +28,5 @@
 
 export default {
   name: "About",
-  components: {
-    RandomSinWaveFun: () => import("../components/RandomSinWaveFun.vue"),
-  },
 };
 </script>

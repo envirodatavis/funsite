@@ -7,7 +7,7 @@
     </v-row>
     <v-row justify="center" no-gutters style="margin-top: 8px">
       <v-col align="center">
-        <v-card flat max-width="350">
+        <v-card flat max-width="350" color="rgba(0,0,0,0)">
           <h4>
             Predictions as of: <u>{{ episodeAsOf }}</u>
           </h4>
@@ -32,22 +32,6 @@
               style="transform: scale(0.85)"
             ></v-checkbox>
           </v-row>
-          <v-row justify="center" no-gutters style="margin-top: -14px">
-            <a
-              href="https://www.owenmiles.com/#/willow"
-              style="margin-top: -10px; z-index: 1000"
-            >
-              <svg width="30" height="30" viewBox="0 0 48 48">
-                <!-- <title>Cat</title> -->
-                <path
-                  d="M25.75,20a9.72,9.72,0,0,0-8.23,4.35V20a4.87,4.87,0,0,0-4.86-4.86,1.62,1.62,0,1,0,0,3.24A1.63,1.63,0,0,1,14.28,20v13a3.24,3.24,0,0,0,3.24,3.24h8.91a.81.81,0,0,0,.81-.81v-.81a1.63,1.63,0,0,0-1.62-1.62H24l6.48-4.86v7.29a.81.81,0,0,0,.81.81h1.62a.81.81,0,0,0,.81-.81V24.9a6.21,6.21,0,0,1-1.62.23A6.49,6.49,0,0,1,25.75,20Z"
-                />
-                <path
-                  d="M33.72,15.09H30.48l-3.24-3.24v6.8a4.86,4.86,0,1,0,9.72,0v-6.8Zm-3.64,4.05a.81.81,0,1,1,.81-.81A.81.81,0,0,1,30.08,19.14Zm4,0a.81.81,0,1,1,.81-.81A.8.8,0,0,1,34.12,19.14Z"
-                />
-              </svg>
-            </a>
-          </v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -56,7 +40,7 @@
 
 <script>
 import * as d3 from "d3";
-import MAFS_results from "./MAFS.json";
+import MAFS_results from "../lib/data/MAFS.json";
 
 function colorSquare(marriedString) {
   switch (marriedString) {
