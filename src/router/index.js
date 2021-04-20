@@ -54,6 +54,15 @@ const routes = [
         "../components/RandomSinWaveFun.vue"
       ),
   },
+  {
+    path: "/triangle-model",
+    name: "TriangleModel",
+    component: () =>
+      import(
+        /* webpackChunkName: "TriangleModel" */
+        "../components/TriangleLayer.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
