@@ -63,6 +63,12 @@ export default {
   components: {},
   data: () => ({
     links: [
+                  {
+        title: "Python Groundwater Model",
+        link: "/triangle-model",
+        description: "Python to build groundwater models quickly",
+        source: require("../assets/galleryThumbs/triangleModflow.jpg"),
+      },
       {
         title: "MAFS-1",
         link: "/mafs1",
@@ -86,7 +92,7 @@ export default {
         link: "/random-wave",
         description: "born from learning D3 animations. Kept because it's kinda nice",
         source: require("../assets/galleryThumbs/randomSin.jpg"),
-      },
+      },     
     ],
   }),
 };

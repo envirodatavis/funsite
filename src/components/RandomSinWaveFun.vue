@@ -46,18 +46,6 @@ export default {
   computed: {
     width() {
       return this.windowWidth;
-      // switch (this.$vuetify.breakpoint.name) {
-      //   case "xs":
-      //     return 300;
-      //   case "sm":
-      //     return 500;
-      //   case "md":
-      //   case "lg":
-      //   case "xl":
-      //     return 700;
-      //   default:
-      //     return 500;
-      // }
     },
     plotData: function() {
       let x = [this.data.min]; // instantiate X
