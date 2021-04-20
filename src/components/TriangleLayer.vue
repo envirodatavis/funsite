@@ -1,18 +1,20 @@
 <template>
   <v-container>
     <v-row justify="center" align="center">
-      <v-card outlined color="rgba(0,0,0,0)">
-        <v-card-text
-          class="pa-1"
-          style="font-size: 0.75rem; text-align: center;"
-        >
-          Click and drag to rotate, press 't' to reset the view to top
-        </v-card-text>
-        <x3d
-          :width="xDomWidth"
-          :height="xDomHeight"
-          style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
-        >
+      <v-card-text class="pa-1" style="font-size: 0.75rem; text-align: center;">
+        Click and drag to rotate, scroll to zoom, press 't' to reset the view.
+        <br />
+        If nothing shows up first, refresh the page and a model should appear.
+        Sorry I am still figuring that out.
+      </v-card-text>
+      <v-card
+        outlined
+        color="rgba(0,0,0,0)"
+        :width="xDomWidth + 4"
+        :height="xDomHeight + 4"
+        style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
+      >
+        <x3d :width="xDomWidth" :height="xDomHeight" style="margin: 2pt">
           <triangles @loaded="modelLoaded" />
         </x3d>
         <v-overlay absolute :value="!loaded">
@@ -28,8 +30,8 @@
             thousands of points.
           </li>
           <li>
-            Bottom green layer: a geologic layer, estimated by about 10
-            boreholes and some inferred points.
+            Bottom green layer: a geologic layer, linearly interpolated by a
+            dozen boreholes and some inferred points.
           </li>
           <li>
             Middle yellow layer: triangle finite element mesh in X and Y, with Z
@@ -39,7 +41,12 @@
             Purpose: to show what a Modflow 6 unstructured triangular grid looks
             like between two surfaces.
           </li>
-          <li>From the Minette Region of southern Luxembourg, geologic layer <a href="http://doi.org/10.1127/1860-1804/2013/0025">estimated from here.</a></li>
+          <li>
+            From the Minette Region of southern Luxembourg, geologic layer
+            <a href="http://doi.org/10.1127/1860-1804/2013/0025"
+              >estimated from here.</a
+            >
+          </li>
           <li>
             10:1 (V:H) exaggeration, layers "exploded" apart to show them
             clearly.
@@ -61,6 +68,7 @@
 export default {
   name: "model",
   data: () => ({
+    startLoading: false,
     loaded: false,
   }),
   components: {
