@@ -22,11 +22,16 @@
             outlined
             color="rgba(0,0,0,0)"
             class="flex-grow-1"
-            style="border-style: solid; border-width: 2px; border-color: rgb(80,80,80); "
+            style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
           >
-            <v-img :src="n.source" width="190" height="130"></v-img>
+            <v-img
+              :src="n.source"
+              width="190"
+              height="130"
+              class="center"
+            ></v-img>
             <v-card-text
-            class="pa-2"
+              class="pa-2"
               style="
               font-size: 0.75rem;
               text-align: center; overflow-y: auto; height:100px"
@@ -63,7 +68,7 @@ export default {
   components: {},
   data: () => ({
     links: [
-                  {
+      {
         title: "Python Groundwater Model",
         link: "/triangle-model",
         description: "Python to build groundwater models quickly",
@@ -90,9 +95,10 @@ export default {
       {
         title: "Random sin wave",
         link: "/random-wave",
-        description: "born from learning D3 animations. Kept because it's kinda nice",
+        description:
+          "born from learning D3 animations. Kept because it's kinda nice",
         source: require("../assets/galleryThumbs/randomSin.jpg"),
-      },     
+      },
     ],
   }),
 };
@@ -119,5 +125,11 @@ export default {
 
 .separator:not(:empty)::after {
   margin-left: 0.25em;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

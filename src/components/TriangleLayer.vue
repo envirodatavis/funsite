@@ -1,26 +1,59 @@
 <template>
   <v-container>
     <v-row justify="center" align="center">
-      <v-card
-        :width="xDomWidth + 5"
-        :height="xDomHeight + 100"
-        outlined
-        color="rgba(0,0,0,0)"
-      >
+      <v-card outlined color="rgba(0,0,0,0)">
         <v-card-text
           class="pa-1"
           style="font-size: 0.75rem; text-align: center;"
         >
-          {{ xDomHeight }}
           Click and drag to rotate, press 't' to reset the view to top
         </v-card-text>
-        <x3d :width="xDomWidth" :height="xDomHeight">
+        <x3d
+          :width="xDomWidth"
+          :height="xDomHeight"
+          style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
+        >
           <triangles @loaded="modelLoaded" />
         </x3d>
         <v-overlay absolute :value="!loaded">
           <v-progress-circular indeterminate size="39"></v-progress-circular>
         </v-overlay>
       </v-card>
+    </v-row>
+    <v-row justify="center" align="center">
+      <v-card-text class="pa-2" style="font-size: 0.75rem; max-width: 450pt">
+        <ul>
+          <li>
+            Top layer: a Digital elevation model, of the form X,Y,Z with
+            thousands of points.
+          </li>
+          <li>
+            Bottom green layer: a geologic layer, estimated by about 10
+            boreholes and some inferred points.
+          </li>
+          <li>
+            Middle yellow layer: triangle finite element mesh in X and Y, with Z
+            interpolated to each surface and joined.
+          </li>
+          <li>
+            Purpose: to show what a Modflow 6 unstructured triangular grid looks
+            like between two surfaces.
+          </li>
+          <li>From the Minette Region of southern Luxembourg, geologic layer <a href="http://doi.org/10.1127/1860-1804/2013/0025">estimated from here.</a></li>
+          <li>
+            10:1 (V:H) exaggeration, layers "exploded" apart to show them
+            clearly.
+          </li>
+          <li>
+            Made using the python packages Flopy and Vedo Borrows heavily from
+            A. Pollack (SCRF)'s example of a geologic model from the Vedo
+            examples.
+          </li>
+          <li>
+            Github links coming soon!
+          </li>
+        </ul>
+      </v-card-text>
     </v-row>
   </v-container>
 </template>
