@@ -63,6 +63,11 @@ const routes = [
         "../components/TriangleLayer.vue"
       ),
   },
+  // {
+  //   path: "/two-axis-plot",
+  //   name: "TwoAxisPlot",
+  //   component: () => import("../components/CovidWastewaterPlot.vue"),
+  // },
 ];
 
 const router = new VueRouter({

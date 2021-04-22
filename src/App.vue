@@ -6,7 +6,6 @@
           <v-row justify="center" style="padding: 12px">
             <router-link to="/">Gallery</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
-
             <router-link to="/about">About</router-link>
             <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span> -->
             <!-- <router-link to="/about">Resume</router-link> -->
