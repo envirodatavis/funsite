@@ -54,7 +54,7 @@
             examples.
           </li>
           <li>
-            Github links coming soon!
+            (Github links coming soon!)
           </li>
         </ul>
       </v-card-text>

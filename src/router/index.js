@@ -63,6 +63,42 @@ const routes = [
         "../components/TriangleLayer.vue"
       ),
   },
+  {
+    path: "/map-art-nj",
+    name: "MapArtNj",
+    component: () =>
+      import(
+        /* webpackChunkName: "MapArtNj" */
+        "../components/MapArtNj.vue"
+      ),
+  },
+  {
+    path: "/map-art-bos",
+    name: "MapArtBos",
+    component: () =>
+      import(
+        /* webpackChunkName: "MapArtBos" */
+        "../components/MapArtBos.vue"
+      ),
+  },
+  {
+    path: "/gw-vol-compare-vid",
+    name: "GwVolCompareVid",
+    component: () =>
+      import(
+        /* webpackChunkName: "GwVolCompareVid" */
+        "../components/GwVolCompareVid.vue"
+      ),
+  },
+  {
+    path: "/gw-vol-deplete-vid",
+    name: "GwDepletionVid",
+    component: () =>
+      import(
+        /* webpackChunkName: "GwDepletionVid" */
+        "../components/GwDepletionVid.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
