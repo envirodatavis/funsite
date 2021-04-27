@@ -23,6 +23,7 @@
             color="rgba(0,0,0,0)"
             class="flex-grow-1"
             style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
+            :target="n.tab"
           >
             <v-img
               :src="n.source"
@@ -71,26 +72,30 @@ export default {
       {
         title: "Python Groundwater Model",
         link: "/triangle-model",
-        description: "Python to build groundwater models quickly",
+        description: "Python to build groundwater models quickly. Opens in new tab",
         source: require("../assets/galleryThumbs/triangleModflow.jpg"),
+        tab: "_blank", // open a new tab
       },
       {
         title: "MAFS-1",
         link: "/mafs1",
         description: "a tool to visualize show predictions",
         source: require("../assets/galleryThumbs/Mafs1.jpg"),
+        tab: "",
       },
       {
         title: "MAFS-2",
         link: "/mafs2",
         description: "another tool to visualize show predictions",
         source: require("../assets/galleryThumbs/Mafs2.jpg"),
+        tab: "",
       },
       {
         title: "A Bad Metronome",
         link: "/bad-metronome",
-        description: "it really doesn't work very well.",
+        description: "by design, it is very inconsistent.",
         source: require("../assets/galleryThumbs/badMetronome.jpg"),
+        tab: "",
       },
       {
         title: "Random sin wave",
@@ -98,6 +103,7 @@ export default {
         description:
           "born from learning D3 animations. Kept because it's kinda nice",
         source: require("../assets/galleryThumbs/randomSin.jpg"),
+        tab: "",
       },
     ],
   }),

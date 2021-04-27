@@ -3,9 +3,6 @@
     <v-row justify="center" align="center">
       <v-card-text class="pa-1" style="font-size: 0.75rem; text-align: center;">
         Click and drag to rotate, scroll to zoom, press 't' to reset the view.
-        <br />
-        If nothing shows up first, refresh the page and a model should appear.
-        Sorry I am still figuring that out.
       </v-card-text>
       <v-card
         outlined
@@ -76,10 +73,14 @@ export default {
   },
   computed: {
     xDomWidth: function() {
+      if (window.innerWidth > 830) return 730;
+      if (window.innerWidth < 450) return window.innerWidth - 50;
       return window.innerWidth - 100;
     },
     xDomHeight: function() {
-      return parseInt(this.xDomWidth * 0.6);
+      if (window.innerHeight / window.innerWidth > 1) return this.xDomWidth;
+      if (window.innerHeight > 830) return 530;
+      return window.innerHeight - 300;
     },
   },
   methods: {
