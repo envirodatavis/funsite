@@ -7,8 +7,11 @@
             <router-link to="/">Gallery</router-link>
             <span style="padding-left: 5px;padding-right: 5px;">|</span>
             <router-link to="/about">About</router-link>
+            <!-- TODO: get this going -->
             <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span> -->
             <!-- <router-link to="/about">Resume</router-link> -->
+            <!-- <span style="padding-left: 5px;padding-right: 5px;">|</span> -->
+            <!-- Github link -->
           </v-row>
         </div>
         <v-divider />
