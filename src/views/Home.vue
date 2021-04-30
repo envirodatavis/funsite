@@ -15,7 +15,7 @@
       </v-row> -->
       <!-- <div class="separator">Sillyness</div> -->
       <v-row justify="center" align="center">
-        <v-col v-for="n in links" :key="n.title" cols="6" sm="3" md="3">
+        <v-col v-for="n in links" :key="n.title" cols="6" sm="3" lg="2">
           <v-card
             :to="n.link"
             max-width="200"
@@ -44,20 +44,36 @@
         </v-col>
       </v-row>
       <!-- Break -->
-      <!-- <div class="separator">Old</div>
-      <v-row>
-        <v-col align="center">
-          <iframe
-            width="200"
-            height="200"
-            src="https://www.youtube.com/embed/l8Ga6QP4wgc"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+      <div class="separator">Older Videos:</div>
+      <v-row justify="center" align="center">
+        <v-col v-for="n in oldLinks" :key="n.title" cols="6" sm="3" lg="2">
+          <v-card
+            :to="n.link"
+            max-width="200"
+            outlined
+            color="rgba(0,0,0,0)"
+            class="flex-grow-1"
+            style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
+            :target="n.tab"
+          >
+            <v-img
+              :src="n.source"
+              width="190"
+              height="130"
+              class="center"
+            ></v-img>
+            <v-card-text
+              class="pa-2"
+              style="
+              font-size: 0.75rem;
+              text-align: center; overflow-y: auto; height:100px"
+            >
+              <u>{{ n.title }}:</u>
+              {{ n.description }}
+            </v-card-text>
+          </v-card>
         </v-col>
-      </v-row> -->
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -70,30 +86,31 @@ export default {
   data: () => ({
     links: [
       {
-        title: "Python Groundwater Model",
+        title: "Flopy Groundwater Model",
         link: "/triangle-model",
-        description: "Python to build groundwater models quickly. Opens in new tab",
+        description:
+          "Python to build groundwater models quickly. (Opens in new tab.)",
         source: require("../assets/galleryThumbs/triangleModflow.jpg"),
         tab: "_blank", // open a new tab
       },
       {
         title: "MAFS-1",
         link: "/mafs1",
-        description: "a tool to visualize show predictions",
+        description: "a tool to visualize TV show predictions",
         source: require("../assets/galleryThumbs/Mafs1.jpg"),
         tab: "",
       },
       {
         title: "MAFS-2",
         link: "/mafs2",
-        description: "another tool to visualize show predictions",
+        description: "another tool to visualize TV show predictions",
         source: require("../assets/galleryThumbs/Mafs2.jpg"),
         tab: "",
       },
       {
         title: "A Bad Metronome",
         link: "/bad-metronome",
-        description: "by design, it is very inconsistent.",
+        description: "(by design) it is very inconsistent.",
         source: require("../assets/galleryThumbs/badMetronome.jpg"),
         tab: "",
       },
@@ -101,8 +118,38 @@ export default {
         title: "Random sin wave",
         link: "/random-wave",
         description:
-          "born from learning D3 animations. Kept because it's kinda nice",
+          "made this when learning D3 animations. Kept it because it's kinda nice",
         source: require("../assets/galleryThumbs/randomSin.jpg"),
+        tab: "",
+      },
+      {
+        title: "Some Map Art - NJ",
+        link: "/map-art-nj",
+        description: "Stumbled on a nice dataset for a remediation project",
+        source: require("../assets/mapArt/NjMapArt.jpg"),
+        tab: "",
+      },
+            {
+        title: "Map Art - Boston",
+        link: "/map-art-bos",
+        description: "Tiles that look pretty nice together",
+        source: require("../assets/mapArt/BostonMapArt_1.jpg"),
+        tab: "",
+      },
+    ],
+    oldLinks: [
+      {
+        title: "Groundwater Depletion",
+        link: "/gw-vol-deplete-vid",
+        description: "(2016) made a video to show groundwater depletion",
+        source: require("../assets/galleryThumbs/GwDepleteVideo.jpg"),
+        tab: "",
+      },
+      {
+        title: "Groundwater Volume Comparison",
+        link: "/gw-vol-compare-vid",
+        description: "(2015) made a video to show groundwater volumes",
+        source: require("../assets/galleryThumbs/GwCompareVideo.jpg"),
         tab: "",
       },
     ],
