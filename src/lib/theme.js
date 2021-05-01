@@ -1,4 +1,4 @@
-export const background = '#f2f0e6'
+export const backgroundColor = '#f2f0e6'
 // rgb(242, 240, 230)
 
 // 0.949019608

@@ -1,51 +1,84 @@
 <template>
   <v-container fluid>
     <v-row justify="center" no-gutters>
-      <v-card outlined width="600" color="rgba(0,0,0,0)">
+      <v-card outlined max-width="600" color="rgba(0,0,0,0)">
+        <v-row justify="center" no-gutters>
+          <v-col align="center">
+            <v-card-text
+              class="pa-1"
+              style="font-size: 0.75rem; text-align: center; max-width:300pt"
+            >
+              Two axis plots can be misleading in certain cases. I wanted to
+              make an interacive graph that compares a two-axis plot and
+              alternatives with D3, based on this post:
+              <a href="https://blog.datawrapper.de/dualaxis/">
+                "Why not to use two axes, and what to use instead" </a
+              >. Select the different options below.
+            </v-card-text>
+          </v-col>
+        </v-row>
+
         <v-row justify="center" no-gutters>
           <v-col align="center">
             <svg id="covidViz" />
           </v-col>
         </v-row>
-        <!-- <v-row no-gutters class="pa-0">
-              <v-col align="left">
-                <v-btn-toggle
-                  mandatory
-                  v-model="leftScale"
-                  rounded
-                  dense
-                  color="red"
-                >
-                  <v-btn value="posNumber" x-small>Positive #</v-btn>
-                  <v-btn disabled value="posRatio" x-small
-                    >Positive Ratio</v-btn
-                  >
-                </v-btn-toggle>
-              </v-col>
-            </v-row>
-            <v-row no-gutters class="pa-2">
-              <v-col align="right">
-                <v-btn-toggle
-                  mandatory
-                  v-model="rightScale"
-                  rounded
-                  dense
-                  color="blue"
-                >
-                  <v-btn value="wW" x-small>Wastewater</v-btn>
-                  <v-btn disabled value="inHospital" x-small>In Hospital</v-btn>
-                </v-btn-toggle>
-              </v-col>
-            </v-row> -->
-        <v-row justify="center" no-gutters>
+
+        <v-row justify="center" no-gutters class="ma-0">
           <v-col align="center">
             <v-btn-toggle mandatory v-model="timeToggle" rounded dense>
-              <v-btn value="time2Plots" x-small>Time plots</v-btn>
-              <v-btn value="time1Plot" x-small>Single plot</v-btn>
-              <v-btn value="noTime" x-small>Compare Metrics</v-btn>
+              <v-btn
+                value="time2Plots"
+                x-small
+                style="background-color: #f2f0e6"
+              >
+                Two Time Plots
+              </v-btn>
+              <v-btn value="time1Plot" x-small style="background-color: #f2f0e6"
+                >Two-axis Plot
+              </v-btn>
+              <v-btn value="noTime" x-small style="background-color: #f2f0e6"
+                >Direct compare
+              </v-btn>
             </v-btn-toggle>
             <br />
           </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
+          <v-card-text
+            class="pa-2"
+            style="font-size: 0.75rem; max-width: 300pt"
+          >
+            <ul>
+              <li>
+                Data from Massachusetts:
+                <a href="https://www.mwra.com/biobot/biobotdata.htm">
+                  MWRA Wastewater COVID-19 Tracking
+                </a>
+                and
+                <a
+                  href="https://www.mass.gov/info-details/covid-19-response-reporting"
+                >
+                  MA COVID-19 Response Reporting </a
+                >.
+              </li>
+              <li>
+                The line is a 7-day Floating average, dots are daily reported
+                values.
+              </li>
+              <li>Data colllected in April 2021.</li>
+              <li>
+                Apologies for the grim content, but I was really curious how
+                these tracked and had not seen any sastisfying graphics online.
+              </li>
+              <li>
+                I am not an epidemiologist.
+              </li>
+              <li>
+                This was made for personal interest only.
+              </li>
+            </ul>
+          </v-card-text>
         </v-row>
       </v-card>
     </v-row>
@@ -63,11 +96,13 @@ export default {
       top: 20,
       left: 100,
       right: 100,
-      bottom: 60,
+      bottom: 40,
       betweenPlotPadding: 20,
     },
+    colorLeft: "rgb(255,77,77)",
+    colorRight: "rgb(29,129,162)",
     width: 300,
-    height: 400,
+    height: 300,
     rawData: rawData,
     leftScale: "posNumber",
     rightScale: "wW",
@@ -201,15 +236,6 @@ export default {
         "," +
         (this.margin.top + this.margin.betweenPlotPadding * 2 + this.height) +
         ")";
-      const xAxisTitle =
-        "translate(" +
-        (this.margin.left + this.width / 2) +
-        "," +
-        (this.margin.top +
-          this.margin.betweenPlotPadding * 2 +
-          this.height +
-          30) +
-        ")";
 
       let rightYAxis =
         "translate(" +
@@ -217,18 +243,7 @@ export default {
         "," +
         (this.margin.top + this.margin.betweenPlotPadding + this.height / 2) +
         ")";
-      let rightYAxisTitle =
-        "translate(" +
-        (this.margin.left + this.width + 5) +
-        "," +
-        (this.margin.top + this.margin.betweenPlotPadding + this.height / 4) +
-        "),rotate(-90)";
-      let leftAxisTitle =
-        "translate(" +
-        this.margin.left +
-        "," +
-        (this.margin.top + this.height / 4) +
-        "),rotate(-90)";
+
       let rightData =
         "translate(" +
         this.margin.left +
@@ -246,31 +261,62 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")";
       }
 
+      let rightAxisTitle = "";
+      let leftAxisTitle = "";
+      const xAxisTitle =
+        "translate(" +
+        (this.margin.left + this.width / 2) +
+        "," +
+        (this.margin.top +
+          this.margin.betweenPlotPadding * 2 +
+          this.height +
+          30) +
+        ")";
+
       switch (this.timeToggle) {
         case "noTime":
-          rightYAxisTitle =
+          leftAxisTitle =
             "translate(" +
-            this.margin.left +
+            (this.margin.left - 50) +
             "," +
-            (this.margin.top +
-              this.margin.betweenPlotPadding * 2 +
-              this.height) +
-            ")";
-
+            (this.margin.top + this.height / 2) +
+            "),rotate(-90)";
+          rightAxisTitle = xAxisTitle;
           break;
         case "time1Plot":
-          rightYAxisTitle =
+          leftAxisTitle =
             "translate(" +
-            this.margin.left +
+            (this.margin.left - 50) +
+            "," +
+            (this.margin.top + this.height / 2) +
+            "),rotate(-90)";
+          rightAxisTitle =
+            "translate(" +
+            (this.margin.left + this.width + 50) +
             "," +
             (this.margin.top + this.height / 2) +
             "),rotate(-90)";
           break;
-        // case "time2Plots":
+        case "time2Plots":
+          leftAxisTitle =
+            "translate(" +
+            (this.margin.left - 50) +
+            "," +
+            (this.margin.top + this.height / 4) +
+            "),rotate(-90)";
+          rightAxisTitle =
+            "translate(" +
+            (this.margin.left + this.width + 50) +
+            "," +
+            (this.margin.top +
+              this.margin.betweenPlotPadding +
+              (this.height * 3) / 4) +
+            "),rotate(-90)";
+          break;
       }
       return {
         rightYAxis,
-        rightYAxisTitle,
+        rightAxisTitle,
         rightData,
         leftAxis,
         leftAxisTitle,
@@ -280,7 +326,7 @@ export default {
     },
     dataOpactity() {
       if (["time2Plots", "time1Plot"].includes(this.timeToggle)) return 1;
-      return 0.5;
+      return 0.7;
     },
   },
   watch: {
@@ -301,22 +347,6 @@ export default {
             this.margin.bottom +
             this.margin.betweenPlotPadding * 2
         );
-      // Bound, remove eventualyl:
-      svg
-        .append("rect")
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr(
-          "height",
-          this.height +
-            this.margin.top +
-            this.margin.bottom +
-            this.margin.betweenPlotPadding * 2
-        )
-        .style("stroke", "black")
-        .style("fill", "none")
-        .style("stroke-width", 1);
 
       // // ----- axes ----
       svg
@@ -325,7 +355,7 @@ export default {
           d3
             .axisBottom(this.scales.x)
             .tickSize(2)
-            .tickFormat(d3.timeFormat("%m"))
+            .tickFormat(d3.timeFormat("%m-%Y"))
             .ticks(8)
         )
         .attr("transform", this.translations.xAxis)
@@ -351,7 +381,7 @@ export default {
         )
         .attr("class", "leftaxis")
         .attr("transform", this.translations.leftAxis)
-        .style("color", "red")
+        .style("color", this.colorLeft)
         .selectAll(".tick text")
         .style("font-size", 12);
       svg
@@ -359,8 +389,9 @@ export default {
         .attr("transform", this.translations.leftAxisTitle)
         .attr("class", "leftaxistitle")
         .style("text-anchor", "middle")
-        .text("Positive Cases per Day")
-        .style("font-size", 12);
+        .text("Positive Covid Cases per Day")
+        .style("font-size", 12)
+        .style("fill", this.colorLeft);
       // Right axis:
       svg
         .append("g")
@@ -372,16 +403,17 @@ export default {
         )
         .attr("class", "rightaxis")
         .attr("transform", this.translations.rightYAxis)
-        .style("color", "blue")
+        .style("color", this.colorRight)
         .selectAll(".tick text")
         .style("font-size", 12);
       svg
         .append("text")
-        .attr("transform", this.translations.rightYAxisTitle)
+        .attr("transform", this.translations.rightAxisTitle)
+        .attr("class", "rightaxistitle")
         .style("text-anchor", "middle")
-        .text("Copies per Ml")
+        .text("Covid in Wastewater: Copies per ml")
         .style("font-size", 12)
-        .attr("id", "leftAxisTitle");
+        .style("fill", this.colorRight);
 
       // Dots:
       svg
@@ -392,7 +424,7 @@ export default {
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yLeft(e.y1))
         .attr("r", 1)
-        .style("fill", "red")
+        .style("fill", this.colorLeft)
         .attr("transform", this.translations.leftAxis)
         .attr("id", "redDots");
       svg
@@ -403,13 +435,13 @@ export default {
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yRight(e.y2))
         .attr("r", 1)
-        .style("fill", "blue")
+        .style("fill", this.colorRight)
         .attr("transform", this.translations.rightData)
         .attr("id", "blueDots");
       svg
         .append("path")
         .attr("d", this.avgLines.avgLineRed(this.plotData))
-        .attr("stroke", "red")
+        .attr("stroke", this.colorLeft)
         .attr("stroke-width", 2)
         .attr("fill", "none")
         .attr("transform", this.translations.leftAxis)
@@ -417,7 +449,7 @@ export default {
       svg
         .append("path")
         .attr("d", this.avgLines.avgLineBlue(this.plotData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colorRight)
         .attr("stroke-width", 2)
         .attr("fill", "none")
         .attr("transform", this.translations.rightData)
@@ -458,13 +490,7 @@ export default {
         .style("opacity", this.dataOpactity);
 
       const svg = d3.select("#covidViz");
-
-      await svg
-        .selectAll(".leftaxistitle")
-        .transition()
-        .duration(this.transitionDuration)
-        .attr("transform", this.translations.xAxisTitle);
-
+      // change the axes, always happens:
       await svg
         .selectAll(".leftaxis")
         .transition()
@@ -484,15 +510,29 @@ export default {
             .axisRight(this.scales.yRight)
             .tickSize(2)
             .ticks(5)
+            .tickPadding([3])
         )
         .attr("transform", this.translations.rightYAxis);
+
+      await svg
+        .selectAll(".rightaxistitle")
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("transform", this.translations.rightAxisTitle);
+      await svg
+        .selectAll(".leftaxistitle")
+        .transition()
+        .duration(this.transitionDuration)
+        .attr("transform", this.translations.leftAxisTitle);
+
+      // the part to deal with the disappearing and reappearing axis at the bottom:
       if (next === "noTime") {
         await svg
           .selectAll(".xaxis")
           .transition()
           .duration(this.transitionDuration)
-          .style("opacity", 0)
-          .remove();
+          .style("opacity", 0);
+        // .remove();
         await svg
           .selectAll(".xaxistitle")
           .transition()
@@ -507,30 +547,23 @@ export default {
               .axisBottom(this.scales.x)
               .tickSize(2)
               .tickFormat(d3.format(",.0f"))
-              .tickPadding(10)
+              .tickPadding([10])
               .ticks(5)
           )
-          .style("color", "blue")
+          .style("color", this.colorRight)
           .attr("transform", this.translations.xAxis);
       }
       if (prev === "noTime") {
         await svg
-          .append("g")
-          .call(
-            d3
-              .axisBottom(this.scales.x)
-              .tickSize(2)
-              .tickFormat(d3.timeFormat("%m"))
-              .ticks(8) //-%d"))
-          )
-          .attr("transform", this.translations.xAxis)
-          .attr("class", "xaxis")
-          .style("font-size", 12)
-          .style("opacity", 0)
+          .selectAll(".xaxis")
           .transition()
           .duration(this.transitionDuration)
           .style("opacity", 1);
-
+        await svg
+          .selectAll(".xaxistitle")
+          .transition()
+          .duration(this.transitionDuration)
+          .style("opacity", 1);
         await svg
           .selectAll(".xaxistitle")
           .transition()
@@ -541,5 +574,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass" scoped></style>
