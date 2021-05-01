@@ -94,6 +94,13 @@ export default {
         tab: "_blank", // open a new tab
       },
       {
+        title: "Two-axis Plot",
+        link: "/two-axis-plot",
+        description: "Using D3 to compare alternatives to two-axis plots",
+        source: require("../assets/galleryThumbs/twoAxisPlot.jpg"),
+        tab: "",
+      },
+      {
         title: "MAFS-1",
         link: "/mafs1",
         description: "a tool to visualize TV show predictions",
@@ -129,7 +136,7 @@ export default {
         source: require("../assets/mapArt/NjMapArt.jpg"),
         tab: "",
       },
-            {
+      {
         title: "Map Art - Boston",
         link: "/map-art-bos",
         description: "Tiles that look pretty nice together",
