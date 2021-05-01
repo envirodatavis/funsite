@@ -8,9 +8,9 @@
               class="pa-1"
               style="font-size: 0.75rem; text-align: center; max-width:300pt"
             >
-              Two axis plots can be misleading in certain cases. I wanted to
-              make an interacive graph that compares a two-axis plot and
-              alternatives with D3, based on this post:
+              Plots with multiple axes can be misleading. This graph that
+              compares a two-axis plot and alternatives using D3. It is based on
+              this post:
               <a href="https://blog.datawrapper.de/dualaxis/">
                 "Why not to use two axes, and what to use instead" </a
               >. Select the different options below.
@@ -51,6 +51,10 @@
           >
             <ul>
               <li>
+                The line is a 7-day Floating average, dots are daily reported
+                values.
+              </li>
+              <li>
                 Data from Massachusetts:
                 <a href="https://www.mwra.com/biobot/biobotdata.htm">
                   MWRA Wastewater COVID-19 Tracking
@@ -61,10 +65,6 @@
                 >
                   MA COVID-19 Response Reporting </a
                 >.
-              </li>
-              <li>
-                The line is a 7-day Floating average, dots are daily reported
-                values.
               </li>
               <li>Data colllected in April 2021.</li>
               <li>
@@ -94,25 +94,27 @@ export default {
   data: () => ({
     margin: {
       top: 20,
-      left: 100,
-      right: 100,
-      bottom: 40,
+      left: 60,
+      right: 50,
+      bottom: 50,
       betweenPlotPadding: 20,
     },
     colorLeft: "rgb(255,77,77)",
     colorRight: "rgb(29,129,162)",
-    width: 300,
+    // width: 200,
     height: 300,
     rawData: rawData,
-    leftScale: "posNumber",
-    rightScale: "wW",
     timeToggle: "time2Plots",
-    transitionDuration: 1700,
+    transitionDuration: 1000,
   }),
   mounted() {
     this.instantiateViz();
   },
   computed: {
+    width: function() {
+      if (window.innerWidth > 400) return 300;
+      return 200;
+    },
     scales: function() {
       const yAxisRange = () => {
         switch (this.timeToggle) {
@@ -270,7 +272,7 @@ export default {
         (this.margin.top +
           this.margin.betweenPlotPadding * 2 +
           this.height +
-          30) +
+          50) +
         ")";
 
       switch (this.timeToggle) {
@@ -355,13 +357,17 @@ export default {
           d3
             .axisBottom(this.scales.x)
             .tickSize(2)
-            .tickFormat(d3.timeFormat("%m-%Y"))
-            .ticks(8)
+            .tickFormat(d3.timeFormat("%b-%y"))
+            .ticks(6)
         )
         .attr("transform", this.translations.xAxis)
         .attr("class", "xaxis")
         .selectAll(".tick text")
-        .style("font-size", 12);
+        .style("font-size", 12)
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-35)");
       svg
         .append("text")
         .attr("transform", this.translations.xAxisTitle)

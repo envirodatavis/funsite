@@ -43,6 +43,37 @@
           </v-card>
         </v-col>
       </v-row>
+      <div class="separator">Nonsense:</div>
+      <v-row justify="center" align="center">
+        <v-col v-for="n in sillyLinks" :key="n.title" cols="6" sm="3" lg="2">
+          <v-card
+            :to="n.link"
+            max-width="200"
+            outlined
+            color="rgba(0,0,0,0)"
+            class="flex-grow-1"
+            style="border-style: solid; border-width: 1pt; border-color: rgb(80,80,80);"
+            :target="n.tab"
+          >
+            <v-img
+              :src="n.source"
+              width="190"
+              height="130"
+              class="center"
+            ></v-img>
+            <v-card-text
+              class="pa-2"
+              style="
+              font-size: 0.75rem;
+              text-align: center; overflow-y: auto; height:100px"
+            >
+              <u>{{ n.title }}:</u>
+              {{ n.description }}
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+
       <!-- Break -->
       <div class="separator">Older Videos:</div>
       <v-row justify="center" align="center">
@@ -101,6 +132,30 @@ export default {
         tab: "",
       },
       {
+        title: "Random D3 sin wave",
+        link: "/random-wave",
+        description:
+          "made this when learning D3 animations. Sharing it because it's kinda nice",
+        source: require("../assets/galleryThumbs/randomSin.jpg"),
+        tab: "",
+      },
+      {
+        title: "Some Map Art - NJ",
+        link: "/map-art-nj",
+        description: "Stumbled on a nice dataset for a remediation project",
+        source: require("../assets/mapArt/NjMapArt.jpg"),
+        tab: "",
+      },
+      {
+        title: "Map Art - Boston",
+        link: "/map-art-bos",
+        description: "Tiles that look pretty nice together",
+        source: require("../assets/mapArt/BostonMapArt_1.jpg"),
+        tab: "",
+      },
+    ],
+    sillyLinks: [
+      {
         title: "MAFS-1",
         link: "/mafs1",
         description: "a tool to visualize TV show predictions",
@@ -119,28 +174,6 @@ export default {
         link: "/bad-metronome",
         description: "(by design) it is very inconsistent.",
         source: require("../assets/galleryThumbs/badMetronome.jpg"),
-        tab: "",
-      },
-      {
-        title: "Random sin wave",
-        link: "/random-wave",
-        description:
-          "made this when learning D3 animations. Kept it because it's kinda nice",
-        source: require("../assets/galleryThumbs/randomSin.jpg"),
-        tab: "",
-      },
-      {
-        title: "Some Map Art - NJ",
-        link: "/map-art-nj",
-        description: "Stumbled on a nice dataset for a remediation project",
-        source: require("../assets/mapArt/NjMapArt.jpg"),
-        tab: "",
-      },
-      {
-        title: "Map Art - Boston",
-        link: "/map-art-bos",
-        description: "Tiles that look pretty nice together",
-        source: require("../assets/mapArt/BostonMapArt_1.jpg"),
         tab: "",
       },
     ],

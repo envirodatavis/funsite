@@ -1,10 +1,14 @@
 <template>
-  <v-container class="ma-0 pa-0">
-    <v-row justify="center" no-gutters>
-      <v-col align="center" cols="12">
-        <svg style="display:block" id="simpleViz" />
-      </v-col>
-    </v-row>
+  <v-container fluid class="pa-0">
+    <svg
+      style="display: block; margin-left: auto; margin-right: auto;"
+      id="simpleViz"
+    />
+    <v-card-text
+      style="padding-top: 300px; font-size: 0.75rem; max-width: 300pt; text-align: center;"
+    >
+      A soothing sin wave that changes every 1.3 seconds
+    </v-card-text>
   </v-container>
 </template>
 
@@ -15,25 +19,18 @@ export default {
   components: {},
   data: () => ({
     margin: { top: 0, right: 0, bottom: 0, left: 0 },
-    // width: computed prop!
     height: 400,
     // x data range:
     data: { min: 0, max: 30 },
     discretization: 300,
     // axis:
     domain: { x: [0, 30], y: [16, -30] },
-    //
     radioMultiplier: 1,
-    //
     transitionDuration: 1300,
-    windowWidth: window.innerWidth,
   }),
   mounted() {
     this.instantiateViz();
     this.scheduler();
-    window.addEventListener("resize", () => {
-      this.windowWidth = window.innerWidth;
-    });
   },
   watch: {
     plotData() {
@@ -45,7 +42,7 @@ export default {
   },
   computed: {
     width() {
-      return this.windowWidth;
+      return window.innerWidth - 20;
     },
     plotData: function() {
       let x = [this.data.min]; // instantiate X
