@@ -78,6 +78,15 @@ const routes = [
       ),
   },
   {
+    path: "/groundwater-beef",
+    name: "GroundwaterBeef",
+    component: () =>
+      import(
+        /* webpackChunkName: "MapArtNj" */
+        "../components/GroundwaterBeef.vue"
+      ),
+  },
+  {
     path: "/tomato-product-cycle",
     name: "TomatoSanky",
     component: () =>

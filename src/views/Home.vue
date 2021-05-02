@@ -135,46 +135,55 @@ export default {
       {
         title: "Some Map Art - NJ",
         link: "/map-art-nj",
-        description: "Stumbled on a nice dataset for a remediation project",
+        description: "stumbled on a nice dataset for a remediation project",
         source: require("../assets/mapArt/NjMapArt.jpg"),
         tab: "",
       },
       {
         title: "Map Art - Boston",
         link: "/map-art-bos",
-        description: "Tiles that look pretty nice together",
+        description: "elevation tiles that look pretty nice together",
         source: require("../assets/mapArt/BostonMapArt_1.jpg"),
+        tab: "",
+      },
+      {
+        title: "Groudwater and Beef",
+        link: "/groundwater-beef",
+        description:
+          "made this visual essay back in 2014 while 'beefing' up my ArcGIS skills",
+        source: require("../assets/galleryThumbs/gwBeef.jpg"),
         tab: "",
       },
     ],
     sillyLinks: [
       {
-        title: "Map - Radiohead Style",
-        link: "/map-art-radiohead",
-        description:
-          "A map of US minnow species styalized like a Radiohead album cover",
-        source: require("../assets/mapArt/htt_minnow.jpg"),
-        tab: "",
-      },
-      {
         title: "MAFS-1",
         link: "/mafs1",
-        description: "a tool to visualize TV show predictions",
+        description: "a D3 tool to visualize TV show predictions",
         source: require("../assets/galleryThumbs/Mafs1.jpg"),
         tab: "",
       },
       {
         title: "MAFS-2",
         link: "/mafs2",
-        description: "another tool to visualize TV show predictions",
+        description: "another D3 tool to visualize TV show predictions",
         source: require("../assets/galleryThumbs/Mafs2.jpg"),
         tab: "",
       },
       {
         title: "A Bad Metronome",
         link: "/bad-metronome",
-        description: "(by design) it is very inconsistent.",
+        description:
+          "a Vuetify metronome made bad by design; it is very inconsistent.",
         source: require("../assets/galleryThumbs/badMetronome.jpg"),
+        tab: "",
+      },
+      {
+        title: "Map - Radiohead Style",
+        link: "/map-art-radiohead",
+        description:
+          "A map of US minnow species styalized like a Radiohead album cover",
+        source: require("../assets/mapArt/htt_minnow.jpg"),
         tab: "",
       },
     ],
