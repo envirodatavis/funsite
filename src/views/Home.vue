@@ -30,7 +30,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <div class="separator">Nonsense:</div>
+      <div class="separator">Increasing Silliness:</div>
       <v-row justify="center" align="center">
         <v-col v-for="n in sillyLinks" :key="n.title" cols="6" sm="3" lg="2">
           <v-card
