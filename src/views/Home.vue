@@ -117,6 +117,14 @@ export default {
         tab: "",
       },
       {
+        title: "Tomato Product Cycle",
+        link: "/tomato-product-cycle",
+        description: "Major inputs and wastes of tomato production in the US",
+        source: require("../assets/mapArt/Tomatos.jpg"),
+        tab: "",
+      },
+      // tomato-product-cycle
+      {
         title: "Random D3 sin wave",
         link: "/random-wave",
         description:
@@ -140,6 +148,14 @@ export default {
       },
     ],
     sillyLinks: [
+      {
+        title: "Map - Radiohead Style",
+        link: "/map-art-radiohead",
+        description:
+          "A map of US minnow species styalized like a Radiohead album cover",
+        source: require("../assets/mapArt/htt_minnow.jpg"),
+        tab: "",
+      },
       {
         title: "MAFS-1",
         link: "/mafs1",

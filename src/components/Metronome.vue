@@ -57,9 +57,8 @@
       <v-col align="center">
         <v-card elevation="0" max-width="500" color="rgba(0,0,0,0)">
           <v-card-text>
-            This is a metronome that does not keep time. It is a bad metronome.
+            This is a metronome I made that does not keep good time. It is a bad metronome.
             <br />
-            Sometimes, it does not turn off. You may have to close this tab to stop it.
           </v-card-text>
         </v-card>
       </v-col>

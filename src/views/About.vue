@@ -5,20 +5,18 @@
         <v-col align="center">
           <v-card flat max-width="500" color="rgba(0,0,0,0)">
             <v-card-text>
-              I am a PhD student with a background in hydrogeology and more
+              I have a background in hydrogeology and more
               recently front end web development. I have an interest in science
-              and data communication, and am using this site to experiment and
-              share some things, mostly for fun. I am in the process of adding
-              more things.
+              and data communication, and am using this site to experiment with tools and
+              share some things, mostly for fun.
               <br />
               <br />
               This site is mostly written in Vue and D3, with some other cool
               packages that I will list eventually. I still have many TODOs.
-              There are always more TODOs. Some content will look good on
-              mobile as well, some may not.
+              But this is for fun. Most content will look good on
+              mobile too, some may not.
               <br />
               <br />
-              (TODO: so much... also make the about page look better)
               <br />
               <div class="separator"></div>
               Big thanks to Steven Kalt, who patiently taught me all about the

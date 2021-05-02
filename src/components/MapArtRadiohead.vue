@@ -2,8 +2,8 @@
   <v-container fluid>
     <v-img
       contain
-      max-width="540"
-      src="../assets/mapArt/NjMapArt.jpg"
+      max-width="600"
+      src="../assets/mapArt/htt_minnow.jpg"
       style="margin: auto; display: block;"
     ></v-img>
     <v-row
@@ -12,11 +12,11 @@
       style="padding-top:50pt; text-align: center; font-size: 0.75rem"
     >
       <div style="max-width:320pt">
-        A nice looking data set I recieved from a surveyor at a remediation job.
-        Somewhere in New Jersey.
+        What if a map of the dominant minnow species in US watersheds were
+        stylized like Radiohead's map-based Hail to the Thief album cover?
         <br />
         <br />
-        Made in ESRI ArcGIS
+        Made in ESRI ArcGIS and MS Paint (MS paint is wonderful).
       </div>
     </v-row>
   </v-container>

@@ -78,6 +78,24 @@ const routes = [
       ),
   },
   {
+    path: "/tomato-product-cycle",
+    name: "TomatoSanky",
+    component: () =>
+      import(
+        /* webpackChunkName: "TomatoSanky" */
+        "../components/TomatoSanky.vue"
+      ),
+  },
+  {
+    path: "/map-art-radiohead",
+    name: "MapArtRadiohead",
+    component: () =>
+      import(
+        /* webpackChunkName: "MapArtRadiohead" */
+        "../components/MapArtRadiohead.vue"
+      ),
+  },
+  {
     path: "/map-art-bos",
     name: "MapArtBos",
     component: () =>

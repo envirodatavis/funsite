@@ -11,12 +11,14 @@
       align="center"
       style="padding-top:50pt; text-align: center; font-size: 0.75rem"
     >
-      Stumbled on some map art when tiling elevation data in Boston as part of a
-      groundwater model
-      <br />
+      <div style="max-width:320pt">
+        Stumbled on some map art when tiling elevation data in Boston as part of
+        a groundwater model
+        <br />
+        <br />
+        Made in ESRI ArcGIS
+      </div>
     </v-row>
-
-
   </v-container>
 </template>
 
