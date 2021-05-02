@@ -1,15 +1,22 @@
 <template>
-  <v-container>
-    <v-row justify="center" align="center">
-      <v-card outlined tile max-width="540">
-        <v-img src="../assets/mapArt/BostonMapArt_1.jpg"></v-img>
-      </v-card>
+  <v-container fluid>
+    <v-img
+      contain
+      max-width="540"
+      src="../assets/mapArt/BostonMapArt_1.jpg"
+      style="margin: auto; display: block;"
+    ></v-img>
+    <v-row
+      justify="center"
+      align="center"
+      style="padding-top:50pt; text-align: center; font-size: 0.75rem"
+    >
+      Stumbled on some map art when tiling elevation data in Boston as part of a
+      groundwater model
+      <br />
     </v-row>
-    <v-row justify="center" align="center">
-        <div style="text-align: center; font-size: 0.75rem;">
-          Stumbled on some map art when tiling elevation data in Boston as part of a groundwater model
-        </div>
-    </v-row>
+
+
   </v-container>
 </template>
 

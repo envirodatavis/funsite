@@ -1,19 +1,6 @@
 <template>
   <div class="home">
     <v-container fluid>
-      <!-- Break -->
-      <!-- <v-row>
-        <v-col align="center">
-          <b>Gallery</b>
-        </v-col>
-      </v-row> -->
-      <!-- <div class="separator">Hydrogeology</div>
-      <v-row>
-        <v-col align="center">
-          ... coming soon
-         </v-col>
-      </v-row> -->
-      <!-- <div class="separator">Sillyness</div> -->
       <v-row justify="center" align="center">
         <v-col v-for="n in links" :key="n.title" cols="6" sm="3" lg="2">
           <v-card
@@ -73,8 +60,6 @@
           </v-card>
         </v-col>
       </v-row>
-
-      <!-- Break -->
       <div class="separator">Older Videos:</div>
       <v-row justify="center" align="center">
         <v-col v-for="n in oldLinks" :key="n.title" cols="6" sm="3" lg="2">
