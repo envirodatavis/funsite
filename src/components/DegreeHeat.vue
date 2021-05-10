@@ -1,19 +1,9 @@
 <template>
-  <v-container class="ma-0 pa-0">
-    <v-row justify="center" no-gutters>
-      <v-col align="center" cols="12">
-        {{ livingTemps }}
-        <br />
-        {{ degreeDays }}
-        <br />
-        {{ rankToggle }}
-        <v-btn @click="rankToggle = !rankToggle">
-          Calculate Days
-        </v-btn>
-        <svg style="display:block" id="simpleViz" />
-        {{ plotData }}
-      </v-col>
-    </v-row>
+  <v-container>
+    <v-btn @click="rankToggle = !rankToggle">
+      Calculate Days
+    </v-btn>
+    <svg id="simpleViz" />
   </v-container>
 </template>
 
@@ -29,7 +19,7 @@ export default {
     height: 400,
     transitionDuration: 1300,
     temperatureData: temperatureData,
-    livingTemps: { low: 60, high: 72 },
+    livingTemps: { low: 68, high: 70 },
     rankToggle: false,
   }),
   mounted() {
@@ -46,23 +36,26 @@ export default {
       const cool = 20;
       return { heat, cool };
     },
-    orderData: function() {
+    plotData: function() {
+      // make a new array of the data, needed because of the lazy way I am importing the data
       let orderArr = this.temperatureData.map((e) => ({
         Date: e.Date,
         AvgTemp: e.AvgTemp,
       }));
-      orderArr = orderArr.slice(0, 500);
-      orderArr.sort((a, b) => parseFloat(b.AvgTemp) - parseFloat(a.AvgTemp));
-      return orderArr.map((e, index) => ({
-        Date: new Date(e.Date),
-        AvgTemp: e.AvgTemp,
-        rank: index,
-      }));
-    },
-    plotData: function() {
-      let data = this.orderData;
-      return data.sort((a, b) => a.Date - b.Date);
-      // return data.slice(0, 500);
+      // order and rank it for display:
+      return (
+        orderArr
+          // order high to low:
+          .sort((a, b) => parseFloat(b.AvgTemp) - parseFloat(a.AvgTemp))
+          // add the rank:
+          .map((e, index) => ({
+            Date: new Date(e.Date),
+            AvgTemp: e.AvgTemp,
+            rank: index,
+          }))
+          // sort back on the date, not strictly neccessary, but keeps me sane:
+          .sort((a, b) => a.Date - b.Date)
+      );
     },
     domain: function() {
       return {
@@ -98,39 +91,36 @@ export default {
     },
   },
   methods: {
-    // perfect for webWorker!
-    // why doent myBars update fully? am I reaching a limit?
     updateViz: function() {
-      let duration = 4000;
       if (this.rankToggle) {
         d3.selectAll("#myBars")
           .data(this.plotData)
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .attr("x", (e) => this.scales.xRank(e.rank));
         d3.selectAll("#myPoints")
           .data(this.plotData)
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .attr("cx", (e) => this.scales.xRank(e.rank));
         d3.select(".xaxis")
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .call(d3.axisBottom(this.scales.xRank));
       } else {
         d3.selectAll("#myBars")
           .data(this.plotData)
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .attr("x", (e) => this.scales.xDate(e.Date));
         d3.selectAll("#myPoints")
           .data(this.plotData)
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .attr("cx", (e) => this.scales.xDate(e.Date));
         d3.select(".xaxis")
           .transition()
-          .duration(duration)
+          .duration(this.transitionDuration)
           .call(d3.axisBottom(this.scales.Date));
       }
     },
@@ -221,7 +211,7 @@ export default {
           } else if (e.AvgTemp > this.livingTemps.high) {
             return "rgba(0,0,255,0.4)";
           } else {
-            return "rgba(0,0,0,0.1)";
+            return "rgba(0,0,0,0)";
           }
         })
         .attr(
@@ -229,43 +219,6 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "myBars");
-      // ////////////////
-      // svg
-      //   .selectAll("myRedBars")
-      //   .data(this.plotData.filter((d) => d.AvgTemp < this.livingTemps.low))
-      //   .enter()
-      //   .append("rect")
-      //   .attr("x", (e) => this.scales.xDate(e.Date))
-      //   .attr("y", this.scales.y(this.livingTemps.low))
-      //   .attr("width", 2)
-      //   .attr(
-      //     "height",
-      //     (e) => this.scales.y(e.AvgTemp) - this.scales.y(this.livingTemps.low)
-      //   )
-      //   .attr("fill", "rgba(255,0,0,0.2)")
-      //   .attr(
-      //     "transform",
-      //     "translate(" + this.margin.left + "," + this.margin.top + ")"
-      //   )
-      //   .attr("id", "myBars");
-      // svg
-      //   .selectAll("myBlueBars")
-      //   .data(this.plotData.filter((d) => d.AvgTemp > this.livingTemps.high))
-      //   .enter()
-      //   .append("rect")
-      //   .attr("x", (e) => this.scales.xDate(e.Date))
-      //   .attr("y", (e) => this.scales.y(e.AvgTemp))
-      //   .attr("width", 2)
-      //   .attr(
-      //     "height",
-      //     (e) => this.scales.y(this.livingTemps.high) - this.scales.y(e.AvgTemp)
-      //   )
-      //   .attr("fill", "rgba(0,0,255,0.1)")
-      //   .attr(
-      //     "transform",
-      //     "translate(" + this.margin.left + "," + this.margin.top + ")"
-      //   )
-      //   .attr("id", "myBars");
     },
   },
 };

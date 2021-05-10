@@ -146,7 +146,7 @@ const routes = [
     component: () =>
         import (
             /* webpackChunkName: "DegreeHeat" */
-            "../views/DegreeHeat.vue"
+            "../components/DegreeHeat.vue"
         )
 },
 ];
