@@ -6,8 +6,8 @@
           <v-card flat max-width="500" color="rgba(0,0,0,0)">
             <v-card-text>
               I have a background in hydrogeology and more
-              recently front end web development. I have an interest in science
-              and data communication, and am using this site to experiment with tools and
+              recently front-end web development. I have an interest in science
+              and data communication. I am using this site to experiment with tools and
               share some things, mostly for fun.
               <br />
               <br />
@@ -17,7 +17,6 @@
               mobile too, some may not.
               <br />
               <br />
-              <br />
               <div class="separator"></div>
               Big thanks to Steven Kalt, who patiently taught me all about the
               front end and how to program properly while at REsurety, and Peter
@@ -25,7 +24,6 @@
               <br />
               <br />
               <div class="separator">PS:</div>
-
               My mother and sister are great artists who also have their own
               sites:
               <a href="https://www.torymiles.com">torymiles.com</a>

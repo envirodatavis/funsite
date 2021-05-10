@@ -54,7 +54,12 @@
             examples.
           </li>
           <li>
-            (Github links coming soon!)
+            <a
+              href="https://github.com/Owen-Miles/flopyVedo/blob/main/example_scripts/04_triangleMeshLayer.py"
+            >
+              Github link</a
+            >
+            for the script.
           </li>
         </ul>
       </v-card-text>

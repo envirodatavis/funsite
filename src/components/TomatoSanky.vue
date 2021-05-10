@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-img
       contain
-      max-width="800"
+      max-width="1200"
       src="../assets/mapArt/Tomatos.jpg"
       style="margin: auto; display: block;"
     ></v-img>
