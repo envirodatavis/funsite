@@ -137,6 +137,14 @@
               TCE site, which is a common contaminant</a
             >
           </li>
+          <li>
+            <a
+              href="https://github.com/Owen-Miles/flopyVedo/blob/main/example_scripts/07_DyeLIF.py"
+            >
+              Github link</a
+            >
+            for the script.
+          </li>
         </ul>
       </v-card-text>
     </v-row>
