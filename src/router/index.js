@@ -64,6 +64,15 @@ const routes = [
       ),
   },
   {
+    path: "/dye-lif-model",
+    name: "DyeLif",
+    component: () =>
+      import(
+        /* webpackChunkName: "DyeLif" */
+        "../components/DyeLif.vue"
+      ),
+  },
+  {
     path: "/two-axis-plot",
     name: "TwoAxisPlot",
     component: () => import("../components/CovidWastewaterPlot.vue"),

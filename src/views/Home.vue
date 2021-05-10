@@ -102,24 +102,32 @@ export default {
   data: () => ({
     links: [
       {
+        title: "3D Kriging",
+        link: "/dye-lif-model",
+        description:
+          "using a geostatistic method called Kriging to estimate contaminant presence in soil (opens in a new tab).",
+        source: require("../assets/galleryThumbs/dyeLif.jpg"),
+        tab: "_blank", // open a new tab
+      },
+      {
         title: "Flopy Groundwater Model",
         link: "/triangle-model",
-        description:
-          "Python to build groundwater models quickly. (Opens in new tab.)",
+        description: "a Python groundwater model mesh (opens in a new tab).",
         source: require("../assets/galleryThumbs/triangleModflow.jpg"),
         tab: "_blank", // open a new tab
       },
       {
         title: "Two-axis Plot",
         link: "/two-axis-plot",
-        description: "Using D3 to compare alternatives to two-axis plots",
+        description: "using D3 to compare two-axis plots and alternatives",
         source: require("../assets/galleryThumbs/twoAxisPlot.jpg"),
         tab: "",
       },
       {
         title: "Tomato Product Cycle",
         link: "/tomato-product-cycle",
-        description: "Major inputs and wastes of tomato production in the US",
+        description:
+          "the major inputs and wastes of tomato production in the US",
         source: require("../assets/mapArt/Tomatos.jpg"),
         tab: "",
       },
@@ -128,14 +136,14 @@ export default {
         title: "Random D3 sin wave",
         link: "/random-wave",
         description:
-          "made this when learning D3 animations. Sharing it because it's kinda nice",
+          "I made this when learning D3 animations. Sharing it because it's kinda nice",
         source: require("../assets/galleryThumbs/randomSin.jpg"),
         tab: "",
       },
       {
         title: "Some Map Art - NJ",
         link: "/map-art-nj",
-        description: "stumbled on a nice dataset for a remediation project",
+        description: "a nice looking dataset from a remediation project",
         source: require("../assets/mapArt/NjMapArt.jpg"),
         tab: "",
       },
@@ -150,7 +158,7 @@ export default {
         title: "Groudwater and Beef",
         link: "/groundwater-beef",
         description:
-          "made this visual essay back in 2014 while 'beefing' up my ArcGIS skills",
+          "a visual essay made back in 2014 while 'beefing' up my ArcGIS skills",
         source: require("../assets/galleryThumbs/gwBeef.jpg"),
         tab: "",
       },
@@ -182,7 +190,7 @@ export default {
         title: "Map - Radiohead Style",
         link: "/map-art-radiohead",
         description:
-          "A map of US minnow species styalized like a Radiohead album cover",
+          "a map of US minnow species styalized like a Radiohead album cover",
         source: require("../assets/mapArt/htt_minnow.jpg"),
         tab: "",
       },
