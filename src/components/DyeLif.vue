@@ -2,7 +2,7 @@
   <v-container>
     <v-card-text
       class="pa-1"
-      style="font-size: 0.75rem; text-align: center; max-width: 450pt"
+      style="font-size: 0.75rem; text-align: center; max-width: 450pt; margin: 0 auto;"
     >
       I made the cover image for
       <a href="https://ngwa.onlinelibrary.wiley.com/doi/abs/10.1111/gwmr.12296"
@@ -143,7 +143,7 @@
             >
               Github link</a
             >
-            for the script.
+            for the Python script.
           </li>
         </ul>
       </v-card-text>
