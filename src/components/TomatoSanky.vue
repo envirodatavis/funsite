@@ -11,10 +11,11 @@
       align="center"
       style="padding-top:50pt; text-align: center; font-size: 0.75rem;"
     >
-      <div style="max-width:320pt">
-        I was chatting with a friend at the pub about food waste, and I decided
-        to do some research later. The thought was to code this up, but
-        sometimes the pencil crayon is more fun than the keyboard.
+      <div style="max-width:320pt; padding-left: 4pt; padding-right: 4pt">
+        I was chatting with a friend about food waste at the pub, then I decided
+        to do some follow up research. The intent was to code this up in
+        something fancy and interactive, but sometimes the pencil crayon is more
+        fun than the keyboard.
         <br />
         <!-- (TODO: update old links to sources. Based on 2016 numbers estimated from a  -->
         <br />

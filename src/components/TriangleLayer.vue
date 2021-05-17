@@ -23,26 +23,30 @@
       <v-card-text class="pa-2" style="font-size: 0.75rem; max-width: 450pt">
         <ul>
           <li>
-            Top layer: a Digital elevation model, of the form X,Y,Z with
-            thousands of points.
+            Top layer: a digital elevation model (coming from a .csv with
+            thousands of points).
           </li>
           <li>
-            Bottom green layer: a geologic layer, linearly interpolated by a
-            dozen boreholes and some inferred points.
+            Middle triangle yellow layer: finite element mesh in X and Y, with
+            the Z top and bottom interpolated to each surface.
           </li>
           <li>
-            Middle yellow layer: triangle finite element mesh in X and Y, with Z
-            interpolated to each surface and joined.
+            Bottom green layer: a geologic layer, linearly interpolated by 10s
+            of known locations.
           </li>
           <li>
-            Purpose: to show what a Modflow 6 unstructured triangular grid looks
-            like between two surfaces.
+            Purpose: to show what a groundwater flow model triangular grid looks
+            like in 3D when it is interpolated to two surfaces. Groundwater flow
+            models sometimes use triangular grids, but they are often viewed in
+            2D in clumsy GUIs, where errors are hard to spot. This script is
+            designed to show how groundwater modeling and 3D visualization can
+            be combined in Python.
           </li>
           <li>
             From the Minette Region of southern Luxembourg, geologic layer
-            <a href="http://doi.org/10.1127/1860-1804/2013/0025"
-              >estimated from here.</a
-            >
+            <a href="http://doi.org/10.1127/1860-1804/2013/0025">
+              estimated from here.
+            </a>
           </li>
           <li>
             10:1 (V:H) exaggeration, layers "exploded" apart to show them

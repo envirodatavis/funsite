@@ -18,12 +18,6 @@
           </v-col>
         </v-row>
 
-        <v-row justify="center" no-gutters>
-          <v-col align="center">
-            <svg id="covidViz" />
-          </v-col>
-        </v-row>
-
         <v-row justify="center" no-gutters class="ma-0">
           <v-col align="center">
             <v-btn-toggle mandatory v-model="timeToggle" rounded dense>
@@ -44,6 +38,13 @@
             <br />
           </v-col>
         </v-row>
+        <v-row justify="center" no-gutters>
+          <v-col align="center">
+            <svg id="covidViz" />
+          </v-col>
+        </v-row>
+
+
         <v-row justify="center" align="center">
           <v-card-text
             class="pa-2"
@@ -101,10 +102,9 @@ export default {
     },
     colorLeft: "rgb(255,77,77)",
     colorRight: "rgb(29,129,162)",
-    // width: 200,
     height: 300,
     rawData: rawData,
-    timeToggle: "time2Plots",
+    timeToggle: "time1Plot",
     transitionDuration: 1000,
   }),
   mounted() {
@@ -538,7 +538,6 @@ export default {
           .transition()
           .duration(this.transitionDuration)
           .style("opacity", 0);
-        // .remove();
         await svg
           .selectAll(".xaxistitle")
           .transition()
