@@ -78,6 +78,11 @@ const routes = [
     component: () => import("../components/CovidWastewaterPlot.vue"),
   },
   {
+    path: "/carbon-forteen",
+    name: "CarbonDating",
+    component: () => import("../components/CarbonForteen.vue"),
+  },
+  {
     path: "/map-art-nj",
     name: "MapArtNj",
     component: () =>
