@@ -3,14 +3,37 @@
     <v-row justify="center" no-gutters>
       <v-col align="center">
         <v-card elevation="0" max-width="500" color="rgba(0,0,0,0)">
-          <v-card-text>
+          <v-card-text style="max-width: 400px">
             In December 2020, five friends watched Married at First Sight season
-            five. Here are their predictions about the couples.
+            five. This dashboard was used to track predictions about the
+            couples.
             <br />
             <br />
-            Red: the couple remains together at the end of the season.
+
+            <svg width="24" height="15" style="margin-bottom:-2pt">
+              <rect
+                width="24"
+                height="15"
+                rx="5"
+                ry="5"
+                style="fill:rgb(255,0,0);stroke-width:1;stroke:rgb(255,255,255);opacity:0.8;"
+              />
+            </svg>
+            indicates that the couple was predicted to remain together at the
+            end of the season.
             <br />
-            Grey: the couple divorces
+
+            <svg width="24" height="15" style="margin-bottom:-2pt">
+              <rect
+                width="24"
+                height="15"
+                rx="5"
+                ry="5"
+                style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(255,255,255);opacity:0.35;"
+              />
+            </svg>
+            indicates the couple was predicted to divorce at the end of the
+            season
           </v-card-text>
         </v-card>
       </v-col>
@@ -325,23 +348,6 @@ export default {
           "translate(" + this.margin.left + "," + this.margin.top + ")"
         )
         .attr("id", "winBars");
-      // svg
-      //   .selectAll("#winText")
-      //   .data(this.finalResults)
-      //   .enter()
-      //   .append("text")
-      //   // .attr("class", "label")
-      //   //y position of the label is halfway down the bar
-      //   .attr("y", 90)
-      //   // (d) => {
-      //   //   this.winScales.y(d.viewer) + 5; //this.winScales.y.bandwidth() / 2 + 4;
-      //   // })
-      //   //x position is 3 pixels to the right of the bar
-      //   .attr("x", 80)
-      //   // (d) => {
-      //   //   this.winScales.x(d.value) + 3;
-      //   // })
-      //   .text("Hi");
     },
     updateWinViz: async function() {
       await d3
@@ -367,16 +373,6 @@ export default {
         .select("#staticViz")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
-
-      // svg
-      //   .append("rect")
-      //   .attr("x", 0)
-      //   .attr("y", 0)
-      //   .attr("width", this.width + this.margin.left + this.margin.right)
-      //   .attr("height", this.height + this.margin.top + this.margin.bottom)
-      //   .style("stroke", "black")
-      //   .style("fill", "none")
-      //   .style("stroke-width", 3);
 
       // ----- axes ----
       svg
