@@ -6,7 +6,7 @@
     >
       Interactive radiocarbon dating plot, to show uncertainty in age
       estimation. Most labs have very small standard deviations and are very
-      accurate. 
+      accurate.
       <br />
       Select log or linear time, and drag the sliders below.
     </v-card-text>
