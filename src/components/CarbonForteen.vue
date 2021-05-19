@@ -1,70 +1,125 @@
 <template>
   <v-container fluid>
-    <v-card tile outlined max-width="700" color="rgba(0,0,0,0.1)"> 
-    <v-row justify="center">
-      <svg id="carbonViz" style="margin: 0 auto;" />
-    </v-row>
-    <v-row justify="center">
-      <v-btn-toggle mandatory v-model="timeScale" rounded dense>
-        <v-btn value="linear" x-small style="background-color: #f2f0e6"
-          >Linear Time
-        </v-btn>
-        <v-btn value="log" x-small style="background-color: #f2f0e6"
-          >Log Time
-        </v-btn>
-      </v-btn-toggle>
-    </v-row>
-    <v-row justify="center" align="center" no-gutters>
-      <v-col cols="12" sm="3" style="font-size: 0.75rem;">
-        Estimated C14 Depletion (per mil)
-      </v-col>
-      <v-col cols="8" sm="5" style="transform: scale(0.85)">
-        <v-slider
-          v-model="inputPerMilDepleted"
-          :max="995"
-          :min="10"
-          color="black"
-          hide-details
+    <v-card-text
+      class="pa-1"
+      style="font-size: 0.75rem; max-width: 350pt; text-align: center; margin: auto; display: block;"
+    >
+      Interactive radiocarbon dating plot, to show uncertainty in age
+      estimation.
+      <br />
+      Select log or linear time, and drag the sliders below.
+    </v-card-text>
+    <v-card
+      tile
+      outlined
+      :width="width + 300"
+      color="rgba(0,0,0,0.0)"
+      style="margin: auto; display: block;"
+    >
+      <v-row justify="center">
+        <v-btn-toggle
+          mandatory
+          v-model="timeScale"
+          rounded
           dense
-          track-color="grey"
-          class="align-center"
+          style="margin-top:20pt; margin-bottom: -18pt"
         >
-          <template v-slot:append>
-            <v-text-field
-              v-model="inputPerMilDepleted"
-              hide-details
-              class="mt-0 pt-0"
-              type="number"
-              style="width: 60px; "
-            ></v-text-field>
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
-    <v-row justify="center" align="center" no-gutters>
-      <v-col cols="12" sm="3" style="font-size: 0.75rem;">
-        Standard Deviation of Estimate (per mil)
-      </v-col>
-      <v-col cols="8" sm="5" style="transform: scale(0.85)">
-        <v-slider
-          v-model="standardDeviation"
-          :max="25"
-          :min="2"
-          color="black"
-          track-color="grey"
-          class="align-center"
-        >
-          <template v-slot:append>
-            <v-text-field
-              v-model="standardDeviation"
-              class="mt-0 pt-0"
-              type="number"
-              style="width: 60px"
-            ></v-text-field>
-          </template>
-        </v-slider>
-      </v-col>
-    </v-row>
+          <v-btn
+            value="linear"
+            x-small
+            width="90"
+            style="background-color: #f2f0e6"
+          >
+            Linear Time
+          </v-btn>
+          <v-btn
+            value="log"
+            x-small
+            width="90"
+            style="background-color: #f2f0e6"
+          >
+            Log Time
+          </v-btn>
+        </v-btn-toggle>
+        <svg id="carbonViz" style="margin: 0 auto;" />
+      </v-row>
+      <v-row
+        justify="center"
+        align="center"
+        no-gutters
+        style="padding-top:10pt"
+      >
+        <v-col cols="12" sm="3" style="font-size: 0.75rem;">
+          Estimated 14C Depletion <br />(per mille, ‰)
+        </v-col>
+        <v-col cols="8" sm="5" style="transform: scale(0.85)">
+          <v-slider
+            v-model="inputPerMilDepleted"
+            :max="995"
+            :min="10"
+            color="black"
+            hide-details
+            dense
+            track-color="grey"
+            class="align-center"
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="inputPerMilDepleted"
+                hide-details
+                class="mt-0 pt-0"
+                type="number"
+                style="width: 60px; "
+              ></v-text-field>
+            </template>
+          </v-slider>
+        </v-col>
+      </v-row>
+      <v-row justify="center" align="center" no-gutters>
+        <v-col cols="12" sm="3" style="font-size: 0.75rem;">
+          Standard Deviation of Estimate <br />(per mille, ‰)
+        </v-col>
+        <v-col cols="8" sm="5" style="transform: scale(0.85)">
+          <v-slider
+            v-model="standardDeviation"
+            :max="25"
+            :min="2"
+            color="black"
+            track-color="grey"
+            class="align-center"
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="standardDeviation"
+                class="mt-0 pt-0"
+                type="number"
+                style="width: 60px"
+              ></v-text-field>
+            </template>
+          </v-slider>
+        </v-col>
+      </v-row>
+      <v-row justify="center" align="center" no-gutters>
+        <v-col cols="12" sm="9">
+          <v-card-text
+            class="pa-2"
+            style="font-size: 0.75rem;  text-align: center;"
+          >
+            Purpose: to experiment with interactively showing estimates
+            uncertainty, using radiocarbon dating as an example. Uncertainty is
+            shown with a normal distriution on the input, with plus or minus three standard
+            deviations (99.7% probability). Made with D3.
+            <br />
+                        <br />
+Note: showing the fraction modern carbon, because it is more intuitive to me, but the convention is to use per mille depletion of 14C 
+            <br />
+
+            <br />
+
+            (Age calibration with IntCal coming soon...)
+          </v-card-text>
+        </v-col>
+      </v-row>
     </v-card>
   </v-container>
 </template>
@@ -89,17 +144,22 @@ export default {
   data: () => ({
     margin: {
       top: 20,
-      left: 140,
-      right: 50,
+      left: 150,
+      right: 150,
       bottom: 80,
       xAxis: 30,
       yAxis: 10,
     },
-    inputPerMilDepleted: 500,
+    inputPerMilDepleted: 985,
     standardDeviation: 5,
     height: 300,
     timeScale: "linear",
     transitionDuration: 1000,
+    colors: {
+      distroLines: "#2f4f87",
+      axes: "#4f4f4f", //"##4f4f4f",
+      carbonDateLine: "#B22222",
+    },
   }),
   mounted() {
     this.instantiateViz();
@@ -109,8 +169,11 @@ export default {
       return carbon14Calc(-this.inputPerMilDepleted / 1000);
     },
     width() {
-      if (window.innerWidth > 800) return 550;
-      return window.innerWidth - 250;
+      return 400;
+      // maybe this if I try to make it work on mobile?
+      // if (window.innerWidth > 800) return 550 - this.margin.right;
+      // if (window.innerWidth < 700) return 500;
+      // return window.innerWidth - 350 - this.margin.right;
     },
     estRadiocarbonDates() {
       let inputdata = [this.inputPerMilDepleted];
@@ -244,7 +307,7 @@ export default {
       let margin = this.margin;
       const yAxis =
         "translate(" +
-        (margin.left - margin.yAxis - 50) +
+        (margin.left - margin.yAxis - 70) +
         "," +
         margin.top +
         ")";
@@ -252,12 +315,16 @@ export default {
         "translate(" + (margin.left - margin.yAxis) + "," + margin.top + ")";
       const yAxisTitle =
         "translate(" +
-        (margin.left - margin.yAxis - 50) +
+        (margin.left - margin.yAxis - 100) +
         "," +
-        margin.top +
-        ")";
+        (margin.top + this.height / 2) +
+        "),rotate(-90)";
       const yAxis2Title =
-        "translate(" + (margin.left - margin.yAxis) + "," + margin.top + ")";
+        "translate(" +
+        (margin.left - margin.yAxis - 35) +
+        "," +
+        (margin.top + this.height / 2) +
+        "),rotate(-90)";
       const xAxis =
         "translate(" +
         margin.left +
@@ -316,55 +383,72 @@ export default {
         .append("g")
         .call(d3.axisBottom(this.scales.x).ticks(6))
         .attr("transform", this.translations.xAxis)
+        .style("color", this.colors.axes)
         .attr("class", "xaxis");
-
       svg
         .append("text")
         .attr("transform", this.translations.xAxisTitle)
+        .style("color", this.colors.axes)
         .style("text-anchor", "middle")
-        .text("Radiocarbon Age")
+        .text("Radiocarbon Age (years)")
         .style("font-size", 12);
 
       svg
         .append("g")
         .call(d3.axisLeft(this.scales.y))
         .attr("class", "leftaxis")
-        .attr("transform", this.translations.yAxis);
+        .attr("transform", this.translations.yAxis)
+        .style("color", this.colors.axes);
 
+      svg
+        .append("text")
+        .attr("transform", this.translations.yAxisTitle)
+        .style("text-anchor", "middle")
+        .style("color", this.colors.axes)
+        .text("Fraction Modern Carbon (percent, %)")
+        .style("font-size", 12);
+
+      // The other scale for context:
       svg
         .append("g")
         .call(d3.axisLeft(this.scales.y2))
         .attr("class", "leftaxis2")
+        .style("color", this.colors.axes)
         .attr("transform", this.translations.yAxis2);
-
+      svg
+        .append("text")
+        .attr("transform", this.translations.yAxis2Title)
+        .style("color", this.colors.axes)
+        .style("text-anchor", "middle")
+        .text("Depletion (per mille, ‰)")
+        .style("font-size", 12);
       // data: the carbon line
       svg
         .append("path")
         .attr("d", this.carbonLine(this.radiocarbonLineData))
-        .attr("stroke", "red")
+        .attr("stroke", this.colors.carbonDateLine)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.data)
         .attr("id", "theline");
-      // data: the distro line
+      // data: the distro lines:
       svg
         .append("path")
         .attr("d", this.distroLines.y(this.yDistroData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colors.distroLines)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.yAxis2)
         .attr("id", "theydistroline");
-
       svg
         .append("path")
         .attr("d", this.distroLines.x(this.xDistroData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colors.distroLines)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.xAxisDistro)
         .attr("id", "thexdistroline");
-
+      // just one dot here:
       svg
         .selectAll("thedots")
         .data(this.estRadiocarbonDates)
@@ -386,9 +470,13 @@ export default {
         .call(
           d3
             .axisBottom(this.scales.x)
-            .tickFormat((x) => (/[15]/.test(x) ? x : "")) // just show 1s and 5s in the ticks
-          // .ticks()
-        ); // TODO: fix the tick format when returning to linear
+            .tickFormat(
+              this.timeScale === "log"
+                ? (x) => (/[15]/.test(x) ? x : "") // just show 1s and 5s in the ticks
+                : d3.format(",.0f")
+            )
+            .ticks(this.timeScale === "log" ? 10 : 5)
+        );
       await d3
         .selectAll("#thedots")
         .data(this.estRadiocarbonDates)
@@ -410,7 +498,7 @@ export default {
         .transition()
         .duration(this.transitionDuration)
         .attr("d", this.distroLines.x(this.xDistroData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colors.distroLines)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.xAxisDistro);
@@ -430,7 +518,7 @@ export default {
         .transition()
         .duration(50)
         .attr("d", this.distroLines.y(this.yDistroData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colors.distroLines)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.yAxis2);
@@ -440,7 +528,7 @@ export default {
         .transition()
         .duration(50)
         .attr("d", this.distroLines.x(this.xDistroData))
-        .attr("stroke", "blue")
+        .attr("stroke", this.colors.distroLines)
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("transform", this.translations.xAxisDistro);

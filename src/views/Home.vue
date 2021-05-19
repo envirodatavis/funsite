@@ -102,17 +102,25 @@ export default {
   data: () => ({
     links: [
       {
+        title: "Radiocarbon Dating",
+        link: "/carbon-fourteen",
+        description:
+          "an interactive D3 radiocarbon dating plot with uncertainty.",
+        source: require("../assets/galleryThumbs/carbonFourteen.jpg"),
+        tab: "",
+      },
+      {
         title: "3D Kriging",
         link: "/dye-lif-model",
         description:
-          "using a geostatistic method called Kriging to estimate contaminant presence in soil (opens in a new tab).",
+          "using a geostatistic method called Kriging to estimate contaminant presence in soil (opens in a new tab)",
         source: require("../assets/galleryThumbs/dyeLif.jpg"),
         tab: "_blank", // open a new tab
       },
       {
         title: "Flopy Groundwater Model",
         link: "/triangle-model",
-        description: "a Python groundwater model mesh (opens in a new tab).",
+        description: "a Python groundwater model mesh (opens in a new tab)",
         source: require("../assets/galleryThumbs/triangleModflow.jpg"),
         tab: "_blank", // open a new tab
       },

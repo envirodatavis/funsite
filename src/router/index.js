@@ -7,8 +7,6 @@ const routes = [
   {
     path: "/",
     redirect: "/gallery",
-    // name: "Home",
-    // component: Home,
   },
   {
     path: "/gallery",
@@ -84,7 +82,7 @@ const routes = [
     component: () => import("../components/CovidWastewaterPlot.vue"),
   },
   {
-    path: "/carbon-forteen",
+    path: "/carbon-fourteen",
     name: "CarbonDating",
     component: () => import("../components/CarbonForteen.vue"),
   },
