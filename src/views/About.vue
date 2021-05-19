@@ -16,7 +16,7 @@
               <br />
               <br />
               <a href="https://github.com/Owen-Miles/funsite">
-                Here is the GitHub link for this site
+                Here is this site on GitHub.
               </a>
               <br />
               <div class="separator"></div>
