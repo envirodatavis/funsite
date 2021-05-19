@@ -11,10 +11,8 @@
               for fun.
               <br />
               <br />
-              This site is in Vue, uses a lot of D3, with some other cool
-              packages that I will list eventually. I still have many TODOs. But
-              this is for fun. Most content will look good on mobile too, some
-              may not.
+              This site is written in Vue, uses a lot of D3, with some x3dom.
+              Most content will look good on mobile too, some may not.
               <br />
               <br />
               <a href="https://github.com/Owen-Miles/funsite">
@@ -26,8 +24,7 @@
               front end and how to program properly while at REsurety, and Peter
               Richardson for being a heck of a supportive manager there.
               <br />
-              <br />
-              <div class="separator">PS:</div>
+              <div class="separator"></div>
               My mother and sister are great artists who also have their own
               sites, see:
               <a href="https://www.torymiles.com">torymiles.com</a>
