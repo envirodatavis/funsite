@@ -5,7 +5,9 @@
       style="font-size: 0.75rem; max-width: 350pt; text-align: center; margin: auto; display: block;"
     >
       Interactive radiocarbon dating plot, to show uncertainty in age
-      estimation.
+      estimation. Most labs have very small standard deviations and are more
+      accurate than I am showing. This is more to show how measurment error can be
+      transformed in a calculation.
       <br />
       Select log or linear time, and drag the sliders below.
     </v-card-text>
@@ -107,11 +109,13 @@
           >
             Purpose: to experiment with interactively showing estimates
             uncertainty, using radiocarbon dating as an example. Uncertainty is
-            shown with a normal distriution on the input, with plus or minus three standard
-            deviations (99.7% probability). Made with D3.
+            shown with a normal distriution on the input, with plus or minus
+            three standard deviations (99.7% probability). Made with D3.
             <br />
-                        <br />
-Note: showing the fraction modern carbon, because it is more intuitive to me, but the convention is to use per mille depletion of 14C 
+            <br />
+            Note: showing the fraction modern carbon, because it is more
+            intuitive to me, but the convention is to use per mille depletion of
+            14C
             <br />
 
             <br />
