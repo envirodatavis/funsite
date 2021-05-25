@@ -5,8 +5,7 @@
       style="font-size: 0.75rem; max-width: 350pt; text-align: center; margin: auto; display: block;"
     >
       Interactive radiocarbon dating plot, to show uncertainty in age
-      estimation. Most labs have very small standard deviations and are very
-      accurate.
+      estimation.
       <br />
       Select log or linear time, and drag the sliders below.
     </v-card-text>
@@ -117,7 +116,10 @@
             14C.
             <br />
             Also, real laboratory standard deviations are frequently less than 1
-            per mille.
+            per mille, and are much more accurate than this dashboard initally
+            suggests. Eventually I will refine the scales to show much smaller
+            errors, which is more realistic, but for now this illustrates the
+            concept.
             <br />
             <br />
             (Age calibration with IntCal coming soon...)

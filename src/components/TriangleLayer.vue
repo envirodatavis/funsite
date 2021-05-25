@@ -21,6 +21,7 @@
     </v-row>
     <v-row justify="center" align="center">
       <v-card-text class="pa-2" style="font-size: 0.75rem; max-width: 450pt">
+        Legend:
         <ul>
           <li>
             Top layer: a digital elevation model (coming from a .csv with
@@ -35,12 +36,25 @@
             of known locations.
           </li>
           <li>
-            Purpose: to show what a groundwater flow model triangular grid looks
-            like in 3D when it is interpolated to two surfaces. Groundwater flow
-            models sometimes use triangular grids, but they are often viewed in
-            2D in clumsy GUIs, where errors are hard to spot. This script is
-            designed to show how groundwater modeling and 3D visualization can
-            be combined in Python.
+            10:1 (V:H) exaggeration, layers "exploded" apart to show them
+            clearly.
+          </li>
+        </ul>
+        Purpose and Background:
+        <ul>
+          <li>
+            Groundwater flow models sometimes use triangular grids, but they are
+            often viewed in 2D in clumsy-to-use or expensive GUIs, where errors
+            are hard to spot. This script is designed to show how groundwater
+            modeling and 3D visualization can be combined in Python, using free
+            tools.
+          </li>
+          <li>
+            Specifically, this is to show what a groundwater flow model's
+            triangular grid looks like when it is interpolated between two
+            surfaces in 3D. Using this script we can build more complicated
+            multi-layerd models, and visualize and troubleshoot our grid with
+            ease.
           </li>
           <li>
             From the Minette Region of southern Luxembourg, geologic layer
@@ -48,10 +62,7 @@
               estimated from here.
             </a>
           </li>
-          <li>
-            10:1 (V:H) exaggeration, layers "exploded" apart to show them
-            clearly.
-          </li>
+
           <li>
             Made using the python packages Flopy and Vedo Borrows heavily from
             A. Pollack (SCRF)'s example of a geologic model from the Vedo

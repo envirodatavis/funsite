@@ -104,28 +104,40 @@
             3D modeling work with free tools.
           </li>
           <li>
-            When oily substances spill onto the ground, they seep down to the
-            groundwater where they slowly dissolve, causing contamination that
-            could be hazardous. It is often hard to find the oil in the ground,
-            because we can’t see it easily and collecting soil samples is
-            expensive and hard.
+            Some other background: When oily substances spill onto the ground,
+            they seep down to the groundwater where they slowly dissolve,
+            causing contamination that could be hazardous. It is often difficult
+            to find the oil in the ground, because we can’t see it easily.
+            Usually, we have to drill boreholes and collect samples of the soil,
+            which is expensive and time consuming.
             <a
               href="https://ngwa.onlinelibrary.wiley.com/toc/17456592/2018/38/3"
               >A tool was developed
             </a>
             by
             <a href="http://www.dakotatechnologies.com/services/dyelif">
-              Dakota Technologies </a
-            >that can detect oil more easily in the ground using laser induced
-            fluorescence in soil borings. The method for investigating a
-            contaminated site usually involves several soil borings, followed by
-            some sort of interpolation to map out the oils. Here we use the
-            geostatistical method Kriging, which is usually better than a simple
-            linear or spline interpolation.
+              Dakota Technologies
+            </a>
+            that can detect oil more easily in the ground using a technology
+            called Laser Induced Fluorescence (LIF). This method is really
+            effective at some sites at finding the oily substance without
+            drilling boreholes and sampling directly. Here, I am simulating
+            using Dakota's DyeLIF tool and showing the interpolation that is
+            done after.
           </li>
           <li>
-            The Kriging interpolation is done in 3D to show where the oil is
-            possibly located in the ground based on the investigations.
+            The method for investigating a contaminated site usually involves
+            several boreholes or probes with the DyeLIF tool, followed by some
+            sort of interpolation to map out where we think the oils are. Here,
+            we use the geostatistical method Kriging, which is usually better
+            than a simple linear or spline interpolation. Normally, one would do
+            this with EVS or some other paid-for tool.
+          </li>
+          <li>
+            I am instead using Python and free packages to do the same work in a
+            script. This frees up time, because as long as the input data is in
+            the right form, we get the same cool 3D visualization out with out
+            any work.
           </li>
           <li>
             I made this data up, but it is based on my experience with the
