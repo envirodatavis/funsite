@@ -99,6 +99,7 @@
           </v-slider>
         </v-col>
       </v-row>
+      <vue-mathjax :formula="formula"></vue-mathjax>
       <v-row justify="center" align="center" no-gutters>
         <v-col cols="12" sm="9">
           <v-card-text
@@ -132,7 +133,7 @@
 
 <script>
 import * as d3 from "d3";
-// import rawData from "../lib/data/covidData.json";
+import { VueMathjax } from "vue-mathjax";
 
 const carbon14Calc = (depletion) => {
   return -8033 * Math.log(1 + depletion);
@@ -146,7 +147,9 @@ const normalDist = (sigma, mean, e) => {
 };
 
 export default {
-  components: {},
+  components: {
+    "vue-mathjax": VueMathjax,
+  },
   data: () => ({
     margin: {
       top: 20,
@@ -171,6 +174,15 @@ export default {
     this.instantiateViz();
   },
   computed: {
+    formula() {
+      return (
+        "$$" +
+        this.estimatedRCAge.toFixed(0) +
+        " = {-8033 \\ln({-" +
+        this.inputPerMilDepleted +
+        "\\over 1000})}$$"
+      );
+    },
     estimatedRCAge() {
       return carbon14Calc(-this.inputPerMilDepleted / 1000);
     },
