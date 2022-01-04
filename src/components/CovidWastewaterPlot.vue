@@ -408,7 +408,7 @@ export default {
         .append("circle")
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yLeft(e.y1))
-        .attr("r", 1.5)
+        .attr("r", 1)
         .style("fill", this.colorLeft)
         .attr("transform", this.translations.leftAxis)
         .attr("id", "redDots");
@@ -419,7 +419,7 @@ export default {
         .append("circle")
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yRight(e.y2))
-        .attr("r", 1.5)
+        .attr("r", 1)
         .style("fill", this.colorRight)
         .attr("transform", this.translations.rightData)
         .attr("id", "blueDots");
