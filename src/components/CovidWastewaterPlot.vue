@@ -6,11 +6,11 @@
           <v-col align="center">
             <v-card-text
               class="pa-1"
-              style="font-size: 0.75rem; text-align: center; max-width:300pt"
+              style="font-size: 0.75rem; text-align: center; max-width: 300pt"
             >
               Plots with multiple axes can be misleading. This graph that
-              compares a two-axis plot and alternatives using D3. It is based on
-              this post:
+              compares a two-axis plot and alternatives. It is based on this
+              post:
               <a href="https://blog.datawrapper.de/dualaxis/">
                 "Why not to use two axes, and what to use instead" </a
               >. Select the different options below.
@@ -44,7 +44,6 @@
           </v-col>
         </v-row>
 
-
         <v-row justify="center" align="center">
           <v-card-text
             class="pa-2"
@@ -67,17 +66,10 @@
                   MA COVID-19 Response Reporting </a
                 >.
               </li>
-              <li>Data colllected in April 2021.</li>
-              <li>
-                Apologies for the grim content, but I was really curious how
-                these tracked and had not seen any sastisfying graphics online.
-              </li>
-              <li>
-                I am not an epidemiologist.
-              </li>
-              <li>
-                This was made for personal interest only.
-              </li>
+              <li>Data colllected in January 2022.</li>
+              <li>I am not an epidemiologist.</li>
+              <li>This was made for personal interest only.</li>
+              <li>This was made with D3.js</li>
             </ul>
           </v-card-text>
         </v-row>
@@ -97,7 +89,7 @@ export default {
       top: 20,
       left: 60,
       right: 50,
-      bottom: 50,
+      bottom: 55,
       betweenPlotPadding: 20,
     },
     colorLeft: "rgb(255,77,77)",
@@ -111,11 +103,11 @@ export default {
     this.instantiateViz();
   },
   computed: {
-    width: function() {
+    width: function () {
       if (window.innerWidth > 400) return 300;
       return 200;
     },
-    scales: function() {
+    scales: function () {
       const yAxisRange = () => {
         switch (this.timeToggle) {
           case "time2Plots":
@@ -129,14 +121,11 @@ export default {
       const yLeftExtents = d3.extent(this.plotData.map((e) => e.y1));
       let yRightExtents = d3.extent(this.plotData.map((e) => e.y2));
 
-      let xDomain = [new Date(2020, 1, 1), new Date(2021, 3, 3)];
+      let xDomain = [new Date(2020, 1, 1), new Date(2022, 1, 1)];
       if (this.timeToggle === "noTime") {
         xDomain = d3.extent(this.plotData.map((e) => e.x));
       }
-      const xScale = d3
-        .scaleTime()
-        .range([0, this.width])
-        .domain(xDomain);
+      const xScale = d3.scaleTime().range([0, this.width]).domain(xDomain);
       const yLeft = d3
         .scaleLinear()
         .range(yAxisRange())
@@ -151,7 +140,7 @@ export default {
 
       return { x: xScale, yLeft: yLeft, yRight: yRight };
     },
-    plotData: function() {
+    plotData: function () {
       function average(nums) {
         return nums.reduce((a, b) => a + b) / nums.length;
       }
@@ -169,14 +158,14 @@ export default {
           y1AvgArray = this.rawData
             .slice(index - 13, index + 1)
             .map((e) => e.PositiveResults)
-            .filter(function(el) {
+            .filter(function (el) {
               return el != "";
             });
 
           y2AvgArray = this.rawData
             .slice(index - 13, index + 1)
             .map((e) => e.WW_Daily_copiesPml)
-            .filter(function(el) {
+            .filter(function (el) {
               return el != "";
             });
         }
@@ -337,7 +326,7 @@ export default {
     },
   },
   methods: {
-    instantiateViz: function() {
+    instantiateViz: function () {
       // make the svg:
       const svg = d3
         .select("#covidViz")
@@ -379,12 +368,7 @@ export default {
       // Left axis:
       svg
         .append("g")
-        .call(
-          d3
-            .axisLeft(this.scales.yLeft)
-            .tickSize(2)
-            .ticks(5)
-        )
+        .call(d3.axisLeft(this.scales.yLeft).tickSize(2).ticks(5))
         .attr("class", "leftaxis")
         .attr("transform", this.translations.leftAxis)
         .style("color", this.colorLeft)
@@ -401,12 +385,7 @@ export default {
       // Right axis:
       svg
         .append("g")
-        .call(
-          d3
-            .axisRight(this.scales.yRight)
-            .tickSize(2)
-            .ticks(5)
-        )
+        .call(d3.axisRight(this.scales.yRight).tickSize(2).ticks(4))
         .attr("class", "rightaxis")
         .attr("transform", this.translations.rightYAxis)
         .style("color", this.colorRight)
@@ -429,7 +408,7 @@ export default {
         .append("circle")
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yLeft(e.y1))
-        .attr("r", 1)
+        .attr("r", 1.5)
         .style("fill", this.colorLeft)
         .attr("transform", this.translations.leftAxis)
         .attr("id", "redDots");
@@ -440,7 +419,7 @@ export default {
         .append("circle")
         .attr("cx", (e) => this.scales.x(e.x))
         .attr("cy", (e) => this.scales.yRight(e.y2))
-        .attr("r", 1)
+        .attr("r", 1.5)
         .style("fill", this.colorRight)
         .attr("transform", this.translations.rightData)
         .attr("id", "blueDots");
@@ -461,7 +440,7 @@ export default {
         .attr("transform", this.translations.rightData)
         .attr("id", "theBlueLine");
     },
-    updateViz: async function(next, prev) {
+    updateViz: async function (next, prev) {
       await d3
         .selectAll("#redDots")
         .data(this.plotData)
@@ -501,22 +480,13 @@ export default {
         .selectAll(".leftaxis")
         .transition()
         .duration(this.transitionDuration)
-        .call(
-          d3
-            .axisLeft(this.scales.yLeft)
-            .tickSize(2)
-            .ticks(5)
-        );
+        .call(d3.axisLeft(this.scales.yLeft).tickSize(2).ticks(5));
       await svg
         .selectAll(".rightaxis")
         .transition()
         .duration(this.transitionDuration)
         .call(
-          d3
-            .axisRight(this.scales.yRight)
-            .tickSize(2)
-            .ticks(5)
-            .tickPadding([3])
+          d3.axisRight(this.scales.yRight).tickSize(2).ticks(5).tickPadding([3])
         )
         .attr("transform", this.translations.rightYAxis);
 
@@ -553,7 +523,7 @@ export default {
               .tickSize(2)
               .tickFormat(d3.format(",.0f"))
               .tickPadding([10])
-              .ticks(5)
+              .ticks(4)
           )
           .style("color", this.colorRight)
           .attr("transform", this.translations.xAxis);
